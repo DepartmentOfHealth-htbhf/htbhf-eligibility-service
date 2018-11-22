@@ -15,6 +15,7 @@ plugins {
     id 'com.github.kt3k.coveralls' version '2.8.2'
 }
 apply plugin: 'java'
+apply plugin: "groovy"
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
@@ -35,6 +36,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation "org.spockframework:spock-core:1.2-groovy-2.4"
 
     compileOnly "org.projectlombok:lombok:${lombokVersion}"
 
