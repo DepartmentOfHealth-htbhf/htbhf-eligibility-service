@@ -17,3 +17,6 @@ deploy:
   local-dir: build/reports/tests
   on:
     branch: master
+
+after_success:
+  - ./gradlew jacocoTestReport coveralls
