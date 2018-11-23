@@ -1,8 +1,8 @@
 # htbhf-eligibility-service
 
-[![Build Status](https://travis-ci.com/DepartmentOfHealth-htbhf/htbhf-eligibility-service.svg?branch=master)](https://travis-ci.com/DepartmentOfHealth-htbhf/htbhf-eligibility-service)
+[![Build Status](https://img.shields.io/travis/com/DepartmentOfHealth-htbhf/htbhf-eligibility-service/master.svg)](https://travis-ci.com/DepartmentOfHealth-htbhf/htbhf-eligibility-service)
 [![Known Vulnerabilities](https://snyk.io/test/github/DepartmentOfHealth-htbhf/htbhf-eligibility-service/badge.svg?targetFile=build.gradle)](https://snyk.io/test/github/DepartmentOfHealth-htbhf/htbhf-eligibility-service?targetFile=build.gradle)
-[![Coverage Status](https://coveralls.io/repos/github/DepartmentOfHealth-htbhf/htbhf-eligibility-service/badge.svg?branch=master&kill_cache=1)](https://coveralls.io/github/DepartmentOfHealth-htbhf/htbhf-eligibility-service?branch=master)
+[![Coverage Status](https://img.shields.io/coveralls/github/DepartmentOfHealth-htbhf/htbhf-eligibility-service/master.svg)](https://coveralls.io/github/DepartmentOfHealth-htbhf/htbhf-eligibility-service?branch=master)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 [View latest test report](https://departmentofhealth-htbhf.github.io/htbhf-eligibility-service/test/)

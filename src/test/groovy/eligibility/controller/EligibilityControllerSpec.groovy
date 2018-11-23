@@ -7,7 +7,7 @@ import uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse
 
 import static uk.gov.dhsc.htbhf.eligibility.model.Decision.ELIGIBLE
 
-class EligibilityControllerTest extends Specification {
+class EligibilityControllerSpec extends Specification {
     EligibilityController eligibilityController = new EligibilityController()
 
     def "empty request should be eligible"() {
