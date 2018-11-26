@@ -13,6 +13,7 @@ buildscript {
 
 plugins {
     id 'com.github.kt3k.coveralls' version '2.8.2'
+    id 'org.shipkit.java' version '2.0.31'
 }
 apply plugin: 'java'
 apply plugin: "groovy"
@@ -23,7 +24,7 @@ apply plugin: 'jacoco'
 
 
 group = 'uk.gov.dhsc.htbhf'
-version = '0.0.1-SNAPSHOT'
+//version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {

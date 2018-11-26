@@ -12,7 +12,7 @@ deploy:
   # publish test results to github pages
   provider: pages
   skip-cleanup: true
-  github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  github-token: $GH_WRITE_TOKEN  # Set in the settings page of your repository, as a secure variable
   keep-history: true
   local-dir: build/reports/tests
   on:
@@ -20,3 +20,12 @@ deploy:
 
 after_success:
   - ./gradlew jacocoTestReport coveralls
+
+#don't build tags
+branches:
+  except:
+  - /^v\d/
+
+#Build and perform release (if needed)
+script:
+- ./gradlew build -s && ./gradlew ciPerformRelease
