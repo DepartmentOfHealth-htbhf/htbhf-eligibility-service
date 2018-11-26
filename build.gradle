@@ -1,7 +1,7 @@
 buildscript {
     ext {
         springBootVersion = '2.1.0.RELEASE'
-        lombokVersion = '1.18.4'
+        spockVersion = '1.2-groovy-2.4'
     }
     repositories {
         mavenCentral()
@@ -14,23 +14,26 @@ buildscript {
 plugins {
     id 'com.github.kt3k.coveralls' version '2.8.2'
     id 'org.shipkit.java' version '2.0.31'
+    id 'io.franzbecker.gradle-lombok' version '1.14'
 }
 apply plugin: 'java'
-apply plugin: "groovy"
-apply plugin: 'eclipse'
+apply plugin: 'groovy'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'jacoco'
 
 
+lombok {
+    version = '1.18.4'
+    sha256 = ""
+}
+
 group = 'uk.gov.dhsc.htbhf'
-//version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
 }
-
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -38,10 +41,7 @@ dependencies {
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation "org.spockframework:spock-core:1.2-groovy-2.4"
-
-    compileOnly "org.projectlombok:lombok:${lombokVersion}"
-
-    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    testImplementation "org.spockframework:spock-spring:${spockVersion}"
 
 }
 
@@ -60,4 +60,9 @@ jacocoTestReport {
         xml.enabled = true // coveralls plugin depends on xml format report
         html.enabled = true
     }
+}
+
+// TODO run javadoc on delomboked code to prevent errors: https://github.com/franzbecker/gradle-lombok#delombok-support
+javadoc {
+    enabled = false
 }
