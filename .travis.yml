@@ -18,8 +18,9 @@ deploy:
   on:
     branch: master
 
+
 after_success:
-  - ./gradlew jacocoTestReport coveralls
+  - test $TRAVIS_BRANCH = "master" && ./gradlew jacocoTestReport coveralls
 
 #don't build tags
 branches:
