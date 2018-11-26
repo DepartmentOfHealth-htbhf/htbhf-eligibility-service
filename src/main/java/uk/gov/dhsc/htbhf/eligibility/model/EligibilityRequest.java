@@ -5,12 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
-import java.util.List;
-
 @Data
 @Builder
 @AllArgsConstructor(onConstructor=@__(@JsonCreator))
-public class EligibilityResponse {
-    private Decision decision;
-    private List<String> reasons;
+public class EligibilityRequest {
+    private String name;
 }
