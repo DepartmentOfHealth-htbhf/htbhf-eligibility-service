@@ -5,7 +5,7 @@
 shipkit {
    gitHub.repository = "DepartmentOfHealth-htbhf/htbhf-eligibility-service"
 
-   gitHub.readOnlyAuthToken = "d70b175dbc0860ac71d1c665f586f49dbea5e0d8"
+   gitHub.readOnlyAuthToken = System.getenv("GH_READ_TOKEN")
 
    gitHub.writeAuthToken = System.getenv("GH_WRITE_TOKEN")
 }
