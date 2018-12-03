@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 @Builder
-@AllArgsConstructor(onConstructor=@__(@JsonCreator))
+@AllArgsConstructor(onConstructor = @__(@JsonCreator))
 public class EligibilityRequest {
     private String name;
 }

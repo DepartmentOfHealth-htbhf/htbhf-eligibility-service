@@ -13,6 +13,13 @@ import static uk.gov.dhsc.htbhf.eligibility.model.Decision.ELIGIBLE;
 @Controller
 public class EligibilityController {
 
+    /**
+     * Invokes downstream services to obtain a decision on eligibility for the given request,
+     * persists the request and decision with the claimant service.
+     *
+     * @param request the {@link EligibilityRequest}
+     * @return the {@link EligibilityResponse}
+     */
     @PostMapping(path = "/eligibility", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseBody
     public EligibilityResponse getDecision(@RequestBody EligibilityRequest request) {
