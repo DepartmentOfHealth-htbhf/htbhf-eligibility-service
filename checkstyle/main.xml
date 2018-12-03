@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.15">
+<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/src/main/java/uk/gov/dhsc/htbhf/eligibility/EligibilityServiceApplication.java">
+</file>
+<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/src/main/java/uk/gov/dhsc/htbhf/eligibility/controller/EligibilityController.java">
+</file>
+<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/Decision.java">
+</file>
+<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/EligibilityRequest.java">
+</file>
+<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/EligibilityResponse.java">
+</file>
+</checkstyle>
