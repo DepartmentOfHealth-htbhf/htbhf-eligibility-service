@@ -9,7 +9,7 @@ import java.util.List;
 
 @Data
 @Builder
-@AllArgsConstructor(onConstructor=@__(@JsonCreator))
+@AllArgsConstructor(onConstructor = @__(@JsonCreator))
 public class EligibilityResponse {
     private Decision decision;
     private List<String> reasons;
