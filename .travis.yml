@@ -1,12 +1,12 @@
 language: java
 
 before_cache:
-  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 cache:
   directories:
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
+  - $HOME/.gradle/caches/
+  - $HOME/.gradle/wrapper/
 
 deploy:
   # publish test results to github pages
@@ -14,13 +14,13 @@ deploy:
   skip-cleanup: true
   github-token: $GH_WRITE_TOKEN  # Set in the settings page of your repository, as a secure variable
   keep-history: true
-  local-dir: build/reports/tests
+  local-dir: build/reports
   on:
     branch: master
 
 # create coverage reports for the master branch only
 after_success:
-  - test $TRAVIS_BRANCH = "master" && ./gradlew jacocoTestReport coveralls
+- test $TRAVIS_BRANCH = "master" && ./gradlew jacocoTestReport coveralls
 
 #don't build tags
 branches:
@@ -30,4 +30,4 @@ branches:
 #Build and perform release (if needed)
 # note that we can't restart failed builds in Travis as the shipkit publishing step will fail if it has already run for that version. Must create a new commit.
 script:
-- ./gradlew build -s && ./gradlew ciPerformRelease
+- ./gradlew build -s && ./gradlew ciPerformRelease -s

@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class EligibilityServiceApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(EligibilityServiceApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(EligibilityServiceApplication.class, args);
+    }
 }
