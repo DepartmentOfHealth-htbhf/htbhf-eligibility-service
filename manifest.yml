@@ -1,0 +1,6 @@
+---
+applications:
+- name: htbhf-eligibility-service
+  memory: 512M
+  buildpacks:
+  - java_buildpack

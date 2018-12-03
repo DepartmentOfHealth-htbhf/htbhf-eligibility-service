@@ -80,3 +80,8 @@ jacocoTestReport {
 javadoc {
     enabled = false
 }
+
+task copyAdditionalGithubPages(type: Copy) {
+    from 'src/documentation/gh-pages'
+    into 'build/reports'
+}
