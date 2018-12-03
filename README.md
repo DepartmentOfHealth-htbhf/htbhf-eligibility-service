@@ -5,7 +5,7 @@
 [![Coverage Status](https://img.shields.io/coveralls/github/DepartmentOfHealth-htbhf/htbhf-eligibility-service/master.svg)](https://coveralls.io/github/DepartmentOfHealth-htbhf/htbhf-eligibility-service?branch=master)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-[View latest test report](https://departmentofhealth-htbhf.github.io/htbhf-eligibility-service/test/)
+[View latest test report](https://departmentofhealth-htbhf.github.io/htbhf-eligibility-service/tests/test/)
 
 This is a Spring Boot project to provide a rest service responsible for deciding whether an applicant is eligible for help-to-buy-healthy-foods,
 and forwarding the application on to the claimant service.
