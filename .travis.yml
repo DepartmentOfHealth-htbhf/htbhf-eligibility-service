@@ -7,6 +7,7 @@ cache:
   directories:
   - $HOME/.gradle/caches/
   - $HOME/.gradle/wrapper/
+  - bin/
 
 deploy:
   # publish test results to github pages
@@ -31,4 +32,9 @@ branches:
 #Build and perform release (if needed)
 # note that we can't restart failed builds in Travis as the shipkit publishing step will fail if it has already run for that version. Must create a new commit.
 script:
-- ./gradlew build -s && ./gradlew ciPerformRelease -s
+- ./gradlew build -s && ./ci_scripts/deploy.sh ./gradlew ciPerformRelease -s
+
+env:
+  global:
+    - APP_NAME=htbhf-eligibility-service
+    - CF_DOMAIN=apps.internal

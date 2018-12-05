@@ -1,6 +1,7 @@
 ---
 applications:
-- name: htbhf-eligibility-service
-  memory: 512M
+- name: htbhf-eligibility-service-((suffix))
   buildpacks:
   - java_buildpack
+  health-check-type: http
+  health-check-http-endpoint: /actuator/health
