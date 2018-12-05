@@ -7,11 +7,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import uk.gov.dhsc.htbhf.eligibility.model.EligibilityRequest;
 import uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse;
 
+import java.util.Collections;
+
+import static java.util.Collections.singletonList;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static uk.gov.dhsc.htbhf.eligibility.model.Decision.ELIGIBLE;
 
 @Controller
-<span class="fc" id="L14">public class EligibilityController {</span>
+<span class="fc" id="L17">public class EligibilityController {</span>
 
     /**
      * Invokes downstream services to obtain a decision on eligibility for the given request,
@@ -23,9 +26,9 @@ import static uk.gov.dhsc.htbhf.eligibility.model.Decision.ELIGIBLE;
     @PostMapping(path = &quot;/eligibility&quot;, consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseBody
     public EligibilityResponse getDecision(@RequestBody EligibilityRequest request) {
-<span class="fc" id="L26">        return EligibilityResponse.builder()</span>
-<span class="fc" id="L27">                .decision(ELIGIBLE)</span>
-<span class="fc" id="L28">                .build();</span>
+<span class="fc" id="L29">        return EligibilityResponse.builder()</span>
+<span class="fc" id="L30">                .decision(ELIGIBLE)</span>
+<span class="fc" id="L31">                .build();</span>
     }
 
 }
