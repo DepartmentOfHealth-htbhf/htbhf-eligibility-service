@@ -13,6 +13,10 @@ import static java.util.Collections.singletonList;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static uk.gov.dhsc.htbhf.eligibility.model.Decision.ELIGIBLE;
 
+/**
+ * Responsible for obtaining a decision on eligibility from downstream services, sending the application to the claimant service
+ * and returning the eligibility result.
+ */
 @Controller
 public class EligibilityController {
 
