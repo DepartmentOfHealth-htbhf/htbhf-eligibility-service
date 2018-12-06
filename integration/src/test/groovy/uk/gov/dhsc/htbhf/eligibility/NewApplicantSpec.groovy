@@ -16,7 +16,7 @@ class NewApplicantSpec extends Specification {
     def request() {
         given()
                 .config(newConfig().logConfig(logConfig().enableLoggingOfRequestAndResponseIfValidationFails()))
-                .baseUri(System.getenv("BASE_URL"))
+                .baseUri(System.getProperty("base_url"))
                 .contentType("application/json")
     }
 
