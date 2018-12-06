@@ -106,12 +106,3 @@ task copyReports() {
         into 'build/reports/integration'
     }
 }
-
-
-// generate an artifact with the manifest file
-bintray {
-    filesSpec { //When uploading any arbitrary files ('filesSpec' is a standard Gradle CopySpec)
-        from 'manifest.yml'
-        into 'htbhf-eligibility-service-manifest'
-    }
-}
