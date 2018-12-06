@@ -109,9 +109,9 @@ task copyReports() {
 
 
 // generate an artifact with the manifest file
-configurations {
-    manifestArtefact
-}
-artifacts {
-    manifestArtefact file: file('manifest.yml'), name: 'htbhf-eligibility-service-manifest', type: 'text'
+bintray {
+    filesSpec { //When uploading any arbitrary files ('filesSpec' is a standard Gradle CopySpec)
+        from 'manifest.yml'
+        into 'htbhf-eligibility-service-manifest'
+    }
 }
