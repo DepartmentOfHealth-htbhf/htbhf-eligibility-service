@@ -1,9 +1,12 @@
 #!/bin/bash
 
 remove_route() {
-  if cf check-route $1 $2 | grep "does exist"; then
-    cf unmap-route $3 $2 --hostname $1
-    cf delete-route -f $2 --hostname $1
+  MY_HOST=$1
+  MY_DOMAIN=$2
+  MY_APP=$3
+  if cf check-route ${MY_HOST} ${MY_DOMAIN} | grep "does exist"; then
+    cf unmap-route $3 ${MY_DOMAIN} --hostname ${MY_HOST}
+    cf delete-route -f ${MY_DOMAIN} --hostname ${MY_HOST}
   fi
 }
 
@@ -29,13 +32,38 @@ perform_first_time_deployment() {
 
 perform_blue_green_deployment() {
   echo "$APP_FULL_NAME exists, performing blue-green deployment"
+  BLUE_APP="${APP_FULL_NAME}"
+  GREEN_APP="${APP_FULL_NAME}-green"
 
-  cf push -p ${APP_PATH} --var suffix=${CF_SPACE}-green
-  cf map-route ${APP_FULL_NAME}-green ${CF_DOMAIN} --hostname ${APP_FULL_NAME}
+  echo "# pushing new (green) app without a route"
+  cf push -p ${APP_PATH} --var suffix=${CF_SPACE}-green --no-route
+
+  echo "# creating a temporary (public) route to the green app"
+  ROUTE=$(cat /dev/urandom | tr -dc 'a-z' | fold -w 16 | head -n 1)
+  cf map-route ${GREEN_APP} ${CF_PUBLIC_DOMAIN} --hostname ${ROUTE}
+
+  echo "# run smoke tests"
+  (./ci_scripts/smoke_tests.sh ${ROUTE}.${CF_PUBLIC_DOMAIN})
+  RESULT=$?
+
+  echo "# removing the temporary route"
+  remove_route ${ROUTE} ${CF_PUBLIC_DOMAIN} ${GREEN_APP}
+
+  # roll back if tests failed
+  if [[ ${RESULT} != 0 ]]; then
+    echo "# Tests failed, rolling back deployment of GREEN_APP"
+    cf delete -f -r ${GREEN_APP}
+    exit 1
+  fi
+
+  echo "# start routing traffic to green (in addition to blue)"
+  cf map-route ${GREEN_APP} ${CF_DOMAIN} --hostname ${APP_FULL_NAME}
+  echo "# stop routing traffic to blue"
   unmap_blue_route
-  remove_route ${APP_FULL_NAME}-green ${CF_DOMAIN} ${APP_FULL_NAME}-green
-  cf delete -f ${APP_FULL_NAME}
-  cf rename ${APP_FULL_NAME}-green ${APP_FULL_NAME}
+  echo "# delete blue"
+  cf delete -f ${BLUE_APP}
+  echo "# rename green -> blue"
+  cf rename ${GREEN_APP} ${BLUE_APP}
 }
 
 unmap_blue_route() {
