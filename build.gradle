@@ -108,3 +108,10 @@ task copyReports() {
 }
 
 
+// generate an artifact with the manifest file
+configurations {
+    manifestArtefact
+}
+artifacts {
+    manifestArtefact file: file('manifest.yml'), name: 'htbhf-eligibility-service-manifest', type: 'text'
+}
