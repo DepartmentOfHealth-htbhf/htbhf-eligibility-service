@@ -45,4 +45,3 @@ env:
     - SMOKE_TESTS=./ci_scripts/smoke_tests.sh
     - PROTOCOL=https
     - BIN_DIR=./bin
-    - DEPLOY_SCRIPT_VERSION=1.0.0
