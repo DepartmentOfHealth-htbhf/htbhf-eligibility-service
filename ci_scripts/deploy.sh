@@ -26,6 +26,7 @@ check_variable_is_set CF_PASS
 check_variable_is_set CF_DOMAIN
 check_variable_is_set CF_PUBLIC_DOMAIN
 check_variable_is_set SMOKE_TESTS
+check_variable_is_set PROTOCOL
 
 /bin/bash ci_scripts/install_cf_cli.sh;
 

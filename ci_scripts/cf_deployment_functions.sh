@@ -43,7 +43,7 @@ perform_blue_green_deployment() {
   cf map-route ${GREEN_APP} ${CF_PUBLIC_DOMAIN} --hostname ${ROUTE}
 
   echo "# run smoke tests"
-  (${SMOKE_TESTS} ${ROUTE}.${CF_PUBLIC_DOMAIN})
+  (${SMOKE_TESTS} ${PROTOCOL}://${ROUTE}.${CF_PUBLIC_DOMAIN})
   RESULT=$?
 
   echo "# removing the temporary route"

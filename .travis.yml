@@ -40,3 +40,4 @@ env:
     - APP_NAME=htbhf-eligibility-service
     - CF_DOMAIN=apps.internal
     - SMOKE_TESTS=./ci_scripts/integration_tests.sh
+    - PROTOCOL=https
