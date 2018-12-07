@@ -32,7 +32,7 @@ branches:
 #Build and perform release (if needed)
 # note that we can't restart failed builds in Travis as the shipkit publishing step will fail if it has already run for that version. Must create a new commit.
 script:
-- ./gradlew build -s && ./ci_scripts/deploy.sh && ./gradlew ciPerformRelease -s
+- ./gradlew build -s && ./ci_scripts/ci_deploy.sh && ./gradlew ciPerformRelease -s
 
 env:
   global:
@@ -41,3 +41,5 @@ env:
     - CF_DOMAIN=apps.internal
     - SMOKE_TESTS=./ci_scripts/smoke_tests.sh
     - PROTOCOL=https
+    - BIN_DIR=./bin
+    - DEPLOY_SCRIPT_VERSION=1.0.0
