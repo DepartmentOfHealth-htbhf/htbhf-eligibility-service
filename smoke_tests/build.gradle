@@ -3,7 +3,7 @@ apply plugin: 'java'
 apply plugin: 'groovy'
 
 group = 'uk.gov.dhsc.htbhf'
-sourceCompatibility = 1.8
+sourceCompatibility = 1.11
 
 repositories {
     mavenCentral()
