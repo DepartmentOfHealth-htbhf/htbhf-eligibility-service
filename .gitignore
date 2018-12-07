@@ -2,6 +2,7 @@
 **/build/
 !gradle/wrapper/gradle-wrapper.jar
 gradle.properties
+/bin
 
 manifest/src
 

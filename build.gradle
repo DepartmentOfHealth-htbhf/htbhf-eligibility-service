@@ -102,7 +102,7 @@ task copyReports() {
         into 'build/reports'
     }
     copy {
-        from 'integration/build/reports/tests/test'
-        into 'build/reports/integration'
+        from 'smoke_tests/build/reports/tests/test'
+        into 'build/reports/smoke_tests'
     }
 }

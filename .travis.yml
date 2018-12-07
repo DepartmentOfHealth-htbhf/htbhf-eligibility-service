@@ -38,4 +38,6 @@ env:
   global:
     - APP_LOCATION=api/build/libs
     - APP_NAME=htbhf-eligibility-service
-    - CF_DOMAIN=london.cloudapps.digital
+    - CF_DOMAIN=apps.internal
+    - SMOKE_TESTS=./ci_scripts/integration_tests.sh
+    - PROTOCOL=https
