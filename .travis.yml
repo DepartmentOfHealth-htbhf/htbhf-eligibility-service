@@ -39,9 +39,7 @@ script:
 
 env:
   global:
-    - APP_LOCATION=api/build/libs
     - APP_NAME=htbhf-eligibility-service
     - CF_DOMAIN=apps.internal
     - SMOKE_TESTS=./ci_scripts/smoke_tests.sh
-    - PROTOCOL=https
     - BIN_DIR=./bin
