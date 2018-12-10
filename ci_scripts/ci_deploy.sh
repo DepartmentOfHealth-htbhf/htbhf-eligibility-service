@@ -19,8 +19,9 @@ check_variable_is_set DEPLOY_SCRIPTS_URL
 check_variable_is_set DEPLOY_SCRIPT_VERSION
 check_variable_is_set APP_NAME
 
-echo "Installing deploy scripts"
+echo "Testing for existence of ${BIN_DIR}/deploy_scripts_${DEPLOY_SCRIPT_VERSION}"
 if [[ ! -e ${BIN_DIR}/deploy_scripts_${DEPLOY_SCRIPT_VERSION} ]]; then
+    echo "Installing deploy scripts"
     mkdir -p ${BIN_DIR}
     cd ${BIN_DIR}
     wget "${DEPLOY_SCRIPTS_URL}/${DEPLOY_SCRIPT_VERSION}.zip" -q -O deploy_scripts.zip && unzip -j -o deploy_scripts.zip && rm deploy_scripts.zip
@@ -31,6 +32,7 @@ fi
 # determine APP_PATH
 APP_VERSION=`cat version.properties | grep "version" | cut -d'=' -f2`
 APP_PATH="api/build/libs/$APP_NAME-$APP_VERSION.jar"
+export APP_PATH
 
 # deploy
 /bin/bash ${BIN_DIR}/deploy.sh
