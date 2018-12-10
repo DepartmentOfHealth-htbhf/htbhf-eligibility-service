@@ -1,5 +1,7 @@
 #!/bin/bash
 
-echo "Running smoke tests against $1"
+BASE_URL=https://$1
+
+echo "Running smoke tests against ${BASE_URL}"
 cd smoke_tests
-./gradlew clean test -Dbase_url=$1
+./gradlew clean test -Dbase_url=${BASE_URL}
