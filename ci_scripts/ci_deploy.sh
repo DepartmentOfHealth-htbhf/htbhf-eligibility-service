@@ -17,6 +17,7 @@ check_variable_is_set(){
 check_variable_is_set BIN_DIR
 check_variable_is_set DEPLOY_SCRIPTS_URL
 check_variable_is_set DEPLOY_SCRIPT_VERSION
+check_variable_is_set APP_NAME
 
 echo "Installing deploy scripts"
 if [[ ! -e ${BIN_DIR}/deploy_scripts_${DEPLOY_SCRIPT_VERSION} ]]; then
@@ -27,4 +28,9 @@ if [[ ! -e ${BIN_DIR}/deploy_scripts_${DEPLOY_SCRIPT_VERSION} ]]; then
     cd ..
 fi
 
+# determine APP_PATH
+APP_VERSION=`cat version.properties | grep "version" | cut -d'=' -f2`
+APP_PATH="api/build/libs/$APP_NAME-$APP_VERSION.jar"
+
+# deploy
 /bin/bash ${BIN_DIR}/deploy.sh
