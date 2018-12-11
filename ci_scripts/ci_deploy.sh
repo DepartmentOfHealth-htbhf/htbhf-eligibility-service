@@ -28,3 +28,4 @@ if [[ ! -e ${BIN_DIR}/deploy_scripts_${DEPLOY_SCRIPT_VERSION} ]]; then
 fi
 
 /bin/bash ${BIN_DIR}/deploy.sh
+/bin/bash  ${BIN_DIR}/trigger_java_cd_build.sh
