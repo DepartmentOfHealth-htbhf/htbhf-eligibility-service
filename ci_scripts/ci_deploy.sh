@@ -35,4 +35,4 @@ APP_PATH="api/build/libs/$APP_NAME-$APP_VERSION.jar"
 export APP_PATH
 
 # deploy
-/bin/bash ${BIN_DIR}/deploy.sh
+/bin/bash ${BIN_DIR}/deploy.sh && ${BIN_DIR}/trigger_java_cd_build.sh
