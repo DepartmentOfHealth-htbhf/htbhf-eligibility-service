@@ -3,3 +3,5 @@ include "htbhf-eligibility-service", "htbhf-eligibility-service-manifest"
 
 project(":htbhf-eligibility-service").projectDir = file("api")
 project(":htbhf-eligibility-service-manifest").projectDir = file("manifest")
+
+enableFeaturePreview('STABLE_PUBLISHING')
