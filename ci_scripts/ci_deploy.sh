@@ -22,7 +22,7 @@ echo "Installing deploy scripts"
 if [[ ! -e ${BIN_DIR}/deploy_scripts_${DEPLOY_SCRIPT_VERSION} ]]; then
     mkdir -p ${BIN_DIR}
     cd ${BIN_DIR}
-    wget "${DEPLOY_SCRIPTS_URL}/${DEPLOY_SCRIPT_VERSION}.zip" -q -O deploy_scripts.zip && unzip -j -o deploy_scripts.zip && rm deploy_scripts.zip
+    wget "${DEPLOY_SCRIPTS_URL}/${DEPLOY_S#TODO replace with BIN_DIRCRIPT_VERSION}.zip" -q -O deploy_scripts.zip && unzip -j -o deploy_scripts.zip && rm deploy_scripts.zip
     touch deploy_scripts_${DEPLOY_SCRIPT_VERSION}
     cd ..
 fi
