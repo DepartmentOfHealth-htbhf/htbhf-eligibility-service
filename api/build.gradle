@@ -41,10 +41,15 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation "org.spockframework:spock-core:1.2-groovy-2.4"
     testImplementation "org.spockframework:spock-spring:${spockVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:${junitVersion}"
+    testImplementation "org.junit.vintage:junit-vintage-engine:${junitVersion}"
 
 }
 
 test {
+    useJUnitPlatform()
     reports {
         junitXml.enabled = false
         html.enabled = true
@@ -61,17 +66,35 @@ checkstyle {
     toolVersion "8.15"
 }
 
-jacoco {
-    toolVersion = "0.8.2"
+pmdMain {
+    ignoreFailures = false
+    ruleSetFiles = files("../config/pmd/rulesets.xml")
+    ruleSets = [] // Remove built-in rule sets
 }
-jacocoTestReport {
-    reports {
-        xml.enabled = true // coveralls plugin depends on xml format report
-        html.enabled = true
+pmdTest {
+    ignoreFailures = false
+    ruleSetFiles = files("../config/pmd/test-rulesets.xml")
+    ruleSets = [] // Remove built-in rule sets
+}
+spotbugsTest {
+    excludeFilter = file("../config/spotbugs/test-exclude.xml")
+}
+
+task delombok(type: io.franzbecker.gradle.lombok.task.DelombokTask, dependsOn: compileJava) {
+    ext.outputDir = file("$buildDir/delombok")
+    outputs.dir(outputDir)
+    classpath += sourceSets.main.runtimeClasspath
+    sourceSets.main.java.srcDirs.each {
+        inputs.dir(it)
+        args(it, "-d", outputDir)
+    }
+    doFirst {
+        outputDir.deleteDir()
     }
 }
 
-// TODO run javadoc on delomboked code to prevent errors: https://github.com/franzbecker/gradle-lombok#delombok-support
 javadoc {
-    enabled = false
+    dependsOn delombok
+    source = delombok.outputDir
+    failOnError = true
 }
