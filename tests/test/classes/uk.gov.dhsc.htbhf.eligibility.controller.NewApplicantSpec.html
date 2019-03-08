@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">3.823s</div>
+<div class="counter">4.101s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,7 +79,7 @@
 </thead>
 <tr>
 <td class="success">New applicant is eligible</td>
-<td class="success">3.823s</td>
+<td class="success">4.101s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -87,13 +87,7 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>2019-03-08 11:23:51.390  INFO 4888 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [uk.gov.dhsc.htbhf.eligibility.controller.NewApplicantSpec], using SpringBootContextLoader
-2019-03-08 11:23:51.417  INFO 4888 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [uk.gov.dhsc.htbhf.eligibility.controller.NewApplicantSpec]: no resource found for suffixes {-context.xml, Context.groovy}.
-2019-03-08 11:23:51.418  INFO 4888 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [uk.gov.dhsc.htbhf.eligibility.controller.NewApplicantSpec]: NewApplicantSpec does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2019-03-08 11:23:51.445  INFO 4888 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration uk.gov.dhsc.htbhf.eligibility.EligibilityServiceApplication for test class uk.gov.dhsc.htbhf.eligibility.controller.NewApplicantSpec
-2019-03-08 11:23:51.452  INFO 4888 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.spockframework.spring.SpringMockTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
-2019-03-08 11:23:51.455  INFO 4888 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@57ebcf5b, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@dc1688e, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@38e2cecd, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@5614ca45, org.springframework.test.context.support.DirtiesContextTestExecutionListener@5f8c56cb, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@598fd0ac, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@77b5e9f6, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@78353a7, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@3a047792, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@1d29cace, org.spockframework.spring.SpringMockTestExecutionListener@458b6ac4]
-
+<pre>
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
 ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
@@ -102,29 +96,29 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.1.0.RELEASE)
 
-2019-03-08 11:23:51.544  INFO 4888 --- [    Test worker] u.g.d.h.e.controller.NewApplicantSpec    : Starting NewApplicantSpec on travis-job-e5d038be-ee98-4b3d-bea2-13ae268f3fb1 with PID 4888 (/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/build/classes/groovy/test started by travis in /home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api)
-2019-03-08 11:23:51.546  INFO 4888 --- [    Test worker] u.g.d.h.e.controller.NewApplicantSpec    : No active profile set, falling back to default profiles: default
-2019-03-08 11:23:52.718  INFO 4888 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
-2019-03-08 11:23:52.812  INFO 4888 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2019-03-08 11:23:52.816  INFO 4888 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/9.0.12
-2019-03-08 11:23:52.854  INFO 4888 --- [    Test worker] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib]
-2019-03-08 11:23:53.146  INFO 4888 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2019-03-08 11:23:53.148  INFO 4888 --- [    Test worker] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1599 ms
-2019-03-08 11:23:53.672  INFO 4888 --- [    Test worker] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
-2019-03-08 11:23:53.679  INFO 4888 --- [    Test worker] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'webMvcMetricsFilter' to: [/*]
-2019-03-08 11:23:53.679  INFO 4888 --- [    Test worker] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
-2019-03-08 11:23:53.679  INFO 4888 --- [    Test worker] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'formContentFilter' to: [/*]
-2019-03-08 11:23:53.680  INFO 4888 --- [    Test worker] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
-2019-03-08 11:23:53.680  INFO 4888 --- [    Test worker] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpTraceFilter' to: [/*]
-2019-03-08 11:23:53.680  INFO 4888 --- [    Test worker] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
-2019-03-08 11:23:54.021  INFO 4888 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2019-03-08 11:23:54.439  INFO 4888 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
-2019-03-08 11:23:54.582  INFO 4888 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 43535 (http) with context path ''
-2019-03-08 11:23:54.587  INFO 4888 --- [    Test worker] u.g.d.h.e.controller.NewApplicantSpec    : Started NewApplicantSpec in 3.077 seconds (JVM running for 16.819)
-2019-03-08 11:23:54.872  WARN 4888 --- [    Test worker] .c.j.MappingJackson2HttpMessageConverter : Failed to evaluate Jackson deserialization for type [[simple type, class uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse]]: com.fasterxml.jackson.databind.exc.InvalidDefinitionException: Invalid type definition for type `uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse`: Argument #0 has no property name, is not Injectable: can not use as Creator [constructor for uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse, annotations: {interface com.fasterxml.jackson.annotation.JsonCreator=@com.fasterxml.jackson.annotation.JsonCreator(mode=DEFAULT)}]
-2019-03-08 11:23:55.077  INFO 4888 --- [o-auto-1-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2019-03-08 11:23:55.079  INFO 4888 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2019-03-08 11:23:55.105  INFO 4888 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 25 ms
+2019-03-08 14:28:50.735  INFO 4883 --- [    Test worker] u.g.d.h.e.controller.NewApplicantSpec    : Starting NewApplicantSpec on travis-job-66a418d8-987c-407e-93bb-a43150473cc8 with PID 4883 (started by travis in /home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api)
+2019-03-08 14:28:50.737  INFO 4883 --- [    Test worker] u.g.d.h.e.controller.NewApplicantSpec    : No active profile set, falling back to default profiles: default
+2019-03-08 14:28:52.046  INFO 4883 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2019-03-08 14:28:52.143  INFO 4883 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-03-08 14:28:52.144  INFO 4883 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet Engine: Apache Tomcat/9.0.12
+2019-03-08 14:28:52.180  INFO 4883 --- [    Test worker] o.a.catalina.core.AprLifecycleListener   : The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: [/usr/java/packages/lib:/usr/lib64:/lib64:/lib:/usr/lib]
+2019-03-08 14:28:52.440  INFO 4883 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-03-08 14:28:52.443  INFO 4883 --- [    Test worker] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1703 ms
+2019-03-08 14:28:53.140  INFO 4883 --- [    Test worker] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'characterEncodingFilter' to: [/*]
+2019-03-08 14:28:53.141  INFO 4883 --- [    Test worker] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'webMvcMetricsFilter' to: [/*]
+2019-03-08 14:28:53.148  INFO 4883 --- [    Test worker] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'hiddenHttpMethodFilter' to: [/*]
+2019-03-08 14:28:53.148  INFO 4883 --- [    Test worker] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'formContentFilter' to: [/*]
+2019-03-08 14:28:53.149  INFO 4883 --- [    Test worker] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'requestContextFilter' to: [/*]
+2019-03-08 14:28:53.149  INFO 4883 --- [    Test worker] o.s.b.w.servlet.FilterRegistrationBean   : Mapping filter: 'httpTraceFilter' to: [/*]
+2019-03-08 14:28:53.152  INFO 4883 --- [    Test worker] o.s.b.w.servlet.ServletRegistrationBean  : Servlet dispatcherServlet mapped to [/]
+2019-03-08 14:28:53.478  INFO 4883 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-03-08 14:28:53.901  INFO 4883 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2019-03-08 14:28:54.048  INFO 4883 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 39784 (http) with context path ''
+2019-03-08 14:28:54.051  INFO 4883 --- [    Test worker] u.g.d.h.e.controller.NewApplicantSpec    : Started NewApplicantSpec in 3.375 seconds (JVM running for 17.948)
+2019-03-08 14:28:54.287  WARN 4883 --- [    Test worker] .c.j.MappingJackson2HttpMessageConverter : Failed to evaluate Jackson deserialization for type [[simple type, class uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse]]: com.fasterxml.jackson.databind.exc.InvalidDefinitionException: Invalid type definition for type `uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse`: Argument #0 has no property name, is not Injectable: can not use as Creator [constructor for uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse, annotations: {interface com.fasterxml.jackson.annotation.JsonCreator=@com.fasterxml.jackson.annotation.JsonCreator(mode=DEFAULT)}]
+2019-03-08 14:28:54.526  INFO 4883 --- [o-auto-1-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-03-08 14:28:54.527  INFO 4883 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-03-08 14:28:54.554  INFO 4883 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 26 ms
 </pre>
 </span>
 </div>
@@ -136,7 +130,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 5.0</a> at Mar 8, 2019, 11:23:55 AM</p>
+<a href="http://www.gradle.org">Gradle 5.0</a> at Mar 8, 2019, 2:28:55 PM</p>
 </div>
 </div>
 </body>
