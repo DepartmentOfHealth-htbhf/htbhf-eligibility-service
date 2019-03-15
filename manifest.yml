@@ -9,4 +9,4 @@ applications:
     - route: htbhf-eligibility-service((app-suffix)).apps.internal
   env:
     JBP_CONFIG_OPEN_JDK_JRE: '{jre: { version: 11.+ }}'
-    DWP_API_URL: http://htbhf-dwp-api((space-suffix)).apps.internal:8080
+    DWP_API_URI: http://htbhf-dwp-api((space-suffix)).apps.internal:8080
