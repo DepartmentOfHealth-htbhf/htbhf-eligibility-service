@@ -1,16 +1,16 @@
 package uk.gov.dhsc.htbhf.eligibility.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
-import java.util.List;
-
 @Data
 @Builder
-@AllArgsConstructor(onConstructor = @__(@JsonCreator))
+@AllArgsConstructor(onConstructor_ = {@JsonCreator})
 public class EligibilityResponse {
-    private Decision decision;
-    private List<String> reasons;
+
+    @JsonProperty("eligibilityStatus")
+    private EligibilityStatus eligibilityStatus;
 }

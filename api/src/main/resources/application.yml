@@ -1,0 +1,6 @@
+server:
+  port: 8100
+
+dwp:
+  uri: ${vcap.services.htbhf-dwp-internal-api.credentials.uri:http://localhost:8110/v1/dwp/eligibility}
+

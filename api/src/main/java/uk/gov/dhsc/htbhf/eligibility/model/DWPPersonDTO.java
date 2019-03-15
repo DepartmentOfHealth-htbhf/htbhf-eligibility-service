@@ -15,15 +15,14 @@ import javax.validation.constraints.Pattern;
 @Data
 @Builder
 @AllArgsConstructor(onConstructor_ = {@JsonCreator})
-public class PersonDTO {
+public class DWPPersonDTO {
+    @NotNull
+    @JsonProperty("forename")
+    private final String forename;
 
     @NotNull
-    @JsonProperty("firstName")
-    private final String firstName;
-
-    @NotNull
-    @JsonProperty("lastName")
-    private final String lastName;
+    @JsonProperty("surname")
+    private final String surname;
 
     @NotNull
     @Pattern(regexp = "[a-zA-Z]{2}\\d{6}[a-dA-D]")

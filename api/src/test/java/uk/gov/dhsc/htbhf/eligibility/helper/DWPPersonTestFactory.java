@@ -1,11 +1,11 @@
 package uk.gov.dhsc.htbhf.eligibility.helper;
 
 import uk.gov.dhsc.htbhf.eligibility.model.AddressDTO;
-import uk.gov.dhsc.htbhf.eligibility.model.PersonDTO;
+import uk.gov.dhsc.htbhf.eligibility.model.DWPPersonDTO;
 
 import java.time.LocalDate;
 
-public class PersonTestFactory {
+public class DWPPersonTestFactory {
 
     private static final LocalDate DOB = LocalDate.parse("1985-12-31");
     private static final String ADDRESS_LINE_1 = "Flat b";
@@ -13,21 +13,21 @@ public class PersonTestFactory {
     private static final String TOWN_OR_CITY = "Springfield";
     private static final String POSTCODE = "AA1 1AA";
     private static final String NINO = "EB123456C";
-    private static final String FIRST_NAME = "Lisa";
-    private static final String LAST_NAME = "Simpson";
+    private static final String FORENAME = "Lisa";
+    private static final String SURNAME = "Simpson";
 
-    public static PersonDTO aPerson() {
+    public static DWPPersonDTO aDWPPerson() {
         String nino = "IA000000C";
         return buildDefaultPerson().nino(nino).build();
     }
 
-    private static PersonDTO.PersonDTOBuilder buildDefaultPerson() {
-        return PersonDTO.builder()
+    private static DWPPersonDTO.DWPPersonDTOBuilder buildDefaultPerson() {
+        return DWPPersonDTO.builder()
                 .dateOfBirth(DOB)
                 .nino(NINO)
                 .address(aValidAddress())
-                .firstName(FIRST_NAME)
-                .lastName(LAST_NAME);
+                .forename(FORENAME)
+                .surname(SURNAME);
     }
 
     private static AddressDTO aValidAddress() {

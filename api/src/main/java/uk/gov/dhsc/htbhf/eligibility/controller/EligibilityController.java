@@ -1,5 +1,6 @@
 package uk.gov.dhsc.htbhf.eligibility.controller;
 
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -7,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse;
 import uk.gov.dhsc.htbhf.eligibility.model.PersonDTO;
+import uk.gov.dhsc.htbhf.eligibility.service.EligibilityService;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-import static uk.gov.dhsc.htbhf.eligibility.model.Decision.ELIGIBLE;
 
 /**
  * Responsible for obtaining a decision on eligibility from downstream services, sending the application to the claimant service
@@ -17,7 +18,10 @@ import static uk.gov.dhsc.htbhf.eligibility.model.Decision.ELIGIBLE;
  */
 @Controller
 @Slf4j
+@AllArgsConstructor
 public class EligibilityController {
+
+    private EligibilityService eligibilityService;
 
     /**
      * Invokes downstream services to obtain a decision on eligibility for the given person,
@@ -29,9 +33,7 @@ public class EligibilityController {
     @PostMapping(path = "/eligibility", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseBody
     public EligibilityResponse getDecision(@RequestBody PersonDTO person) {
-        return EligibilityResponse.builder()
-                .decision(ELIGIBLE)
-                .build();
+        return eligibilityService.checkEligibility(person);
     }
 
 }
