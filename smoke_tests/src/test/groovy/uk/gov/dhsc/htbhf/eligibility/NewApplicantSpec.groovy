@@ -26,7 +26,7 @@ class NewApplicantSpec extends Specification {
         def requestBody = "{}"
 
         when: "The request is received by the REST api"
-        Response response = request().body(requestBody).post("/eligibility")
+        Response response = request().body(requestBody).post("/v1/eligibility")
 
 
         then: "The response should indicate that the applicant is eligible"
