@@ -2,5 +2,5 @@ server:
   port: 8100
 
 dwp:
-  uri: ${DWP_API_URI:http://localhost:8110/v1/dwp/eligibility}
+  base-uri: ${DWP_API_URI:http://localhost:8110}
 

@@ -10,12 +10,13 @@ import uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse;
 @Service
 public class DWPClient {
 
+    private static final String DWP_ENDPOINT = "/v1/dwp/eligibility";
     private final String uri;
     private final RestTemplate restTemplate;
 
-    public DWPClient(@Value("${dwp.uri}") String uri,
+    public DWPClient(@Value("${dwp.base-uri}") String baseUri,
                      RestTemplate restTemplate) {
-        this.uri = uri;
+        this.uri = baseUri + DWP_ENDPOINT;
         this.restTemplate = restTemplate;
     }
 
