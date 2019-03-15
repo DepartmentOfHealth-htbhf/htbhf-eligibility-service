@@ -28,7 +28,7 @@ class DWPClientTest {
 
     @MockBean
     private RestTemplate restTemplate;
-    @Value("${dwp.uri}")
+    @Value("${dwp.base-uri}")
     private String uri;
 
     @Autowired
@@ -44,6 +44,6 @@ class DWPClientTest {
         EligibilityResponse response = dwpClient.checkEligibility(request);
 
         assertThat(response).isEqualTo(eligibilityResponse);
-        verify(restTemplate).postForEntity(uri, request, EligibilityResponse.class);
+        verify(restTemplate).postForEntity(uri + "/v1/dwp/eligibility", request, EligibilityResponse.class);
     }
 }
