@@ -9,6 +9,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.client.RestTemplate;
+import uk.gov.dhsc.htbhf.eligibility.model.EligibilityRequest;
 import uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -19,7 +20,7 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 import static org.springframework.http.HttpStatus.OK;
 import static uk.gov.dhsc.htbhf.eligibility.helper.EligibilityRequestTestFactory.anEligibilityRequest;
-import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.ELIGIBLE;
+import static uk.gov.dhsc.htbhf.eligibility.helper.EligibilityResponseTestFactory.anEligibilityResponse;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -35,8 +36,8 @@ class DWPClientTest {
 
     @Test
     void shouldSendRequest() {
-        var request = anEligibilityRequest();
-        var eligibilityResponse = EligibilityResponse.builder().eligibilityStatus(ELIGIBLE).build();
+        EligibilityRequest request = anEligibilityRequest();
+        EligibilityResponse eligibilityResponse = anEligibilityResponse();
         given(restTemplate.postForEntity(anyString(), any(), eq(EligibilityResponse.class)))
                 .willReturn(new ResponseEntity<>(eligibilityResponse, OK));
 

@@ -15,14 +15,14 @@ import uk.gov.dhsc.htbhf.eligibility.service.EligibilityService;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.http.HttpStatus.OK;
-import static uk.gov.dhsc.htbhf.eligibility.helper.PersonTestFactory.aPerson;
-import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.ELIGIBLE;
+import static uk.gov.dhsc.htbhf.eligibility.helper.EligibilityResponseTestFactory.anEligibilityResponse;
+import static uk.gov.dhsc.htbhf.eligibility.helper.PersonDTOTestFactory.aPerson;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class EligibilityControllerTest {
 
-    private static final String ENDPOINT_URL = "/eligibility";
+    private static final String ENDPOINT_URL = "/v1/eligibility";
 
     @Autowired
     private TestRestTemplate restTemplate;
@@ -33,7 +33,7 @@ class EligibilityControllerTest {
     @Test
     void shouldGetEligibility() {
         PersonDTO person = aPerson();
-        EligibilityResponse eligibilityResponse = EligibilityResponse.builder().eligibilityStatus(ELIGIBLE).build();
+        EligibilityResponse eligibilityResponse = anEligibilityResponse();
         given(eligibilityService.checkEligibility(person)).willReturn(eligibilityResponse);
 
         ResponseEntity<EligibilityResponse> response = restTemplate.postForEntity(ENDPOINT_URL, person, EligibilityResponse.class);

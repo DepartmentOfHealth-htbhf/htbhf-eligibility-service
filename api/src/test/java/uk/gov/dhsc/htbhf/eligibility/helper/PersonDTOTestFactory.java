@@ -5,7 +5,7 @@ import uk.gov.dhsc.htbhf.eligibility.model.PersonDTO;
 
 import java.time.LocalDate;
 
-public class PersonTestFactory {
+public class PersonDTOTestFactory {
 
     private static final LocalDate DOB = LocalDate.parse("1985-12-31");
     private static final String ADDRESS_LINE_1 = "Flat b";

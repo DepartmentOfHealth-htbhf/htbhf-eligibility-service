@@ -17,7 +17,8 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
-import static uk.gov.dhsc.htbhf.eligibility.helper.PersonTestFactory.aPerson;
+import static uk.gov.dhsc.htbhf.eligibility.helper.EligibilityResponseTestFactory.anEligibilityResponse;
+import static uk.gov.dhsc.htbhf.eligibility.helper.PersonDTOTestFactory.aPerson;
 import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.ELIGIBLE;
 
 @ExtendWith(SpringExtension.class)
@@ -36,7 +37,7 @@ class EligibilityServiceTest {
         PersonDTO person = aPerson();
         DWPPersonDTO dwpPerson = DWPPersonDTO.builder().build();
         given(converter.convert(person)).willReturn(dwpPerson);
-        EligibilityResponse eligibilityResponse = EligibilityResponse.builder().eligibilityStatus(ELIGIBLE).build();
+        EligibilityResponse eligibilityResponse = anEligibilityResponse();
         given(dwpClient.checkEligibility(any())).willReturn(eligibilityResponse);
 
         EligibilityResponse response = eligibilityService.checkEligibility(person);

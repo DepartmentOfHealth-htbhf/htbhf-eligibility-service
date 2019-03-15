@@ -30,7 +30,7 @@ public class EligibilityController {
      * @param person the {@link PersonDTO}
      * @return the {@link EligibilityResponse}
      */
-    @PostMapping(path = "/eligibility", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/v1/eligibility", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseBody
     public EligibilityResponse getDecision(@RequestBody PersonDTO person) {
         return eligibilityService.checkEligibility(person);

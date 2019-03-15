@@ -5,7 +5,7 @@ import uk.gov.dhsc.htbhf.eligibility.model.DWPPersonDTO;
 import uk.gov.dhsc.htbhf.eligibility.model.PersonDTO;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static uk.gov.dhsc.htbhf.eligibility.helper.PersonTestFactory.aPerson;
+import static uk.gov.dhsc.htbhf.eligibility.helper.PersonDTOTestFactory.aPerson;
 
 class PersonDTOToDWPPersonConverterTest {
 
