@@ -21,6 +21,8 @@ manifest/src
 *.iml
 *.ipr
 /out/
+/api/out
+/manifest/out
 
 ### NetBeans ###
 /nbproject/private/
