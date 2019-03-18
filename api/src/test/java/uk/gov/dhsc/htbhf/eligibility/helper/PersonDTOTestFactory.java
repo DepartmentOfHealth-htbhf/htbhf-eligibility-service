@@ -15,6 +15,7 @@ public class PersonDTOTestFactory {
     private static final String NINO = "EB123456C";
     private static final String FIRST_NAME = "Lisa";
     private static final String LAST_NAME = "Simpson";
+    private static final LocalDate FUTURE_DATE = LocalDate.now().plusMonths(1);
 
     public static PersonDTO aPerson() {
         String nino = "IA000000C";
@@ -25,33 +26,38 @@ public class PersonDTOTestFactory {
         return buildDefaultPerson().nino(null).build();
     }
 
-    public static PersonDTO aPersonWithAnInvalidNino() {
-        return buildDefaultPerson().nino("ab123").build();
-    }
-
     public static PersonDTO aPersonWithNoDateOfBirth() {
         return buildDefaultPerson().dateOfBirth(null).build();
+    }
+
+    public static PersonDTO aPersonWithDateOfBirthInFuture() {
+        return buildDefaultPerson().dateOfBirth(FUTURE_DATE).build();
     }
 
     public static PersonDTO aPersonWithNoAddress() {
         return buildDefaultPerson().address(null).build();
     }
 
+    public static PersonDTO aPersonWithPostcode(String postcode) {
+        return buildDefaultPerson().address(
+                buildDefaultAddress().postcode(postcode).build())
+                .build();
+    }
+
     public static PersonDTO.PersonDTOBuilder buildDefaultPerson() {
         return PersonDTO.builder()
                 .dateOfBirth(DOB)
                 .nino(NINO)
-                .address(aValidAddress())
+                .address(buildDefaultAddress().build())
                 .firstName(FIRST_NAME)
                 .lastName(LAST_NAME);
     }
 
-    private static AddressDTO aValidAddress() {
+    private static AddressDTO.AddressDTOBuilder buildDefaultAddress() {
         return AddressDTO.builder()
                 .addressLine1(ADDRESS_LINE_1)
                 .addressLine2(ADDRESS_LINE_2)
                 .townOrCity(TOWN_OR_CITY)
-                .postcode(POSTCODE)
-                .build();
+                .postcode(POSTCODE);
     }
 }

@@ -3,6 +3,8 @@ package uk.gov.dhsc.htbhf.eligibility.controller;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -19,10 +21,12 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.OK;
 import static uk.gov.dhsc.htbhf.eligibility.helper.EligibilityResponseTestFactory.anEligibilityResponse;
 import static uk.gov.dhsc.htbhf.eligibility.helper.PersonDTOTestFactory.aPerson;
-import static uk.gov.dhsc.htbhf.eligibility.helper.PersonDTOTestFactory.aPersonWithAnInvalidNino;
+import static uk.gov.dhsc.htbhf.eligibility.helper.PersonDTOTestFactory.aPersonWithDateOfBirthInFuture;
 import static uk.gov.dhsc.htbhf.eligibility.helper.PersonDTOTestFactory.aPersonWithNoAddress;
 import static uk.gov.dhsc.htbhf.eligibility.helper.PersonDTOTestFactory.aPersonWithNoDateOfBirth;
 import static uk.gov.dhsc.htbhf.eligibility.helper.PersonDTOTestFactory.aPersonWithNoNino;
+import static uk.gov.dhsc.htbhf.eligibility.helper.PersonDTOTestFactory.aPersonWithPostcode;
+import static uk.gov.dhsc.htbhf.eligibility.helper.PersonDTOTestFactory.buildDefaultPerson;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -58,9 +62,10 @@ class EligibilityControllerTest {
         Assertions.assertThat(benefit.getStatusCode()).isEqualTo(BAD_REQUEST);
     }
 
-    @Test
-    void shouldReturnBadRequestForInvalidNino() {
-        PersonDTO person = aPersonWithAnInvalidNino();
+    @ParameterizedTest
+    @ValueSource(strings = {"YYHU456781", "888888888", "ABCDEFGHI", "ZQQ123456CZ", "QQ123456T"})
+    void shouldReturnBadRequestForInvalidNino(String nino) {
+        PersonDTO person = buildDefaultPerson().nino(nino).build();
 
         var benefit = restTemplate.postForEntity(ENDPOINT_URL, person, EligibilityResponse.class);
 
@@ -77,6 +82,15 @@ class EligibilityControllerTest {
     }
 
     @Test
+    void shouldReturnBadRequestForInvalidDateOfBirth() {
+        PersonDTO person = aPersonWithDateOfBirthInFuture();
+
+        var benefit = restTemplate.postForEntity(ENDPOINT_URL, person, EligibilityResponse.class);
+
+        Assertions.assertThat(benefit.getStatusCode()).isEqualTo(BAD_REQUEST);
+    }
+
+    @Test
     void shouldReturnBadRequestForMissingAddress() {
         PersonDTO person = aPersonWithNoAddress();
 
@@ -85,4 +99,13 @@ class EligibilityControllerTest {
         Assertions.assertThat(benefit.getStatusCode()).isEqualTo(BAD_REQUEST);
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"AA1122BB", "11AA21", ""})
+    void shouldReturnBadRequestForInvalidPostcode(String postcode) {
+        PersonDTO person = aPersonWithPostcode(postcode);
+
+        var benefit = restTemplate.postForEntity(ENDPOINT_URL, person, EligibilityResponse.class);
+
+        Assertions.assertThat(benefit.getStatusCode()).isEqualTo(BAD_REQUEST);
+    }
 }
