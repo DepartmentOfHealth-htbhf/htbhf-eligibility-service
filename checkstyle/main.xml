@@ -18,6 +18,8 @@
 </file>
 <file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/PersonDTO.java">
 </file>
+<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/regex/PostcodeRegex.java">
+</file>
 <file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/service/DWPClient.java">
 </file>
 <file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/service/EligibilityService.java">
