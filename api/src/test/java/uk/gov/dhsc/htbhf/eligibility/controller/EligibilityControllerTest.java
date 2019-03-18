@@ -1,6 +1,5 @@
 package uk.gov.dhsc.htbhf.eligibility.controller;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -59,7 +58,7 @@ class EligibilityControllerTest {
 
         var benefit = restTemplate.postForEntity(ENDPOINT_URL, person, EligibilityResponse.class);
 
-        Assertions.assertThat(benefit.getStatusCode()).isEqualTo(BAD_REQUEST);
+        assertThat(benefit.getStatusCode()).isEqualTo(BAD_REQUEST);
     }
 
     @ParameterizedTest
@@ -69,7 +68,7 @@ class EligibilityControllerTest {
 
         var benefit = restTemplate.postForEntity(ENDPOINT_URL, person, EligibilityResponse.class);
 
-        Assertions.assertThat(benefit.getStatusCode()).isEqualTo(BAD_REQUEST);
+        assertThat(benefit.getStatusCode()).isEqualTo(BAD_REQUEST);
     }
 
     @Test
@@ -78,7 +77,7 @@ class EligibilityControllerTest {
 
         var benefit = restTemplate.postForEntity(ENDPOINT_URL, person, EligibilityResponse.class);
 
-        Assertions.assertThat(benefit.getStatusCode()).isEqualTo(BAD_REQUEST);
+        assertThat(benefit.getStatusCode()).isEqualTo(BAD_REQUEST);
     }
 
     @Test
@@ -87,7 +86,7 @@ class EligibilityControllerTest {
 
         var benefit = restTemplate.postForEntity(ENDPOINT_URL, person, EligibilityResponse.class);
 
-        Assertions.assertThat(benefit.getStatusCode()).isEqualTo(BAD_REQUEST);
+        assertThat(benefit.getStatusCode()).isEqualTo(BAD_REQUEST);
     }
 
     @Test
@@ -96,7 +95,7 @@ class EligibilityControllerTest {
 
         var benefit = restTemplate.postForEntity(ENDPOINT_URL, person, EligibilityResponse.class);
 
-        Assertions.assertThat(benefit.getStatusCode()).isEqualTo(BAD_REQUEST);
+        assertThat(benefit.getStatusCode()).isEqualTo(BAD_REQUEST);
     }
 
     @ParameterizedTest
@@ -106,6 +105,6 @@ class EligibilityControllerTest {
 
         var benefit = restTemplate.postForEntity(ENDPOINT_URL, person, EligibilityResponse.class);
 
-        Assertions.assertThat(benefit.getStatusCode()).isEqualTo(BAD_REQUEST);
+        assertThat(benefit.getStatusCode()).isEqualTo(BAD_REQUEST);
     }
 }
