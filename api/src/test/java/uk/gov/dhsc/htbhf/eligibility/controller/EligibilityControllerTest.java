@@ -56,9 +56,9 @@ class EligibilityControllerTest {
     void shouldReturnBadRequestForMissingNino() {
         PersonDTO person = aPersonWithNoNino();
 
-        var benefit = restTemplate.postForEntity(ENDPOINT_URL, person, EligibilityResponse.class);
+        var response = restTemplate.postForEntity(ENDPOINT_URL, person, ErrorResponse.class);
 
-        assertThat(benefit.getStatusCode()).isEqualTo(BAD_REQUEST);
+        assertBadRequest(response, "nino", "must not be null");
     }
 
     @ParameterizedTest
@@ -66,36 +66,36 @@ class EligibilityControllerTest {
     void shouldReturnBadRequestForInvalidNino(String nino) {
         PersonDTO person = buildDefaultPerson().nino(nino).build();
 
-        var benefit = restTemplate.postForEntity(ENDPOINT_URL, person, EligibilityResponse.class);
+        var response = restTemplate.postForEntity(ENDPOINT_URL, person, ErrorResponse.class);
 
-        assertThat(benefit.getStatusCode()).isEqualTo(BAD_REQUEST);
+        assertBadRequest(response, "nino", "must match \"[a-zA-Z]{2}\\d{6}[a-dA-D]\"");
     }
 
     @Test
     void shouldReturnBadRequestForMissingDateOfBirth() {
         PersonDTO person = aPersonWithNoDateOfBirth();
 
-        var benefit = restTemplate.postForEntity(ENDPOINT_URL, person, EligibilityResponse.class);
+        var response = restTemplate.postForEntity(ENDPOINT_URL, person, ErrorResponse.class);
 
-        assertThat(benefit.getStatusCode()).isEqualTo(BAD_REQUEST);
+        assertBadRequest(response, "dateOfBirth", "must not be null");
     }
 
     @Test
     void shouldReturnBadRequestForInvalidDateOfBirth() {
         PersonDTO person = aPersonWithDateOfBirthInFuture();
 
-        var benefit = restTemplate.postForEntity(ENDPOINT_URL, person, EligibilityResponse.class);
+        var response = restTemplate.postForEntity(ENDPOINT_URL, person, ErrorResponse.class);
 
-        assertThat(benefit.getStatusCode()).isEqualTo(BAD_REQUEST);
+        assertBadRequest(response, "dateOfBirth", "must be a past date");
     }
 
     @Test
     void shouldReturnBadRequestForMissingAddress() {
         PersonDTO person = aPersonWithNoAddress();
 
-        var benefit = restTemplate.postForEntity(ENDPOINT_URL, person, EligibilityResponse.class);
+        var response = restTemplate.postForEntity(ENDPOINT_URL, person, ErrorResponse.class);
 
-        assertThat(benefit.getStatusCode()).isEqualTo(BAD_REQUEST);
+        assertBadRequest(response, "address", "must not be null");
     }
 
     @ParameterizedTest
@@ -103,8 +103,18 @@ class EligibilityControllerTest {
     void shouldReturnBadRequestForInvalidPostcode(String postcode) {
         PersonDTO person = aPersonWithPostcode(postcode);
 
-        var benefit = restTemplate.postForEntity(ENDPOINT_URL, person, EligibilityResponse.class);
+        var response = restTemplate.postForEntity(ENDPOINT_URL, person, ErrorResponse.class);
 
-        assertThat(benefit.getStatusCode()).isEqualTo(BAD_REQUEST);
+        assertBadRequest(response, "address.postcode", "invalid postcode format");
+    }
+
+    private void assertBadRequest(ResponseEntity<ErrorResponse> response, String field, String message) {
+        assertThat(response.getStatusCode()).isEqualTo(BAD_REQUEST);
+        assertThat(response.getBody()).isNotNull();
+        assertThat(response.getBody().getFieldErrors().size()).isEqualTo(1);
+        assertThat(response.getBody().getFieldErrors().get(0).getField()).isEqualTo(field);
+        assertThat(response.getBody().getFieldErrors().get(0).getMessage()).isEqualTo(message);
+        assertThat(response.getBody().getRequestId()).isNotNull();
+        assertThat(response.getBody().getTimestamp()).isNotNull();
     }
 }

@@ -32,11 +32,15 @@ sourceCompatibility = 1.11
 
 repositories {
     mavenCentral()
+    maven {
+        url  "https://dl.bintray.com/departmentofhealth-htbhf/maven"
+    }
 }
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation "uk.gov.dhsc.htbhf:htbhf-request-context:0.0.2"
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation "org.spockframework:spock-core:1.2-groovy-2.4"
