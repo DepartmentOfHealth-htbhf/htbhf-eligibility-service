@@ -21,7 +21,23 @@ public class PersonDTOTestFactory {
         return buildDefaultPerson().nino(nino).build();
     }
 
-    private static PersonDTO.PersonDTOBuilder buildDefaultPerson() {
+    public static PersonDTO aPersonWithNoNino() {
+        return buildDefaultPerson().nino(null).build();
+    }
+
+    public static PersonDTO aPersonWithAnInvalidNino() {
+        return buildDefaultPerson().nino("ab123").build();
+    }
+
+    public static PersonDTO aPersonWithNoDateOfBirth() {
+        return buildDefaultPerson().dateOfBirth(null).build();
+    }
+
+    public static PersonDTO aPersonWithNoAddress() {
+        return buildDefaultPerson().address(null).build();
+    }
+
+    public static PersonDTO.PersonDTOBuilder buildDefaultPerson() {
         return PersonDTO.builder()
                 .dateOfBirth(DOB)
                 .nino(NINO)

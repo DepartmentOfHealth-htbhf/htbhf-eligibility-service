@@ -10,6 +10,8 @@ import uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse;
 import uk.gov.dhsc.htbhf.eligibility.model.PersonDTO;
 import uk.gov.dhsc.htbhf.eligibility.service.EligibilityService;
 
+import javax.validation.Valid;
+
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 /**
@@ -32,7 +34,7 @@ public class EligibilityController {
      */
     @PostMapping(path = "/v1/eligibility", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseBody
-    public EligibilityResponse getDecision(@RequestBody PersonDTO person) {
+    public EligibilityResponse getDecision(@RequestBody @Valid PersonDTO person) {
         return eligibilityService.checkEligibility(person);
     }
 
