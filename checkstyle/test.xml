@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="8.15">
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/EligibilityServiceApplicationTests.java">
+<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/controller/EligibilityControllerTest.java">
+</file>
+<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/converter/PersonDTOToDWPPersonConverterTest.java">
+</file>
+<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/helper/DWPPersonTestFactory.java">
+</file>
+<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/helper/EligibilityRequestTestFactory.java">
+</file>
+<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/helper/EligibilityResponseTestFactory.java">
+</file>
+<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/helper/PersonDTOTestFactory.java">
+</file>
+<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/service/DWPClientTest.java">
+</file>
+<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/service/EligibilityServiceTest.java">
 </file>
 </checkstyle>

@@ -2,13 +2,20 @@
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
 
 @SuppressWarnings(&quot;PMD.UseUtilityClass&quot;)
 @SpringBootApplication
-<span class="fc" id="L8">public class EligibilityServiceApplication {</span>
+<span class="fc" id="L10">public class EligibilityServiceApplication {</span>
 
     public static void main(String[] args) {
-<span class="nc" id="L11">        SpringApplication.run(EligibilityServiceApplication.class, args);</span>
-<span class="nc" id="L12">    }</span>
+<span class="nc" id="L13">        SpringApplication.run(EligibilityServiceApplication.class, args);</span>
+<span class="nc" id="L14">    }</span>
+
+    @Bean
+    public RestTemplate restTemplate() {
+<span class="fc" id="L18">        return new RestTemplate();</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
