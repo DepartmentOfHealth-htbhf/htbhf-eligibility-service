@@ -7,6 +7,9 @@ import lombok.Builder;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
+import static uk.gov.dhsc.htbhf.eligibility.regex.PostcodeRegex.UK_POST_CODE_REGEX;
 
 @Data
 @Builder
@@ -24,6 +27,7 @@ public class AddressDTO {
     private String townOrCity;
 
     @NotNull
+    @Pattern(regexp = UK_POST_CODE_REGEX, message = "invalid postcode format")
     @JsonProperty("postcode")
     private String postcode;
 }
