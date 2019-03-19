@@ -40,7 +40,7 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation "uk.gov.dhsc.htbhf:htbhf-common-rest:0.0.3"
+    implementation "uk.gov.dhsc.htbhf:htbhf-common-rest:0.0.4"
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation "org.spockframework:spock-core:1.2-groovy-2.4"
