@@ -35,6 +35,7 @@ public class EligibilityController {
     @PostMapping(path = "/v1/eligibility", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseBody
     public EligibilityResponse getDecision(@RequestBody @Valid PersonDTO person) {
+        log.debug("Received eligibility request");
         return eligibilityService.checkEligibility(person);
     }
 

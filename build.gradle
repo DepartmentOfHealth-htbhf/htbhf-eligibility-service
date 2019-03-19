@@ -2,7 +2,6 @@ buildscript {
 
     ext {
         springBootVersion = '2.1.2.RELEASE'
-        spockVersion = '1.2-groovy-2.4'
         junitVersion = '5.3.2'
     }
 

@@ -40,11 +40,10 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation "uk.gov.dhsc.htbhf:htbhf-request-context:0.0.2"
+    implementation "uk.gov.dhsc.htbhf:htbhf-common-rest:0.0.3"
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation "org.spockframework:spock-core:1.2-groovy-2.4"
-    testImplementation "org.spockframework:spock-spring:${spockVersion}"
     testImplementation "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
     testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
     testImplementation "org.junit.jupiter:junit-jupiter-params:${junitVersion}"
