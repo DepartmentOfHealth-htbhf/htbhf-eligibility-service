@@ -2,20 +2,16 @@
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.context.annotation.Import;
+import uk.gov.dhsc.htbhf.CommonRestConfiguration;
 
 @SuppressWarnings(&quot;PMD.UseUtilityClass&quot;)
 @SpringBootApplication
-<span class="fc" id="L10">public class EligibilityServiceApplication {</span>
+@Import(CommonRestConfiguration.class)
+<span class="fc" id="L11">public class EligibilityServiceApplication {</span>
 
     public static void main(String[] args) {
-<span class="nc" id="L13">        SpringApplication.run(EligibilityServiceApplication.class, args);</span>
-<span class="nc" id="L14">    }</span>
-
-    @Bean
-    public RestTemplate restTemplate() {
-<span class="fc" id="L18">        return new RestTemplate();</span>
-    }
+<span class="nc" id="L14">        SpringApplication.run(EligibilityServiceApplication.class, args);</span>
+<span class="nc" id="L15">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

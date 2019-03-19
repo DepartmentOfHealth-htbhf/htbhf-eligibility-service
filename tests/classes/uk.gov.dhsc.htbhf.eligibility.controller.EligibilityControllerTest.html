@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">1.331s</div>
+<div class="counter">1.419s</div>
 <p>duration</p>
 </div>
 </td>
@@ -81,61 +81,61 @@
 <tr>
 <td class="success">shouldGetEligibility()</td>
 <td class="success">shouldGetEligibility()</td>
-<td class="success">0.045s</td>
+<td class="success">0.057s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">shouldReturnBadRequestForInvalidDateOfBirth()</td>
 <td class="success">shouldReturnBadRequestForInvalidDateOfBirth()</td>
-<td class="success">0.851s</td>
+<td class="success">0.897s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">[1] YYHU456781</td>
 <td class="success">shouldReturnBadRequestForInvalidNino(String)[1]</td>
-<td class="success">0.045s</td>
+<td class="success">0.039s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">[2] 888888888</td>
 <td class="success">shouldReturnBadRequestForInvalidNino(String)[2]</td>
-<td class="success">0.029s</td>
+<td class="success">0.044s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">[3] ABCDEFGHI</td>
 <td class="success">shouldReturnBadRequestForInvalidNino(String)[3]</td>
-<td class="success">0.028s</td>
+<td class="success">0.039s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">[4] ZQQ123456CZ</td>
 <td class="success">shouldReturnBadRequestForInvalidNino(String)[4]</td>
-<td class="success">0.025s</td>
+<td class="success">0.046s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">[5] QQ123456T</td>
 <td class="success">shouldReturnBadRequestForInvalidNino(String)[5]</td>
-<td class="success">0.026s</td>
+<td class="success">0.078s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">[1] AA1122BB</td>
 <td class="success">shouldReturnBadRequestForInvalidPostcode(String)[1]</td>
-<td class="success">0.100s</td>
+<td class="success">0.059s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">[2] 11AA21</td>
 <td class="success">shouldReturnBadRequestForInvalidPostcode(String)[2]</td>
-<td class="success">0.036s</td>
+<td class="success">0.030s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">[3] </td>
 <td class="success">shouldReturnBadRequestForInvalidPostcode(String)[3]</td>
-<td class="success">0.036s</td>
+<td class="success">0.028s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
@@ -147,13 +147,13 @@
 <tr>
 <td class="success">shouldReturnBadRequestForMissingDateOfBirth()</td>
 <td class="success">shouldReturnBadRequestForMissingDateOfBirth()</td>
-<td class="success">0.037s</td>
+<td class="success">0.035s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">shouldReturnBadRequestForMissingNino()</td>
 <td class="success">shouldReturnBadRequestForMissingNino()</td>
-<td class="success">0.042s</td>
+<td class="success">0.036s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -161,12 +161,12 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>2019-03-18 11:50:21.411  INFO 4829 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [uk.gov.dhsc.htbhf.eligibility.controller.EligibilityControllerTest], using SpringBootContextLoader
-2019-03-18 11:50:21.412  INFO 4829 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [uk.gov.dhsc.htbhf.eligibility.controller.EligibilityControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
-2019-03-18 11:50:21.418  INFO 4829 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [uk.gov.dhsc.htbhf.eligibility.controller.EligibilityControllerTest]: EligibilityControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2019-03-18 11:50:21.436  INFO 4829 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration uk.gov.dhsc.htbhf.eligibility.EligibilityServiceApplication for test class uk.gov.dhsc.htbhf.eligibility.controller.EligibilityControllerTest
-2019-03-18 11:50:21.439  INFO 4829 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.spockframework.spring.SpringMockTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
-2019-03-18 11:50:21.441  INFO 4829 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@525a5644, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@6f3576ac, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@30cc7fb4, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@3ec39438, org.springframework.test.context.support.DirtiesContextTestExecutionListener@3e2b0dd2, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@7a6f9cad, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@290d6d8b, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@b4d4ec6, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@6d6e87e0, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@6b62e414, org.spockframework.spring.SpringMockTestExecutionListener@29c1bdc6]
+<pre>2019-03-19 11:59:44.329  INFO 4929 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [uk.gov.dhsc.htbhf.eligibility.controller.EligibilityControllerTest], using SpringBootContextLoader
+2019-03-19 11:59:44.337  INFO 4929 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [uk.gov.dhsc.htbhf.eligibility.controller.EligibilityControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2019-03-19 11:59:44.337  INFO 4929 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [uk.gov.dhsc.htbhf.eligibility.controller.EligibilityControllerTest]: EligibilityControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2019-03-19 11:59:44.357  INFO 4929 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration uk.gov.dhsc.htbhf.eligibility.EligibilityServiceApplication for test class uk.gov.dhsc.htbhf.eligibility.controller.EligibilityControllerTest
+2019-03-19 11:59:44.359  INFO 4929 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2019-03-19 11:59:44.362  INFO 4929 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@3938f8c4, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@361412d8, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@5bc5c56b, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@bb64045, org.springframework.test.context.support.DirtiesContextTestExecutionListener@7536772f, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@63a23983, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@16395601, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@2fb498eb, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@697d0d3d, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@1be15fb0]
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -176,32 +176,32 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.1.2.RELEASE)
 
-2019-03-18 11:50:21.488  INFO 4829 --- [    Test worker] u.g.d.h.e.c.EligibilityControllerTest    : Starting EligibilityControllerTest on travis-job-e4110d76-77ad-4172-8183-51c2ec566e22 with PID 4829 (started by travis in /home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api)
-2019-03-18 11:50:21.489  INFO 4829 --- [    Test worker] u.g.d.h.e.c.EligibilityControllerTest    : No active profile set, falling back to default profiles: default
-2019-03-18 11:50:22.170  INFO 4829 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
-2019-03-18 11:50:22.178  INFO 4829 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2019-03-18 11:50:22.179  INFO 4829 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.14]
-2019-03-18 11:50:22.215  INFO 4829 --- [    Test worker] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
-2019-03-18 11:50:22.217  INFO 4829 --- [    Test worker] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 726 ms
-2019-03-18 11:50:22.900  INFO 4829 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2019-03-18 11:50:23.258  INFO 4829 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
-2019-03-18 11:50:23.336  INFO 4829 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 43115 (http) with context path ''
-2019-03-18 11:50:23.338  INFO 4829 --- [    Test worker] u.g.d.h.e.c.EligibilityControllerTest    : Started EligibilityControllerTest in 1.892 seconds (JVM running for 20.624)
-2019-03-18 11:50:23.723  INFO 4829 --- [o-auto-2-exec-1] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2019-03-18 11:50:23.727  INFO 4829 --- [o-auto-2-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2019-03-18 11:50:23.751  INFO 4829 --- [o-auto-2-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 23 ms
-2019-03-18 11:50:24.087  WARN 4829 --- [o-auto-2-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse uk.gov.dhsc.htbhf.eligibility.controller.EligibilityController.getDecision(uk.gov.dhsc.htbhf.eligibility.model.PersonDTO): [Field error in object 'personDTO' on field 'dateOfBirth': rejected value [2019-04-18]; codes [Past.personDTO.dateOfBirth,Past.dateOfBirth,Past.java.time.LocalDate,Past]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [personDTO.dateOfBirth,dateOfBirth]; arguments []; default message [dateOfBirth]]; default message [must be a past date]] ]
-2019-03-18 11:50:24.224  WARN 4829 --- [o-auto-2-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse uk.gov.dhsc.htbhf.eligibility.controller.EligibilityController.getDecision(uk.gov.dhsc.htbhf.eligibility.model.PersonDTO): [Field error in object 'personDTO' on field 'nino': rejected value [null]; codes [NotNull.personDTO.nino,NotNull.nino,NotNull.java.lang.String,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [personDTO.nino,nino]; arguments []; default message [nino]]; default message [must not be null]] ]
-2019-03-18 11:50:24.263  WARN 4829 --- [o-auto-2-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse uk.gov.dhsc.htbhf.eligibility.controller.EligibilityController.getDecision(uk.gov.dhsc.htbhf.eligibility.model.PersonDTO): [Field error in object 'personDTO' on field 'dateOfBirth': rejected value [null]; codes [NotNull.personDTO.dateOfBirth,NotNull.dateOfBirth,NotNull.java.time.LocalDate,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [personDTO.dateOfBirth,dateOfBirth]; arguments []; default message [dateOfBirth]]; default message [must not be null]] ]
-2019-03-18 11:50:24.393  WARN 4829 --- [o-auto-2-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse uk.gov.dhsc.htbhf.eligibility.controller.EligibilityController.getDecision(uk.gov.dhsc.htbhf.eligibility.model.PersonDTO): [Field error in object 'personDTO' on field 'address.postcode': rejected value [AA1122BB]; codes [Pattern.personDTO.address.postcode,Pattern.address.postcode,Pattern.postcode,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [personDTO.address.postcode,address.postcode]; arguments []; default message [address.postcode],[Ljavax.validation.constraints.Pattern$Flag;@71937f90,org.springframework.validation.beanvalidation.SpringValidatorAdapter$ResolvableAttribute@72fd70c5]; default message [invalid postcode format]] ]
-2019-03-18 11:50:24.448  WARN 4829 --- [o-auto-2-exec-5] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse uk.gov.dhsc.htbhf.eligibility.controller.EligibilityController.getDecision(uk.gov.dhsc.htbhf.eligibility.model.PersonDTO): [Field error in object 'personDTO' on field 'address.postcode': rejected value [11AA21]; codes [Pattern.personDTO.address.postcode,Pattern.address.postcode,Pattern.postcode,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [personDTO.address.postcode,address.postcode]; arguments []; default message [address.postcode],[Ljavax.validation.constraints.Pattern$Flag;@71937f90,org.springframework.validation.beanvalidation.SpringValidatorAdapter$ResolvableAttribute@4509ef62]; default message [invalid postcode format]] ]
-2019-03-18 11:50:24.488  WARN 4829 --- [o-auto-2-exec-6] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse uk.gov.dhsc.htbhf.eligibility.controller.EligibilityController.getDecision(uk.gov.dhsc.htbhf.eligibility.model.PersonDTO): [Field error in object 'personDTO' on field 'address.postcode': rejected value []; codes [Pattern.personDTO.address.postcode,Pattern.address.postcode,Pattern.postcode,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [personDTO.address.postcode,address.postcode]; arguments []; default message [address.postcode],[Ljavax.validation.constraints.Pattern$Flag;@71937f90,org.springframework.validation.beanvalidation.SpringValidatorAdapter$ResolvableAttribute@19c6fc74]; default message [invalid postcode format]] ]
-2019-03-18 11:50:24.521  WARN 4829 --- [o-auto-2-exec-7] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse uk.gov.dhsc.htbhf.eligibility.controller.EligibilityController.getDecision(uk.gov.dhsc.htbhf.eligibility.model.PersonDTO): [Field error in object 'personDTO' on field 'address': rejected value [null]; codes [NotNull.personDTO.address,NotNull.address,NotNull.uk.gov.dhsc.htbhf.eligibility.model.AddressDTO,NotNull]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [personDTO.address,address]; arguments []; default message [address]]; default message [must not be null]] ]
-2019-03-18 11:50:24.616  WARN 4829 --- [o-auto-2-exec-9] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse uk.gov.dhsc.htbhf.eligibility.controller.EligibilityController.getDecision(uk.gov.dhsc.htbhf.eligibility.model.PersonDTO): [Field error in object 'personDTO' on field 'nino': rejected value [YYHU456781]; codes [Pattern.personDTO.nino,Pattern.nino,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [personDTO.nino,nino]; arguments []; default message [nino],[Ljavax.validation.constraints.Pattern$Flag;@71937f90,org.springframework.validation.beanvalidation.SpringValidatorAdapter$ResolvableAttribute@4cde3cda]; default message [must match &quot;[a-zA-Z]{2}\d{6}[a-dA-D]&quot;]] ]
-2019-03-18 11:50:24.658  WARN 4829 --- [-auto-2-exec-10] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse uk.gov.dhsc.htbhf.eligibility.controller.EligibilityController.getDecision(uk.gov.dhsc.htbhf.eligibility.model.PersonDTO): [Field error in object 'personDTO' on field 'nino': rejected value [888888888]; codes [Pattern.personDTO.nino,Pattern.nino,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [personDTO.nino,nino]; arguments []; default message [nino],[Ljavax.validation.constraints.Pattern$Flag;@71937f90,org.springframework.validation.beanvalidation.SpringValidatorAdapter$ResolvableAttribute@461fad8d]; default message [must match &quot;[a-zA-Z]{2}\d{6}[a-dA-D]&quot;]] ]
-2019-03-18 11:50:24.692  WARN 4829 --- [o-auto-2-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse uk.gov.dhsc.htbhf.eligibility.controller.EligibilityController.getDecision(uk.gov.dhsc.htbhf.eligibility.model.PersonDTO): [Field error in object 'personDTO' on field 'nino': rejected value [ABCDEFGHI]; codes [Pattern.personDTO.nino,Pattern.nino,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [personDTO.nino,nino]; arguments []; default message [nino],[Ljavax.validation.constraints.Pattern$Flag;@71937f90,org.springframework.validation.beanvalidation.SpringValidatorAdapter$ResolvableAttribute@103a0204]; default message [must match &quot;[a-zA-Z]{2}\d{6}[a-dA-D]&quot;]] ]
-2019-03-18 11:50:24.725  WARN 4829 --- [o-auto-2-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse uk.gov.dhsc.htbhf.eligibility.controller.EligibilityController.getDecision(uk.gov.dhsc.htbhf.eligibility.model.PersonDTO): [Field error in object 'personDTO' on field 'nino': rejected value [ZQQ123456CZ]; codes [Pattern.personDTO.nino,Pattern.nino,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [personDTO.nino,nino]; arguments []; default message [nino],[Ljavax.validation.constraints.Pattern$Flag;@71937f90,org.springframework.validation.beanvalidation.SpringValidatorAdapter$ResolvableAttribute@1a153cd3]; default message [must match &quot;[a-zA-Z]{2}\d{6}[a-dA-D]&quot;]] ]
-2019-03-18 11:50:24.757  WARN 4829 --- [o-auto-2-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse uk.gov.dhsc.htbhf.eligibility.controller.EligibilityController.getDecision(uk.gov.dhsc.htbhf.eligibility.model.PersonDTO): [Field error in object 'personDTO' on field 'nino': rejected value [QQ123456T]; codes [Pattern.personDTO.nino,Pattern.nino,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [personDTO.nino,nino]; arguments []; default message [nino],[Ljavax.validation.constraints.Pattern$Flag;@71937f90,org.springframework.validation.beanvalidation.SpringValidatorAdapter$ResolvableAttribute@6a5a3e2b]; default message [must match &quot;[a-zA-Z]{2}\d{6}[a-dA-D]&quot;]] ]
+2019-03-19 11:59:44.415  INFO 4929 --- [    Test worker] u.g.d.h.e.c.EligibilityControllerTest    : Starting EligibilityControllerTest on travis-job-32ec065c-4926-49f3-84de-ef7c0ffbe420 with PID 4929 (started by travis in /home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api)
+2019-03-19 11:59:44.417  INFO 4929 --- [    Test worker] u.g.d.h.e.c.EligibilityControllerTest    : No active profile set, falling back to default profiles: default
+2019-03-19 11:59:45.133  INFO 4929 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2019-03-19 11:59:45.138  INFO 4929 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-03-19 11:59:45.139  INFO 4929 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.14]
+2019-03-19 11:59:45.175  INFO 4929 --- [    Test worker] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2019-03-19 11:59:45.176  INFO 4929 --- [    Test worker] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 756 ms
+2019-03-19 11:59:45.922  INFO 4929 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-03-19 11:59:46.295  INFO 4929 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2019-03-19 11:59:46.376  INFO 4929 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 37696 (http) with context path ''
+2019-03-19 11:59:46.377  INFO 4929 --- [    Test worker] u.g.d.h.e.c.EligibilityControllerTest    : Started EligibilityControllerTest in 2.011 seconds (JVM running for 22.636)
+2019-03-19 11:59:46.796  INFO 4929 --- [o-auto-2-exec-1] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-03-19 11:59:46.799  INFO 4929 --- [o-auto-2-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-03-19 11:59:46.827  INFO 4929 --- [o-auto-2-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 28 ms
+2019-03-19 11:59:47.218  WARN 4929 --- [o-auto-2-exec-1] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during POST request to /v1/eligibility: [ErrorResponse.FieldError(field=dateOfBirth, message=must be a past date)]
+2019-03-19 11:59:47.311  WARN 4929 --- [o-auto-2-exec-2] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during POST request to /v1/eligibility: [ErrorResponse.FieldError(field=nino, message=must not be null)]
+2019-03-19 11:59:47.355  WARN 4929 --- [o-auto-2-exec-3] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during POST request to /v1/eligibility: [ErrorResponse.FieldError(field=dateOfBirth, message=must not be null)]
+2019-03-19 11:59:47.453  WARN 4929 --- [o-auto-2-exec-4] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during POST request to /v1/eligibility: [ErrorResponse.FieldError(field=address.postcode, message=invalid postcode format)]
+2019-03-19 11:59:47.504  WARN 4929 --- [o-auto-2-exec-5] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during POST request to /v1/eligibility: [ErrorResponse.FieldError(field=address.postcode, message=invalid postcode format)]
+2019-03-19 11:59:47.545  WARN 4929 --- [o-auto-2-exec-6] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during POST request to /v1/eligibility: [ErrorResponse.FieldError(field=address.postcode, message=invalid postcode format)]
+2019-03-19 11:59:47.583  WARN 4929 --- [o-auto-2-exec-7] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during POST request to /v1/eligibility: [ErrorResponse.FieldError(field=address, message=must not be null)]
+2019-03-19 11:59:47.700  WARN 4929 --- [o-auto-2-exec-9] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during POST request to /v1/eligibility: [ErrorResponse.FieldError(field=nino, message=must match &quot;[a-zA-Z]{2}\d{6}[a-dA-D]&quot;)]
+2019-03-19 11:59:47.735  WARN 4929 --- [-auto-2-exec-10] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during POST request to /v1/eligibility: [ErrorResponse.FieldError(field=nino, message=must match &quot;[a-zA-Z]{2}\d{6}[a-dA-D]&quot;)]
+2019-03-19 11:59:47.790  WARN 4929 --- [o-auto-2-exec-1] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during POST request to /v1/eligibility: [ErrorResponse.FieldError(field=nino, message=must match &quot;[a-zA-Z]{2}\d{6}[a-dA-D]&quot;)]
+2019-03-19 11:59:47.850  WARN 4929 --- [o-auto-2-exec-2] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during POST request to /v1/eligibility: [ErrorResponse.FieldError(field=nino, message=must match &quot;[a-zA-Z]{2}\d{6}[a-dA-D]&quot;)]
+2019-03-19 11:59:47.904  WARN 4929 --- [o-auto-2-exec-3] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during POST request to /v1/eligibility: [ErrorResponse.FieldError(field=nino, message=must match &quot;[a-zA-Z]{2}\d{6}[a-dA-D]&quot;)]
 </pre>
 </span>
 </div>
@@ -213,7 +213,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 5.0</a> at Mar 18, 2019, 11:54:31 AM</p>
+<a href="http://www.gradle.org">Gradle 5.0</a> at Mar 19, 2019, 12:04:25 PM</p>
 </div>
 </div>
 </body>
