@@ -1,5 +1,6 @@
 package uk.gov.dhsc.htbhf.eligibility.service;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import uk.gov.dhsc.htbhf.eligibility.converter.PersonDTOToDWPPersonConverter;
 import uk.gov.dhsc.htbhf.eligibility.model.DWPPersonDTO;
@@ -15,22 +16,32 @@ public class EligibilityService {
 
     private final PersonDTOToDWPPersonConverter converter;
     private final DWPClient dwpClient;
+    private final BigDecimal ucMonthlyIncomeThreshold;
+    private final Integer eligibilityCheckFrequencyInWeeks;
 
 
-    public EligibilityService(PersonDTOToDWPPersonConverter converter,
+    public EligibilityService(@Value("${dwp.eligibility-check-frequency-in-weeks}") Integer eligibilityCheckFrequencyInWeeks,
+                              @Value("${dwp.uc-monthly-income-threshold}") BigDecimal ucMonthlyIncomeThreshold,
+                              PersonDTOToDWPPersonConverter converter,
                               DWPClient dwpClient) {
         this.converter = converter;
         this.dwpClient = dwpClient;
+        this.ucMonthlyIncomeThreshold = ucMonthlyIncomeThreshold;
+        this.eligibilityCheckFrequencyInWeeks = eligibilityCheckFrequencyInWeeks;
     }
 
+    /**
+     * Checks the eligibility of a given person.
+     */
     public EligibilityResponse checkEligibility(PersonDTO person) {
         DWPPersonDTO dwpPerson = converter.convert(person);
+        LocalDate currentDate = LocalDate.now();
+
         EligibilityRequest request = EligibilityRequest.builder()
                 .person(dwpPerson)
-                // TODO fetch below values from configuration
-                .eligibleEndDate(LocalDate.now())
-                .eligibleStartDate(LocalDate.now())
-                .ucMonthlyIncomeThreshold(BigDecimal.ONE)
+                .eligibleEndDate(currentDate)
+                .eligibleStartDate(currentDate.minusWeeks(eligibilityCheckFrequencyInWeeks))
+                .ucMonthlyIncomeThreshold(ucMonthlyIncomeThreshold)
                 .build();
 
         return dwpClient.checkEligibility(request);

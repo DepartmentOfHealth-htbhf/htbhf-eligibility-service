@@ -13,6 +13,8 @@ import uk.gov.dhsc.htbhf.eligibility.model.EligibilityRequest;
 import uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse;
 import uk.gov.dhsc.htbhf.eligibility.model.PersonDTO;
 
+import java.math.BigDecimal;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
@@ -33,7 +35,7 @@ class EligibilityServiceTest {
     private DWPClient dwpClient;
 
     @Test
-    void shouldCreateRequest() {
+    void shouldCreateRequestWithValuesFromConfig() {
         PersonDTO person = aPerson();
         DWPPersonDTO dwpPerson = DWPPersonDTO.builder().build();
         given(converter.convert(person)).willReturn(dwpPerson);
@@ -52,5 +54,9 @@ class EligibilityServiceTest {
         verify(dwpClient).checkEligibility(argumentCaptor.capture());
         EligibilityRequest sentRequest = argumentCaptor.getValue();
         assertThat(sentRequest.getPerson()).isEqualTo(dwpPerson);
+        // Below values match those in test/resources/application.yml
+        assertThat(sentRequest.getUcMonthlyIncomeThreshold()).isEqualTo(BigDecimal.valueOf(408.0));
+        assertThat(sentRequest.getEligibleStartDate()).isEqualTo(sentRequest.getEligibleEndDate().minusWeeks(4));
+        assertThat(sentRequest.getEligibleEndDate()).isNotNull();
     }
 }
