@@ -40,7 +40,7 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation "uk.gov.dhsc.htbhf:htbhf-common-rest:0.0.4"
+    implementation "uk.gov.dhsc.htbhf:htbhf-common-rest:latest.release"
     implementation "io.springfox:springfox-swagger2:${springFoxVersion}"
     implementation "io.springfox:springfox-bean-validators:${springFoxVersion}"
     // Need to upgrade the version of Guava to address Snyk vulnerability found in SpringFox.
