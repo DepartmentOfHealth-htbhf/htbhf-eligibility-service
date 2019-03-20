@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="8.15">
+<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/ApiDocumentation.java">
+</file>
 <file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/EligibilityServiceApplication.java">
 </file>
 <file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/controller/EligibilityController.java">
