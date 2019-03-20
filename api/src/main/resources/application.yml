@@ -1,5 +1,21 @@
+spring:
+  jackson:
+    default-property-inclusion: NON_NULL
+  application:
+    name: eligibility/api
+    boot:
+      admin:
+        url: http://localhost:8100
+
 server:
   port: 8100
+
+logging:
+  pattern:
+    console: "%d{HH:mm:ss.SSS} [%thread] [%X{session.id}][%X{request.id}] %-5level %logger{36} - %msg%n"
+  level:
+    ROOT: ${vcap.services.variable-service.credentials.eligibility-root-loglevel:info}
+    uk.gov.dhsc: ${vcap.services.variable-service.credentials.eligibility-app-loglevel:debug}
 
 dwp:
   base-uri: ${DWP_API_URI:http://localhost:8110}

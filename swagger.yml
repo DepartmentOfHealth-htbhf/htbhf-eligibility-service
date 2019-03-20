@@ -1,0 +1,100 @@
+swagger: "2.0"
+info:
+  description: "Responsible for deciding whether an applicant is eligible for help-to-buy-healthy-foods"
+  title: "Eligibility Service"
+  contact:
+    name: "Department Of Health"
+    url: "https://github.com/DepartmentOfHealth-htbhf"
+    email: "dh-htbhf-team@equalexperts.com"
+  license:
+    name: "MIT"
+    url: "https://opensource.org/licenses/MIT"
+host: "N/A"
+basePath: "/"
+tags:
+- name: "eligibility-controller"
+  description: "Eligibility Controller"
+paths:
+  /v1/eligibility:
+    post:
+      tags:
+      - "eligibility-controller"
+      summary: "getDecision"
+      operationId: "getDecisionUsingPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "person"
+        description: "person"
+        required: true
+        schema:
+          $ref: "#/definitions/PersonDTO"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            $ref: "#/definitions/EligibilityResponse"
+        201:
+          description: "Created"
+        401:
+          description: "Unauthorized"
+        403:
+          description: "Forbidden"
+        404:
+          description: "Not Found"
+      deprecated: false
+definitions:
+  AddressDTO:
+    type: "object"
+    required:
+    - "addressLine1"
+    - "postcode"
+    - "townOrCity"
+    properties:
+      addressLine1:
+        type: "string"
+      addressLine2:
+        type: "string"
+      townOrCity:
+        type: "string"
+      postcode:
+        type: "string"
+        pattern: "([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\\\
+          s?[0-9][A-Za-z]{2})"
+    title: "AddressDTO"
+  EligibilityResponse:
+    type: "object"
+    properties:
+      eligibilityStatus:
+        type: "string"
+        enum:
+        - "ELIGIBLE"
+        - "INELIGIBLE"
+        - "PENDING"
+        - "NOMATCH"
+    title: "EligibilityResponse"
+  PersonDTO:
+    type: "object"
+    required:
+    - "address"
+    - "dateOfBirth"
+    - "firstName"
+    - "lastName"
+    - "nino"
+    properties:
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      nino:
+        type: "string"
+        pattern: "[a-zA-Z]{2}\\d{6}[a-dA-D]"
+      dateOfBirth:
+        type: "string"
+        format: "date"
+      address:
+        $ref: "#/definitions/AddressDTO"
+    title: "PersonDTO"
