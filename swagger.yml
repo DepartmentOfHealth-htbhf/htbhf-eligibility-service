@@ -75,6 +75,8 @@ definitions:
         - "INELIGIBLE"
         - "PENDING"
         - "NOMATCH"
+      householdIdentifier:
+        type: "string"
     title: "EligibilityResponse"
   PersonDTO:
     type: "object"

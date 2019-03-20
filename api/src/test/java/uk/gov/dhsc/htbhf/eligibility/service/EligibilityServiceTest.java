@@ -19,6 +19,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
+import static uk.gov.dhsc.htbhf.eligibility.helper.DWPPersonTestFactory.aDWPPerson;
 import static uk.gov.dhsc.htbhf.eligibility.helper.EligibilityResponseTestFactory.anEligibilityResponse;
 import static uk.gov.dhsc.htbhf.eligibility.helper.PersonDTOTestFactory.aPerson;
 import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.ELIGIBLE;
@@ -37,14 +38,14 @@ class EligibilityServiceTest {
     @Test
     void shouldCreateRequestWithValuesFromConfig() {
         PersonDTO person = aPerson();
-        DWPPersonDTO dwpPerson = DWPPersonDTO.builder().build();
+        DWPPersonDTO dwpPerson = aDWPPerson();
         given(converter.convert(person)).willReturn(dwpPerson);
-        EligibilityResponse eligibilityResponse = anEligibilityResponse();
-        given(dwpClient.checkEligibility(any())).willReturn(eligibilityResponse);
+        given(dwpClient.checkEligibility(any())).willReturn(anEligibilityResponse());
 
         EligibilityResponse response = eligibilityService.checkEligibility(person);
 
         assertThat(response.getEligibilityStatus()).isEqualTo(ELIGIBLE);
+        assertThat(response.getHouseholdIdentifier()).isEqualTo("household1");
         verify(converter).convert(person);
         verifyRequestSent(dwpPerson);
     }
