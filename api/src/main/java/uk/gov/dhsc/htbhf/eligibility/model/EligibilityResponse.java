@@ -13,4 +13,7 @@ public class EligibilityResponse {
 
     @JsonProperty("eligibilityStatus")
     private EligibilityStatus eligibilityStatus;
+
+    @JsonProperty("householdIdentifier")
+    private String householdIdentifier;
 }
