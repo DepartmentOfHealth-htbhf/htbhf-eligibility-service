@@ -2,8 +2,6 @@ package uk.gov.dhsc.htbhf.eligibility.controller;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -20,7 +18,8 @@ import static org.mockito.BDDMockito.given;
 import static org.springframework.http.HttpStatus.OK;
 import static uk.gov.dhsc.htbhf.assertions.IntegrationTestAssertions.assertValidationErrorInResponse;
 import static uk.gov.dhsc.htbhf.eligibility.helper.EligibilityResponseTestFactory.anEligibilityResponse;
-import static uk.gov.dhsc.htbhf.eligibility.helper.PersonDTOTestFactory.*;
+import static uk.gov.dhsc.htbhf.eligibility.helper.PersonDTOTestFactory.aPerson;
+import static uk.gov.dhsc.htbhf.eligibility.helper.PersonDTOTestFactory.aPersonWithNoNino;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -55,52 +54,4 @@ class EligibilityControllerTest {
 
         assertValidationErrorInResponse(response, "nino", "must not be null");
     }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"YYHU456781", "888888888", "ABCDEFGHI", "ZQQ123456CZ", "QQ123456T"})
-    void shouldReturnBadRequestForInvalidNino(String nino) {
-        PersonDTO person = buildDefaultPerson().nino(nino).build();
-
-        ResponseEntity<ErrorResponse> response = restTemplate.postForEntity(ENDPOINT_URL, person, ErrorResponse.class);
-
-        assertValidationErrorInResponse(response, "nino", "must match \"[a-zA-Z]{2}\\d{6}[a-dA-D]\"");
-    }
-
-    @Test
-    void shouldReturnBadRequestForMissingDateOfBirth() {
-        PersonDTO person = aPersonWithNoDateOfBirth();
-
-        ResponseEntity<ErrorResponse> response = restTemplate.postForEntity(ENDPOINT_URL, person, ErrorResponse.class);
-
-        assertValidationErrorInResponse(response, "dateOfBirth", "must not be null");
-    }
-
-    @Test
-    void shouldReturnBadRequestForInvalidDateOfBirth() {
-        PersonDTO person = aPersonWithDateOfBirthInFuture();
-
-        ResponseEntity<ErrorResponse> response = restTemplate.postForEntity(ENDPOINT_URL, person, ErrorResponse.class);
-
-        assertValidationErrorInResponse(response, "dateOfBirth", "must be a past date");
-    }
-
-    @Test
-    void shouldReturnBadRequestForMissingAddress() {
-        PersonDTO person = aPersonWithNoAddress();
-
-        ResponseEntity<ErrorResponse> response = restTemplate.postForEntity(ENDPOINT_URL, person, ErrorResponse.class);
-
-        assertValidationErrorInResponse(response, "address", "must not be null");
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"AA1122BB", "11AA21", ""})
-    void shouldReturnBadRequestForInvalidPostcode(String postcode) {
-        PersonDTO person = aPersonWithPostcode(postcode);
-
-        ResponseEntity<ErrorResponse> response = restTemplate.postForEntity(ENDPOINT_URL, person, ErrorResponse.class);
-
-        assertValidationErrorInResponse(response, "address.postcode", "invalid postcode format");
-    }
-
 }
