@@ -3,10 +3,8 @@ package uk.gov.dhsc.htbhf.eligibility.service;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import uk.gov.dhsc.htbhf.eligibility.converter.PersonDTOToDWPPersonConverter;
-import uk.gov.dhsc.htbhf.eligibility.model.DWPPersonDTO;
-import uk.gov.dhsc.htbhf.eligibility.model.EligibilityRequest;
-import uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse;
-import uk.gov.dhsc.htbhf.eligibility.model.PersonDTO;
+import uk.gov.dhsc.htbhf.eligibility.model.*;
+import uk.gov.dhsc.htbhf.eligibility.model.dwp.DWPEligibilityResponse;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -32,6 +30,10 @@ public class EligibilityService {
 
     /**
      * Checks the eligibility of a given person.
+     * Build the DWP Eligibility Request and send to to DWP as an Async call.
+     *
+     * @param person The person to check
+     * @return The eligibility response
      */
     public EligibilityResponse checkEligibility(PersonDTO person) {
         DWPPersonDTO dwpPerson = converter.convert(person);
@@ -44,6 +46,18 @@ public class EligibilityService {
                 .ucMonthlyIncomeThreshold(ucMonthlyIncomeThreshold)
                 .build();
 
-        return dwpClient.checkEligibility(request);
+        DWPEligibilityResponse dwpEligibilityResponse = dwpClient.checkEligibility(request);
+        return buildEligibilityResponse(dwpEligibilityResponse);
+    }
+
+    private EligibilityResponse buildEligibilityResponse(DWPEligibilityResponse dwpEligibilityResponse) {
+        return EligibilityResponse.builder()
+                .eligibilityStatus(determineEligibilityStatus(dwpEligibilityResponse))
+                .dwpHouseholdIdentifier(dwpEligibilityResponse.getHouseholdIdentifier())
+                .build();
+    }
+
+    private EligibilityStatus determineEligibilityStatus(DWPEligibilityResponse dwpEligibilityResponse) {
+        return dwpEligibilityResponse.getEligibilityStatus();
     }
 }

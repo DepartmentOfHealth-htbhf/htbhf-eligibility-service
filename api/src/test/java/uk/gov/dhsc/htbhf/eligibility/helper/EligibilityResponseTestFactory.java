@@ -9,7 +9,8 @@ public class EligibilityResponseTestFactory {
     public static EligibilityResponse anEligibilityResponse() {
         return EligibilityResponse.builder()
                 .eligibilityStatus(ELIGIBLE)
-                .householdIdentifier("household1")
+                .dwpHouseholdIdentifier("dwpHousehold1")
+                .hmrcHouseholdIdentifier("hmrcHousehold1")
                 .build();
     }
 }
