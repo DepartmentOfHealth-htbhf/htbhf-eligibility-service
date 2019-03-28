@@ -5,7 +5,7 @@ import uk.gov.dhsc.htbhf.eligibility.model.EligibilityRequest;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import static uk.gov.dhsc.htbhf.eligibility.helper.DWPPersonTestFactory.aDWPPerson;
+import static uk.gov.dhsc.htbhf.eligibility.helper.PersonDTOTestFactory.aPerson;
 
 public class EligibilityRequestTestFactory {
 
@@ -19,7 +19,7 @@ public class EligibilityRequestTestFactory {
 
     public static EligibilityRequest.EligibilityRequestBuilder buildDefaultRequest() {
         return EligibilityRequest.builder()
-                .person(aDWPPerson())
+                .person(aPerson())
                 .eligibleStartDate(ELIGIBLE_START_DATE)
                 .eligibleEndDate(ELIGIBLE_END_DATE)
                 .ucMonthlyIncomeThreshold(UC_MONTHLY_INCOME_THRESHOLD);
