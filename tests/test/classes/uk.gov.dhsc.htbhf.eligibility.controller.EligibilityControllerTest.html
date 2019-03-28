@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.893s</div>
+<div class="counter">0.905s</div>
 <p>duration</p>
 </div>
 </td>
@@ -81,79 +81,79 @@
 <tr>
 <td class="success">shouldGetEligibility()</td>
 <td class="success">shouldGetEligibility()</td>
-<td class="success">0.062s</td>
+<td class="success">0.060s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">shouldReturnBadRequestForInvalidDateOfBirth()</td>
 <td class="success">shouldReturnBadRequestForInvalidDateOfBirth()</td>
-<td class="success">0.463s</td>
+<td class="success">0.459s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">[1] YYHU456781</td>
 <td class="success">shouldReturnBadRequestForInvalidNino(String)[1]</td>
-<td class="success">0.030s</td>
+<td class="success">0.025s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">[2] 888888888</td>
 <td class="success">shouldReturnBadRequestForInvalidNino(String)[2]</td>
-<td class="success">0.035s</td>
+<td class="success">0.021s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">[3] ABCDEFGHI</td>
 <td class="success">shouldReturnBadRequestForInvalidNino(String)[3]</td>
-<td class="success">0.023s</td>
+<td class="success">0.032s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">[4] ZQQ123456CZ</td>
 <td class="success">shouldReturnBadRequestForInvalidNino(String)[4]</td>
-<td class="success">0.026s</td>
+<td class="success">0.032s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">[5] QQ123456T</td>
 <td class="success">shouldReturnBadRequestForInvalidNino(String)[5]</td>
-<td class="success">0.024s</td>
+<td class="success">0.034s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">[1] AA1122BB</td>
 <td class="success">shouldReturnBadRequestForInvalidPostcode(String)[1]</td>
-<td class="success">0.056s</td>
+<td class="success">0.064s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">[2] 11AA21</td>
 <td class="success">shouldReturnBadRequestForInvalidPostcode(String)[2]</td>
-<td class="success">0.032s</td>
+<td class="success">0.037s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">[3] </td>
 <td class="success">shouldReturnBadRequestForInvalidPostcode(String)[3]</td>
-<td class="success">0.029s</td>
+<td class="success">0.034s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">shouldReturnBadRequestForMissingAddress()</td>
 <td class="success">shouldReturnBadRequestForMissingAddress()</td>
-<td class="success">0.029s</td>
+<td class="success">0.035s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">shouldReturnBadRequestForMissingDateOfBirth()</td>
 <td class="success">shouldReturnBadRequestForMissingDateOfBirth()</td>
-<td class="success">0.036s</td>
+<td class="success">0.034s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">shouldReturnBadRequestForMissingNino()</td>
 <td class="success">shouldReturnBadRequestForMissingNino()</td>
-<td class="success">0.048s</td>
+<td class="success">0.038s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -161,12 +161,12 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>2019-03-22 08:52:27.093  INFO 5245 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [uk.gov.dhsc.htbhf.eligibility.controller.EligibilityControllerTest], using SpringBootContextLoader
-2019-03-22 08:52:27.095  INFO 5245 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [uk.gov.dhsc.htbhf.eligibility.controller.EligibilityControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
-2019-03-22 08:52:27.095  INFO 5245 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [uk.gov.dhsc.htbhf.eligibility.controller.EligibilityControllerTest]: EligibilityControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2019-03-22 08:52:27.107  INFO 5245 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration uk.gov.dhsc.htbhf.eligibility.EligibilityServiceApplication for test class uk.gov.dhsc.htbhf.eligibility.controller.EligibilityControllerTest
-2019-03-22 08:52:27.109  INFO 5245 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
-2019-03-22 08:52:27.112  INFO 5245 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@2bf72079, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@6b38c6f0, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@1c1761ee, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@ead1981, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1ccb04c5, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@31e95eea, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@16d64128, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@70d12362, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@34f8fc91, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@4f1deaea]
+<pre>2019-03-28 13:32:22.540  INFO 5148 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [uk.gov.dhsc.htbhf.eligibility.controller.EligibilityControllerTest], using SpringBootContextLoader
+2019-03-28 13:32:22.541  INFO 5148 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [uk.gov.dhsc.htbhf.eligibility.controller.EligibilityControllerTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2019-03-28 13:32:22.542  INFO 5148 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [uk.gov.dhsc.htbhf.eligibility.controller.EligibilityControllerTest]: EligibilityControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2019-03-28 13:32:22.557  INFO 5148 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration uk.gov.dhsc.htbhf.eligibility.EligibilityServiceApplication for test class uk.gov.dhsc.htbhf.eligibility.controller.EligibilityControllerTest
+2019-03-28 13:32:22.563  INFO 5148 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2019-03-28 13:32:22.565  INFO 5148 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@2143fec7, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@714bb958, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@60a24a2a, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@20cf333e, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1e445426, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@3269bfcf, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@40e850b2, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@1967cd52, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@253e5f3c, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@5ad60b93]
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -176,37 +176,37 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.1.2.RELEASE)
 
-2019-03-22 08:52:27.170  INFO 5245 --- [    Test worker] u.g.d.h.e.c.EligibilityControllerTest    : Starting EligibilityControllerTest on travis-job-f1d575fb-0da0-407a-b7b1-3c93c8ccc29c with PID 5245 (started by travis in /home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api)
-2019-03-22 08:52:27.171  INFO 5245 --- [    Test worker] u.g.d.h.e.c.EligibilityControllerTest    : No active profile set, falling back to default profiles: default
-2019-03-22 08:52:27.979  INFO 5245 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
-2019-03-22 08:52:27.982  INFO 5245 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2019-03-22 08:52:27.983  INFO 5245 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.14]
-2019-03-22 08:52:28.014  INFO 5245 --- [    Test worker] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
-2019-03-22 08:52:28.014  INFO 5245 --- [    Test worker] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 838 ms
-2019-03-22 08:52:28.935  INFO 5245 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
-2019-03-22 08:52:29.107  INFO 5245 --- [    Test worker] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity&lt;springfox.documentation.spring.web.json.Json&gt; springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
-2019-03-22 08:52:29.314  INFO 5245 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2019-03-22 08:52:29.757  INFO 5245 --- [    Test worker] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2019-03-22 08:52:29.759  INFO 5245 --- [    Test worker] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2019-03-22 08:52:29.769  INFO 5245 --- [    Test worker] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2019-03-22 08:52:29.812  INFO 5245 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 36857 (http) with context path ''
-2019-03-22 08:52:29.813  INFO 5245 --- [    Test worker] u.g.d.h.e.c.EligibilityControllerTest    : Started EligibilityControllerTest in 2.695 seconds (JVM running for 30.026)
-2019-03-22 08:52:29.818  INFO 5245 --- [    Test worker] u.g.d.h.eligibility.ApiDocumentation     : Application started. App version=, app id=, instance index=
-2019-03-22 08:52:29.939  INFO 5245 --- [o-auto-3-exec-1] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2019-03-22 08:52:29.940  INFO 5245 --- [o-auto-3-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2019-03-22 08:52:29.996  INFO 5245 --- [o-auto-3-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 56 ms
-2019-03-22 08:52:30.235  WARN 5245 --- [o-auto-3-exec-1] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during POST request to /v1/eligibility: [ErrorResponse.FieldError(field=dateOfBirth, message=must be a past date)]
-2019-03-22 08:52:30.321  WARN 5245 --- [o-auto-3-exec-2] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during POST request to /v1/eligibility: [ErrorResponse.FieldError(field=nino, message=must not be null)]
-2019-03-22 08:52:30.367  WARN 5245 --- [o-auto-3-exec-3] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during POST request to /v1/eligibility: [ErrorResponse.FieldError(field=dateOfBirth, message=must not be null)]
-2019-03-22 08:52:30.461  WARN 5245 --- [o-auto-3-exec-4] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during POST request to /v1/eligibility: [ErrorResponse.FieldError(field=address.postcode, message=invalid postcode format)]
-2019-03-22 08:52:30.507  WARN 5245 --- [o-auto-3-exec-5] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during POST request to /v1/eligibility: [ErrorResponse.FieldError(field=address.postcode, message=invalid postcode format)]
-2019-03-22 08:52:30.545  WARN 5245 --- [o-auto-3-exec-6] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during POST request to /v1/eligibility: [ErrorResponse.FieldError(field=address.postcode, message=invalid postcode format)]
-2019-03-22 08:52:30.577  WARN 5245 --- [o-auto-3-exec-7] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during POST request to /v1/eligibility: [ErrorResponse.FieldError(field=address, message=must not be null)]
-2019-03-22 08:52:30.692  WARN 5245 --- [o-auto-3-exec-9] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during POST request to /v1/eligibility: [ErrorResponse.FieldError(field=nino, message=must match &quot;[a-zA-Z]{2}\d{6}[a-dA-D]&quot;)]
-2019-03-22 08:52:30.726  WARN 5245 --- [-auto-3-exec-10] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during POST request to /v1/eligibility: [ErrorResponse.FieldError(field=nino, message=must match &quot;[a-zA-Z]{2}\d{6}[a-dA-D]&quot;)]
-2019-03-22 08:52:30.758  WARN 5245 --- [o-auto-3-exec-1] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during POST request to /v1/eligibility: [ErrorResponse.FieldError(field=nino, message=must match &quot;[a-zA-Z]{2}\d{6}[a-dA-D]&quot;)]
-2019-03-22 08:52:30.783  WARN 5245 --- [o-auto-3-exec-2] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during POST request to /v1/eligibility: [ErrorResponse.FieldError(field=nino, message=must match &quot;[a-zA-Z]{2}\d{6}[a-dA-D]&quot;)]
-2019-03-22 08:52:30.817  WARN 5245 --- [o-auto-3-exec-3] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during POST request to /v1/eligibility: [ErrorResponse.FieldError(field=nino, message=must match &quot;[a-zA-Z]{2}\d{6}[a-dA-D]&quot;)]
+2019-03-28 13:32:22.617  INFO 5148 --- [    Test worker] u.g.d.h.e.c.EligibilityControllerTest    : Starting EligibilityControllerTest on travis-job-dda4bb3b-df6e-40fa-b86b-28e37cf12f77 with PID 5148 (started by travis in /home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api)
+2019-03-28 13:32:22.617  INFO 5148 --- [    Test worker] u.g.d.h.e.c.EligibilityControllerTest    : No active profile set, falling back to default profiles: default
+2019-03-28 13:32:23.359  INFO 5148 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2019-03-28 13:32:23.363  INFO 5148 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-03-28 13:32:23.365  INFO 5148 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.14]
+2019-03-28 13:32:23.381  INFO 5148 --- [    Test worker] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2019-03-28 13:32:23.382  INFO 5148 --- [    Test worker] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 760 ms
+2019-03-28 13:32:24.224  INFO 5148 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2019-03-28 13:32:24.397  INFO 5148 --- [    Test worker] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity&lt;springfox.documentation.spring.web.json.Json&gt; springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2019-03-28 13:32:24.692  INFO 5148 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-03-28 13:32:25.064  INFO 5148 --- [    Test worker] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-03-28 13:32:25.069  INFO 5148 --- [    Test worker] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-03-28 13:32:25.089  INFO 5148 --- [    Test worker] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-03-28 13:32:25.149  INFO 5148 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 40610 (http) with context path ''
+2019-03-28 13:32:25.151  INFO 5148 --- [    Test worker] u.g.d.h.e.c.EligibilityControllerTest    : Started EligibilityControllerTest in 2.583 seconds (JVM running for 28.315)
+2019-03-28 13:32:25.159  INFO 5148 --- [    Test worker] u.g.d.h.eligibility.ApiDocumentation     : Application started. App version=, app id=, instance index=
+2019-03-28 13:32:25.288  INFO 5148 --- [o-auto-3-exec-1] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-03-28 13:32:25.288  INFO 5148 --- [o-auto-3-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-03-28 13:32:25.309  INFO 5148 --- [o-auto-3-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 21 ms
+2019-03-28 13:32:25.565  WARN 5148 --- [o-auto-3-exec-1] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during POST request to /v1/eligibility: [ErrorResponse.FieldError(field=dateOfBirth, message=must be a past date)]
+2019-03-28 13:32:25.655  WARN 5148 --- [o-auto-3-exec-2] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during POST request to /v1/eligibility: [ErrorResponse.FieldError(field=nino, message=must not be null)]
+2019-03-28 13:32:25.696  WARN 5148 --- [o-auto-3-exec-3] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during POST request to /v1/eligibility: [ErrorResponse.FieldError(field=dateOfBirth, message=must not be null)]
+2019-03-28 13:32:25.796  WARN 5148 --- [o-auto-3-exec-4] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during POST request to /v1/eligibility: [ErrorResponse.FieldError(field=address.postcode, message=invalid postcode format)]
+2019-03-28 13:32:25.836  WARN 5148 --- [o-auto-3-exec-5] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during POST request to /v1/eligibility: [ErrorResponse.FieldError(field=address.postcode, message=invalid postcode format)]
+2019-03-28 13:32:25.882  WARN 5148 --- [o-auto-3-exec-6] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during POST request to /v1/eligibility: [ErrorResponse.FieldError(field=address.postcode, message=invalid postcode format)]
+2019-03-28 13:32:25.923  WARN 5148 --- [o-auto-3-exec-7] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during POST request to /v1/eligibility: [ErrorResponse.FieldError(field=address, message=must not be null)]
+2019-03-28 13:32:26.024  WARN 5148 --- [o-auto-3-exec-9] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during POST request to /v1/eligibility: [ErrorResponse.FieldError(field=nino, message=must match &quot;[a-zA-Z]{2}\d{6}[a-dA-D]&quot;)]
+2019-03-28 13:32:26.049  WARN 5148 --- [-auto-3-exec-10] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during POST request to /v1/eligibility: [ErrorResponse.FieldError(field=nino, message=must match &quot;[a-zA-Z]{2}\d{6}[a-dA-D]&quot;)]
+2019-03-28 13:32:26.083  WARN 5148 --- [o-auto-3-exec-1] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during POST request to /v1/eligibility: [ErrorResponse.FieldError(field=nino, message=must match &quot;[a-zA-Z]{2}\d{6}[a-dA-D]&quot;)]
+2019-03-28 13:32:26.117  WARN 5148 --- [o-auto-3-exec-2] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during POST request to /v1/eligibility: [ErrorResponse.FieldError(field=nino, message=must match &quot;[a-zA-Z]{2}\d{6}[a-dA-D]&quot;)]
+2019-03-28 13:32:26.160  WARN 5148 --- [o-auto-3-exec-3] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during POST request to /v1/eligibility: [ErrorResponse.FieldError(field=nino, message=must match &quot;[a-zA-Z]{2}\d{6}[a-dA-D]&quot;)]
 </pre>
 </span>
 </div>
@@ -218,7 +218,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 5.0</a> at Mar 22, 2019, 8:52:31 AM</p>
+<a href="http://www.gradle.org">Gradle 5.0</a> at Mar 28, 2019, 1:32:26 PM</p>
 </div>
 </div>
 </body>

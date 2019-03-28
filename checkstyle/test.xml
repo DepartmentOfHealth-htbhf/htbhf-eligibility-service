@@ -6,6 +6,8 @@
 </file>
 <file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/converter/PersonDTOToDWPPersonConverterTest.java">
 </file>
+<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/helper/DWPEligibilityResponseTestFactory.java">
+</file>
 <file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/helper/DWPPersonTestFactory.java">
 </file>
 <file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/helper/EligibilityRequestTestFactory.java">

@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import uk.gov.dhsc.htbhf.eligibility.model.EligibilityRequest;
-import uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse;
+import uk.gov.dhsc.htbhf.eligibility.model.dwp.DWPEligibilityResponse;
 
 @Service
 public class DWPClient {
@@ -20,8 +20,8 @@ public class DWPClient {
 <span class="fc" id="L20">        this.restTemplate = restTemplate;</span>
 <span class="fc" id="L21">    }</span>
 
-    public EligibilityResponse checkEligibility(EligibilityRequest request) {
-<span class="fc" id="L24">        ResponseEntity&lt;EligibilityResponse&gt; response = restTemplate.postForEntity(uri, request, EligibilityResponse.class);</span>
+    public DWPEligibilityResponse checkEligibility(EligibilityRequest request) {
+<span class="fc" id="L24">        ResponseEntity&lt;DWPEligibilityResponse&gt; response = restTemplate.postForEntity(uri, request, DWPEligibilityResponse.class);</span>
 <span class="fc" id="L25">        return response.getBody();</span>
     }
 }
