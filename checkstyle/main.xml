@@ -6,11 +6,7 @@
 </file>
 <file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/controller/EligibilityController.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/converter/PersonDTOToDWPPersonConverter.java">
-</file>
 <file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/AddressDTO.java">
-</file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/DWPPersonDTO.java">
 </file>
 <file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/EligibilityRequest.java">
 </file>
@@ -29,5 +25,7 @@
 <file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/service/DWPClient.java">
 </file>
 <file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/service/EligibilityService.java">
+</file>
+<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/service/HMRCClient.java">
 </file>
 </checkstyle>
