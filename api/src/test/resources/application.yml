@@ -5,3 +5,6 @@ dwp:
   base-uri: ${DWP_API_URI:http://localhost:8110}
   uc-monthly-income-threshold: 408.00
   eligibility-check-frequency-in-weeks: 4
+
+hmrc:
+  base-uri: ${HMRC_API_URI:http://localhost:8130}

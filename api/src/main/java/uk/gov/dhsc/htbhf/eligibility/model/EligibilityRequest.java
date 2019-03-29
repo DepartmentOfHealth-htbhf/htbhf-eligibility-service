@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public class EligibilityRequest {
 
     @JsonProperty("person")
-    private DWPPersonDTO person;
+    private PersonDTO person;
 
     @JsonProperty("ucMonthlyIncomeThreshold")
     private final BigDecimal ucMonthlyIncomeThreshold;
