@@ -1,0 +1,46 @@
+package uk.gov.dhsc.htbhf.eligibility.service;
+
+import org.springframework.stereotype.Service;
+import uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus;
+import uk.gov.dhsc.htbhf.eligibility.model.dwp.DWPEligibilityResponse;
+import uk.gov.dhsc.htbhf.eligibility.model.hmrc.HMRCEligibilityResponse;
+
+import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.ELIGIBLE;
+import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.ERROR;
+import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.INELIGIBLE;
+import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.NOMATCH;
+import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.PENDING;
+
+@Service
+public class EligibilityStatusCalculator {
+
+    /**
+     * Determines the eligibility base on a DWP {@link DWPEligibilityResponse} and HMRC response {@link HMRCEligibilityResponse}.
+     * The rules to determine eligibility are as follows (first matching rule takes priority) :
+     * If either is ELIGIBLE, then ELIGIBLE
+     * If either is PENDING then PENDING
+     * If there was an error connecting to either service, then ERROR
+     * If either is INELIGIBLE then INELIGIBLE
+     * Otherwise NOMATCH
+     * @param dwpEligibilityResponse dwp response
+     * @param hmrcEligibilityResponse hmrc response
+     * @return the calculated eligibility status
+     */
+    public EligibilityStatus determineStatus(DWPEligibilityResponse dwpEligibilityResponse,
+                                             HMRCEligibilityResponse hmrcEligibilityResponse) {
+        EligibilityStatus dwpStatus = dwpEligibilityResponse.getEligibilityStatus();
+        EligibilityStatus hmrcStatus = hmrcEligibilityResponse.getEligibilityStatus();
+
+        if (dwpStatus == ELIGIBLE || hmrcStatus == ELIGIBLE) {
+            return ELIGIBLE;
+        } else if (dwpStatus == PENDING || hmrcStatus == PENDING) {
+            return PENDING;
+        } else if (dwpStatus == ERROR || hmrcStatus == ERROR) {
+            return ERROR;
+        } else if (dwpStatus == INELIGIBLE || hmrcStatus == INELIGIBLE) {
+            return INELIGIBLE;
+        } else {
+            return NOMATCH;
+        }
+    }
+}

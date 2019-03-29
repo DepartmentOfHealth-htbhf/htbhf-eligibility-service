@@ -77,6 +77,7 @@ definitions:
         - "INELIGIBLE"
         - "PENDING"
         - "NOMATCH"
+        - "ERROR"
       hmrcHouseholdIdentifier:
         type: "string"
     title: "EligibilityResponse"

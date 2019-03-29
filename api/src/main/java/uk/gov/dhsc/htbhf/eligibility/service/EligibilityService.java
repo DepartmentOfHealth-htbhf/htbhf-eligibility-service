@@ -3,7 +3,6 @@ package uk.gov.dhsc.htbhf.eligibility.service;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse;
-import uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus;
 import uk.gov.dhsc.htbhf.eligibility.model.PersonDTO;
 import uk.gov.dhsc.htbhf.eligibility.model.dwp.DWPEligibilityRequest;
 import uk.gov.dhsc.htbhf.eligibility.model.dwp.DWPEligibilityResponse;
@@ -21,18 +20,21 @@ public class EligibilityService {
     private final BigDecimal ucMonthlyIncomeThreshold;
     private final Integer eligibilityCheckFrequencyInWeeks;
     private final BigDecimal ctcAnnualIncomeThreshold;
+    private final EligibilityStatusCalculator statusCalculator;
 
 
     public EligibilityService(@Value("${eligibility-check-frequency-in-weeks}") Integer eligibilityCheckFrequencyInWeeks,
                               @Value("${dwp.uc-monthly-income-threshold}") BigDecimal ucMonthlyIncomeThreshold,
                               @Value("${hmrc.ctc-annual-income-threshold}") BigDecimal ctcAnnualIncomeThreshold,
                               DWPClient dwpClient,
-                              HMRCClient hmrcClient) {
+                              HMRCClient hmrcClient,
+                              EligibilityStatusCalculator statusCalculator) {
         this.dwpClient = dwpClient;
         this.ucMonthlyIncomeThreshold = ucMonthlyIncomeThreshold;
         this.eligibilityCheckFrequencyInWeeks = eligibilityCheckFrequencyInWeeks;
         this.hmrcClient = hmrcClient;
         this.ctcAnnualIncomeThreshold = ctcAnnualIncomeThreshold;
+        this.statusCalculator = statusCalculator;
     }
 
     /**
@@ -74,13 +76,9 @@ public class EligibilityService {
     private EligibilityResponse buildEligibilityResponse(DWPEligibilityResponse dwpEligibilityResponse,
                                                          HMRCEligibilityResponse hmrcEligibilityResponse) {
         return EligibilityResponse.builder()
-                .eligibilityStatus(determineEligibilityStatus(dwpEligibilityResponse))
+                .eligibilityStatus(statusCalculator.determineStatus(dwpEligibilityResponse, hmrcEligibilityResponse))
                 .dwpHouseholdIdentifier(dwpEligibilityResponse.getHouseholdIdentifier())
                 .hmrcHouseholdIdentifier(hmrcEligibilityResponse.getHouseholdIdentifier())
                 .build();
-    }
-
-    private EligibilityStatus determineEligibilityStatus(DWPEligibilityResponse dwpEligibilityResponse) {
-        return dwpEligibilityResponse.getEligibilityStatus();
     }
 }

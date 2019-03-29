@@ -29,22 +29,27 @@ class EligibilityServiceTest {
 
     @Autowired
     private EligibilityService eligibilityService;
+
     @MockBean
     private DWPClient dwpClient;
     @MockBean
     private HMRCClient hmrcClient;
+    @MockBean
+    private EligibilityStatusCalculator statusCalculator;
 
     @Test
     void shouldCreateRequestWithValuesFromConfig() {
         PersonDTO person = aPerson();
         given(dwpClient.checkEligibility(any())).willReturn(aDWPEligibilityResponse());
         given(hmrcClient.checkEligibility(any())).willReturn(anHMRCEligibilityResponse());
+        given(statusCalculator.determineStatus(any(), any())).willReturn(ELIGIBLE);
 
         EligibilityResponse response = eligibilityService.checkEligibility(person);
 
         assertThat(response.getEligibilityStatus()).isEqualTo(ELIGIBLE);
         assertThat(response.getDwpHouseholdIdentifier()).isEqualTo("dwpHousehold1");
         assertThat(response.getHmrcHouseholdIdentifier()).isEqualTo("hmrcHousehold1");
+        verify(statusCalculator).determineStatus(aDWPEligibilityResponse(), anHMRCEligibilityResponse());
         verifyDWPRequestSent(person);
         verifyHMRCRequestSent(person);
     }
