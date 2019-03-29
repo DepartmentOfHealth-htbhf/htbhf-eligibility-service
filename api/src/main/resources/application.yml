@@ -12,7 +12,7 @@ server:
 
 logging:
   pattern:
-    console: "%d{HH:mm:ss.SSS} [%thread] [%X{session.id}][%X{request.id}] %-5level %logger{36} - %msg%n"
+    console: "%d{HH:mm:ss.SSS} [%thread] [%X{session.id}][%X{request.id}] %-5level %logger{36} - %msg%n%rEx{full, org.springframework.web, org.springframework.boot, org.apache.catalina, org.apache.coyote, org.apache.tomcat, java.base}"
   level:
     ROOT: ${vcap.services.variable-service.credentials.eligibility-root-loglevel:info}
     uk.gov.dhsc: ${vcap.services.variable-service.credentials.eligibility-app-loglevel:debug}
