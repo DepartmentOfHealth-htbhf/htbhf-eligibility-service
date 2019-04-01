@@ -18,12 +18,12 @@ public class EligibilityService {
     private final DWPClient dwpClient;
     private final HMRCClient hmrcClient;
     private final BigDecimal ucMonthlyIncomeThreshold;
-    private final Integer eligibilityCheckFrequencyInWeeks;
+    private final Integer eligibilityCheckPeriodLength;
     private final BigDecimal ctcAnnualIncomeThreshold;
     private final EligibilityStatusCalculator statusCalculator;
 
 
-    public EligibilityService(@Value("${eligibility-check-frequency-in-weeks}") Integer eligibilityCheckFrequencyInWeeks,
+    public EligibilityService(@Value("${eligibility-check-period-length}") Integer eligibilityCheckPeriodLength,
                               @Value("${dwp.uc-monthly-income-threshold}") BigDecimal ucMonthlyIncomeThreshold,
                               @Value("${hmrc.ctc-annual-income-threshold}") BigDecimal ctcAnnualIncomeThreshold,
                               DWPClient dwpClient,
@@ -31,7 +31,7 @@ public class EligibilityService {
                               EligibilityStatusCalculator statusCalculator) {
         this.dwpClient = dwpClient;
         this.ucMonthlyIncomeThreshold = ucMonthlyIncomeThreshold;
-        this.eligibilityCheckFrequencyInWeeks = eligibilityCheckFrequencyInWeeks;
+        this.eligibilityCheckPeriodLength = eligibilityCheckPeriodLength;
         this.hmrcClient = hmrcClient;
         this.ctcAnnualIncomeThreshold = ctcAnnualIncomeThreshold;
         this.statusCalculator = statusCalculator;
@@ -59,7 +59,7 @@ public class EligibilityService {
         return DWPEligibilityRequest.builder()
                 .person(person)
                 .eligibleEndDate(currentDate)
-                .eligibleStartDate(currentDate.minusWeeks(eligibilityCheckFrequencyInWeeks))
+                .eligibleStartDate(currentDate.minusDays(eligibilityCheckPeriodLength))
                 .ucMonthlyIncomeThreshold(ucMonthlyIncomeThreshold)
                 .build();
     }
@@ -68,7 +68,7 @@ public class EligibilityService {
         return HMRCEligibilityRequest.builder()
                 .person(person)
                 .eligibleEndDate(currentDate)
-                .eligibleStartDate(currentDate.minusWeeks(eligibilityCheckFrequencyInWeeks))
+                .eligibleStartDate(currentDate.minusDays(eligibilityCheckPeriodLength))
                 .ctcAnnualIncomeThreshold(ctcAnnualIncomeThreshold)
                 .build();
     }

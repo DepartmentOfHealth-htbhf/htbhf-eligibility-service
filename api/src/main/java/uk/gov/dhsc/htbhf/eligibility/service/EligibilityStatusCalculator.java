@@ -22,7 +22,8 @@ public class EligibilityStatusCalculator {
      * If there was an error connecting to either service, then ERROR
      * If either is INELIGIBLE then INELIGIBLE
      * Otherwise NOMATCH
-     * @param dwpEligibilityResponse dwp response
+     *
+     * @param dwpEligibilityResponse  dwp response
      * @param hmrcEligibilityResponse hmrc response
      * @return the calculated eligibility status
      */
@@ -39,8 +40,8 @@ public class EligibilityStatusCalculator {
             return ERROR;
         } else if (dwpStatus == INELIGIBLE || hmrcStatus == INELIGIBLE) {
             return INELIGIBLE;
-        } else {
-            return NOMATCH;
         }
+
+        return NOMATCH;
     }
 }

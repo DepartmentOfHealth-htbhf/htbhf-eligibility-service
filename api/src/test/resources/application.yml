@@ -1,7 +1,7 @@
 server:
   port: 8100
 
-eligibility-check-frequency-in-weeks: 4
+eligibility-check-period-length: 28
 
 dwp:
   base-uri: ${DWP_API_URI:http://localhost:8110}
