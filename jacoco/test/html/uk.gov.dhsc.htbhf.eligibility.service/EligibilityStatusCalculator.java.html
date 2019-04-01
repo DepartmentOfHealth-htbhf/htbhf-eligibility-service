@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EligibilityStatusCalculator.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">htbhf-eligibility-service</a> &gt; <a href="index.source.html" class="el_package">uk.gov.dhsc.htbhf.eligibility.service</a> &gt; <span class="el_source">EligibilityStatusCalculator.java</span></div><h1>EligibilityStatusCalculator.java</h1><pre class="source lang-java linenums">package uk.gov.dhsc.htbhf.eligibility.service;
+
+import org.springframework.stereotype.Service;
+import uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus;
+import uk.gov.dhsc.htbhf.eligibility.model.dwp.DWPEligibilityResponse;
+import uk.gov.dhsc.htbhf.eligibility.model.hmrc.HMRCEligibilityResponse;
+
+import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.ELIGIBLE;
+import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.ERROR;
+import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.INELIGIBLE;
+import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.NOMATCH;
+import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.PENDING;
+
+@Service
+<span class="fc" id="L15">public class EligibilityStatusCalculator {</span>
+
+    /**
+     * Determines the eligibility base on a DWP {@link DWPEligibilityResponse} and HMRC response {@link HMRCEligibilityResponse}.
+     * The rules to determine eligibility are as follows (first matching rule takes priority) :
+     * If either is ELIGIBLE, then ELIGIBLE
+     * If either is PENDING then PENDING
+     * If there was an error connecting to either service, then ERROR
+     * If either is INELIGIBLE then INELIGIBLE
+     * Otherwise NOMATCH
+     *
+     * @param dwpEligibilityResponse  dwp response
+     * @param hmrcEligibilityResponse hmrc response
+     * @return the calculated eligibility status
+     */
+    public EligibilityStatus determineStatus(DWPEligibilityResponse dwpEligibilityResponse,
+                                             HMRCEligibilityResponse hmrcEligibilityResponse) {
+<span class="fc" id="L32">        EligibilityStatus dwpStatus = dwpEligibilityResponse.getEligibilityStatus();</span>
+<span class="fc" id="L33">        EligibilityStatus hmrcStatus = hmrcEligibilityResponse.getEligibilityStatus();</span>
+
+<span class="fc bfc" id="L35" title="All 4 branches covered.">        if (dwpStatus == ELIGIBLE || hmrcStatus == ELIGIBLE) {</span>
+<span class="fc" id="L36">            return ELIGIBLE;</span>
+<span class="fc bfc" id="L37" title="All 4 branches covered.">        } else if (dwpStatus == PENDING || hmrcStatus == PENDING) {</span>
+<span class="fc" id="L38">            return PENDING;</span>
+<span class="fc bfc" id="L39" title="All 4 branches covered.">        } else if (dwpStatus == ERROR || hmrcStatus == ERROR) {</span>
+<span class="fc" id="L40">            return ERROR;</span>
+<span class="fc bfc" id="L41" title="All 4 branches covered.">        } else if (dwpStatus == INELIGIBLE || hmrcStatus == INELIGIBLE) {</span>
+<span class="fc" id="L42">            return INELIGIBLE;</span>
+        }
+
+<span class="fc" id="L45">        return NOMATCH;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

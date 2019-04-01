@@ -8,15 +8,17 @@
 </file>
 <file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/AddressDTO.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/EligibilityRequest.java">
-</file>
 <file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/EligibilityResponse.java">
 </file>
 <file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/EligibilityStatus.java">
 </file>
 <file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/PersonDTO.java">
 </file>
+<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/dwp/DWPEligibilityRequest.java">
+</file>
 <file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/dwp/DWPEligibilityResponse.java">
+</file>
+<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/hmrc/HMRCEligibilityRequest.java">
 </file>
 <file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/hmrc/HMRCEligibilityResponse.java">
 </file>
@@ -25,6 +27,8 @@
 <file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/service/DWPClient.java">
 </file>
 <file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/service/EligibilityService.java">
+</file>
+<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/service/EligibilityStatusCalculator.java">
 </file>
 <file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/service/HMRCClient.java">
 </file>

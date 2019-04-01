@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import uk.gov.dhsc.htbhf.eligibility.model.EligibilityRequest;
+import uk.gov.dhsc.htbhf.eligibility.model.hmrc.HMRCEligibilityRequest;
 import uk.gov.dhsc.htbhf.eligibility.model.hmrc.HMRCEligibilityResponse;
 
 @Service
@@ -20,7 +20,7 @@ public class HMRCClient {
 <span class="fc" id="L20">        this.restTemplate = restTemplate;</span>
 <span class="fc" id="L21">    }</span>
 
-    public HMRCEligibilityResponse checkEligibility(EligibilityRequest request) {
+    public HMRCEligibilityResponse checkEligibility(HMRCEligibilityRequest request) {
 <span class="fc" id="L24">        ResponseEntity&lt;HMRCEligibilityResponse&gt; response = restTemplate.postForEntity(uri, request, HMRCEligibilityResponse.class);</span>
 <span class="fc" id="L25">        return response.getBody();</span>
     }

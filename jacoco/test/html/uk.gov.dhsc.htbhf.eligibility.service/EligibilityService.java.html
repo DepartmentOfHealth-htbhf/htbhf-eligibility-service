@@ -2,11 +2,12 @@
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import uk.gov.dhsc.htbhf.eligibility.model.EligibilityRequest;
 import uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse;
-import uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus;
 import uk.gov.dhsc.htbhf.eligibility.model.PersonDTO;
+import uk.gov.dhsc.htbhf.eligibility.model.dwp.DWPEligibilityRequest;
 import uk.gov.dhsc.htbhf.eligibility.model.dwp.DWPEligibilityResponse;
+import uk.gov.dhsc.htbhf.eligibility.model.hmrc.HMRCEligibilityRequest;
+import uk.gov.dhsc.htbhf.eligibility.model.hmrc.HMRCEligibilityResponse;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -15,17 +16,26 @@ import java.time.LocalDate;
 public class EligibilityService {
 
     private final DWPClient dwpClient;
+    private final HMRCClient hmrcClient;
     private final BigDecimal ucMonthlyIncomeThreshold;
-    private final Integer eligibilityCheckFrequencyInWeeks;
+    private final Integer eligibilityCheckPeriodLength;
+    private final BigDecimal ctcAnnualIncomeThreshold;
+    private final EligibilityStatusCalculator statusCalculator;
 
 
-    public EligibilityService(@Value(&quot;${dwp.eligibility-check-frequency-in-weeks}&quot;) Integer eligibilityCheckFrequencyInWeeks,
+    public EligibilityService(@Value(&quot;${eligibility-check-period-length}&quot;) Integer eligibilityCheckPeriodLength,
                               @Value(&quot;${dwp.uc-monthly-income-threshold}&quot;) BigDecimal ucMonthlyIncomeThreshold,
-<span class="fc" id="L24">                              DWPClient dwpClient) {</span>
-<span class="fc" id="L25">        this.dwpClient = dwpClient;</span>
-<span class="fc" id="L26">        this.ucMonthlyIncomeThreshold = ucMonthlyIncomeThreshold;</span>
-<span class="fc" id="L27">        this.eligibilityCheckFrequencyInWeeks = eligibilityCheckFrequencyInWeeks;</span>
-<span class="fc" id="L28">    }</span>
+                              @Value(&quot;${hmrc.ctc-annual-income-threshold}&quot;) BigDecimal ctcAnnualIncomeThreshold,
+                              DWPClient dwpClient,
+                              HMRCClient hmrcClient,
+<span class="fc" id="L31">                              EligibilityStatusCalculator statusCalculator) {</span>
+<span class="fc" id="L32">        this.dwpClient = dwpClient;</span>
+<span class="fc" id="L33">        this.ucMonthlyIncomeThreshold = ucMonthlyIncomeThreshold;</span>
+<span class="fc" id="L34">        this.eligibilityCheckPeriodLength = eligibilityCheckPeriodLength;</span>
+<span class="fc" id="L35">        this.hmrcClient = hmrcClient;</span>
+<span class="fc" id="L36">        this.ctcAnnualIncomeThreshold = ctcAnnualIncomeThreshold;</span>
+<span class="fc" id="L37">        this.statusCalculator = statusCalculator;</span>
+<span class="fc" id="L38">    }</span>
 
     /**
      * Checks the eligibility of a given person.
@@ -35,28 +45,41 @@ public class EligibilityService {
      * @return The eligibility response
      */
     public EligibilityResponse checkEligibility(PersonDTO person) {
-<span class="fc" id="L38">        LocalDate currentDate = LocalDate.now();</span>
+<span class="fc" id="L48">        LocalDate currentDate = LocalDate.now();</span>
 
-<span class="fc" id="L40">        EligibilityRequest request = EligibilityRequest.builder()</span>
-<span class="fc" id="L41">                .person(person)</span>
-<span class="fc" id="L42">                .eligibleEndDate(currentDate)</span>
-<span class="fc" id="L43">                .eligibleStartDate(currentDate.minusWeeks(eligibilityCheckFrequencyInWeeks))</span>
-<span class="fc" id="L44">                .ucMonthlyIncomeThreshold(ucMonthlyIncomeThreshold)</span>
-<span class="fc" id="L45">                .build();</span>
+<span class="fc" id="L50">        DWPEligibilityRequest dwpEligibilityRequest = createDWPRequest(person, currentDate);</span>
+<span class="fc" id="L51">        HMRCEligibilityRequest hmrcEligibilityRequest = createHMRCRequest(person, currentDate);</span>
 
-<span class="fc" id="L47">        DWPEligibilityResponse dwpEligibilityResponse = dwpClient.checkEligibility(request);</span>
-<span class="fc" id="L48">        return buildEligibilityResponse(dwpEligibilityResponse);</span>
+<span class="fc" id="L53">        DWPEligibilityResponse dwpEligibilityResponse = dwpClient.checkEligibility(dwpEligibilityRequest);</span>
+<span class="fc" id="L54">        HMRCEligibilityResponse hmrcEligibilityResponse = hmrcClient.checkEligibility(hmrcEligibilityRequest);</span>
+<span class="fc" id="L55">        return buildEligibilityResponse(dwpEligibilityResponse, hmrcEligibilityResponse);</span>
     }
 
-    private EligibilityResponse buildEligibilityResponse(DWPEligibilityResponse dwpEligibilityResponse) {
-<span class="fc" id="L52">        return EligibilityResponse.builder()</span>
-<span class="fc" id="L53">                .eligibilityStatus(determineEligibilityStatus(dwpEligibilityResponse))</span>
-<span class="fc" id="L54">                .dwpHouseholdIdentifier(dwpEligibilityResponse.getHouseholdIdentifier())</span>
-<span class="fc" id="L55">                .build();</span>
+    private DWPEligibilityRequest createDWPRequest(PersonDTO person, LocalDate currentDate) {
+<span class="fc" id="L59">        return DWPEligibilityRequest.builder()</span>
+<span class="fc" id="L60">                .person(person)</span>
+<span class="fc" id="L61">                .eligibleEndDate(currentDate)</span>
+<span class="fc" id="L62">                .eligibleStartDate(currentDate.minusDays(eligibilityCheckPeriodLength))</span>
+<span class="fc" id="L63">                .ucMonthlyIncomeThreshold(ucMonthlyIncomeThreshold)</span>
+<span class="fc" id="L64">                .build();</span>
     }
 
-    private EligibilityStatus determineEligibilityStatus(DWPEligibilityResponse dwpEligibilityResponse) {
-<span class="fc" id="L59">        return dwpEligibilityResponse.getEligibilityStatus();</span>
+    private HMRCEligibilityRequest createHMRCRequest(PersonDTO person, LocalDate currentDate) {
+<span class="fc" id="L68">        return HMRCEligibilityRequest.builder()</span>
+<span class="fc" id="L69">                .person(person)</span>
+<span class="fc" id="L70">                .eligibleEndDate(currentDate)</span>
+<span class="fc" id="L71">                .eligibleStartDate(currentDate.minusDays(eligibilityCheckPeriodLength))</span>
+<span class="fc" id="L72">                .ctcAnnualIncomeThreshold(ctcAnnualIncomeThreshold)</span>
+<span class="fc" id="L73">                .build();</span>
+    }
+
+    private EligibilityResponse buildEligibilityResponse(DWPEligibilityResponse dwpEligibilityResponse,
+                                                         HMRCEligibilityResponse hmrcEligibilityResponse) {
+<span class="fc" id="L78">        return EligibilityResponse.builder()</span>
+<span class="fc" id="L79">                .eligibilityStatus(statusCalculator.determineStatus(dwpEligibilityResponse, hmrcEligibilityResponse))</span>
+<span class="fc" id="L80">                .dwpHouseholdIdentifier(dwpEligibilityResponse.getHouseholdIdentifier())</span>
+<span class="fc" id="L81">                .hmrcHouseholdIdentifier(hmrcEligibilityResponse.getHouseholdIdentifier())</span>
+<span class="fc" id="L82">                .build();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
