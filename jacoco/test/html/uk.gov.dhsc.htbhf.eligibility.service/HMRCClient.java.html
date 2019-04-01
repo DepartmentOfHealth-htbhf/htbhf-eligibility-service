@@ -2,10 +2,13 @@
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import uk.gov.dhsc.htbhf.eligibility.model.hmrc.HMRCEligibilityRequest;
 import uk.gov.dhsc.htbhf.eligibility.model.hmrc.HMRCEligibilityResponse;
+
+import java.util.concurrent.CompletableFuture;
 
 @Service
 public class HMRCClient {
@@ -15,14 +18,15 @@ public class HMRCClient {
     private final RestTemplate restTemplate;
 
     public HMRCClient(@Value(&quot;${hmrc.base-uri}&quot;) String baseUri,
-<span class="fc" id="L18">                      RestTemplate restTemplate) {</span>
-<span class="fc" id="L19">        this.uri = baseUri + HMRC_ENDPOINT;</span>
-<span class="fc" id="L20">        this.restTemplate = restTemplate;</span>
-<span class="fc" id="L21">    }</span>
+<span class="fc" id="L21">                      RestTemplate restTemplate) {</span>
+<span class="fc" id="L22">        this.uri = baseUri + HMRC_ENDPOINT;</span>
+<span class="fc" id="L23">        this.restTemplate = restTemplate;</span>
+<span class="fc" id="L24">    }</span>
 
-    public HMRCEligibilityResponse checkEligibility(HMRCEligibilityRequest request) {
-<span class="fc" id="L24">        ResponseEntity&lt;HMRCEligibilityResponse&gt; response = restTemplate.postForEntity(uri, request, HMRCEligibilityResponse.class);</span>
-<span class="fc" id="L25">        return response.getBody();</span>
+    @Async
+    public CompletableFuture&lt;HMRCEligibilityResponse&gt; checkEligibility(HMRCEligibilityRequest request) {
+<span class="fc" id="L28">        ResponseEntity&lt;HMRCEligibilityResponse&gt; response = restTemplate.postForEntity(uri, request, HMRCEligibilityResponse.class);</span>
+<span class="fc" id="L29">        return CompletableFuture.completedFuture(response.getBody());</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -2,10 +2,13 @@
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import uk.gov.dhsc.htbhf.eligibility.model.dwp.DWPEligibilityRequest;
 import uk.gov.dhsc.htbhf.eligibility.model.dwp.DWPEligibilityResponse;
+
+import java.util.concurrent.CompletableFuture;
 
 @Service
 public class DWPClient {
@@ -15,14 +18,15 @@ public class DWPClient {
     private final RestTemplate restTemplate;
 
     public DWPClient(@Value(&quot;${dwp.base-uri}&quot;) String baseUri,
-<span class="fc" id="L18">                     RestTemplate restTemplate) {</span>
-<span class="fc" id="L19">        this.uri = baseUri + DWP_ENDPOINT;</span>
-<span class="fc" id="L20">        this.restTemplate = restTemplate;</span>
-<span class="fc" id="L21">    }</span>
+<span class="fc" id="L21">                     RestTemplate restTemplate) {</span>
+<span class="fc" id="L22">        this.uri = baseUri + DWP_ENDPOINT;</span>
+<span class="fc" id="L23">        this.restTemplate = restTemplate;</span>
+<span class="fc" id="L24">    }</span>
 
-    public DWPEligibilityResponse checkEligibility(DWPEligibilityRequest request) {
-<span class="fc" id="L24">        ResponseEntity&lt;DWPEligibilityResponse&gt; response = restTemplate.postForEntity(uri, request, DWPEligibilityResponse.class);</span>
-<span class="fc" id="L25">        return response.getBody();</span>
+    @Async
+    public CompletableFuture&lt;DWPEligibilityResponse&gt; checkEligibility(DWPEligibilityRequest request) {
+<span class="fc" id="L28">        ResponseEntity&lt;DWPEligibilityResponse&gt; response = restTemplate.postForEntity(uri, request, DWPEligibilityResponse.class);</span>
+<span class="fc" id="L29">        return CompletableFuture.completedFuture(response.getBody());</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

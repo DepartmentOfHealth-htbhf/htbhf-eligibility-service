@@ -2,18 +2,32 @@
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
+import org.springframework.core.task.TaskExecutor;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import uk.gov.dhsc.htbhf.CommonRestConfiguration;
 
 @SuppressWarnings(&quot;PMD.UseUtilityClass&quot;)
 @SpringBootApplication
 @EnableSwagger2
+@EnableAsync
 @Import(CommonRestConfiguration.class)
-<span class="fc" id="L13">public class EligibilityServiceApplication {</span>
+<span class="fc" id="L18">public class EligibilityServiceApplication {</span>
 
     public static void main(String[] args) {
-<span class="nc" id="L16">        SpringApplication.run(EligibilityServiceApplication.class, args);</span>
-<span class="nc" id="L17">    }</span>
+<span class="nc" id="L21">        SpringApplication.run(EligibilityServiceApplication.class, args);</span>
+<span class="nc" id="L22">    }</span>
+
+    @Bean
+    public TaskExecutor taskExecutor() {
+<span class="fc" id="L26">        var executor = new ThreadPoolTaskExecutor();</span>
+<span class="fc" id="L27">        executor.setCorePoolSize(10);</span>
+<span class="fc" id="L28">        executor.setMaxPoolSize(50);</span>
+<span class="fc" id="L29">        executor.setTaskDecorator(new ContextCopyingDecorator());</span>
+<span class="fc" id="L30">        return executor;</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
