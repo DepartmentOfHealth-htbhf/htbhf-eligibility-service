@@ -17,10 +17,12 @@ logging:
     ROOT: ${vcap.services.variable-service.credentials.eligibility-root-loglevel:info}
     uk.gov.dhsc: ${vcap.services.variable-service.credentials.eligibility-app-loglevel:debug}
 
+eligibility-check-period-length: 28
+
 dwp:
   base-uri: ${DWP_API_URI:http://localhost:8110}
   uc-monthly-income-threshold: 408.00
-  eligibility-check-frequency-in-weeks: 4
 
 hmrc:
   base-uri: ${HMRC_API_URI:http://localhost:8130}
+  ctc-annual-income-threshold: 16190.00

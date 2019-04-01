@@ -13,5 +13,6 @@ public enum EligibilityStatus {
     ELIGIBLE,
     INELIGIBLE,
     PENDING,
-    NOMATCH
+    NOMATCH,
+    ERROR
 }
