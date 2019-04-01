@@ -1,5 +1,6 @@
 package uk.gov.dhsc.htbhf.eligibility;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -22,10 +23,11 @@ public class EligibilityServiceApplication {
     }
 
     @Bean
-    public TaskExecutor taskExecutor() {
+    public TaskExecutor taskExecutor(@Value("${threadpool.min-size}") Integer threadpoolMinSize,
+                                     @Value("${threadpool.max-size}") Integer threadpoolMaxSize) {
         var executor = new ThreadPoolTaskExecutor();
-        executor.setCorePoolSize(10);
-        executor.setMaxPoolSize(50);
+        executor.setCorePoolSize(threadpoolMinSize);
+        executor.setMaxPoolSize(threadpoolMaxSize);
         executor.setTaskDecorator(new ContextCopyingDecorator());
         return executor;
     }
