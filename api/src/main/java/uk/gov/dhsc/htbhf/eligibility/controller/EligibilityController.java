@@ -10,6 +10,7 @@ import uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse;
 import uk.gov.dhsc.htbhf.eligibility.model.PersonDTO;
 import uk.gov.dhsc.htbhf.eligibility.service.EligibilityService;
 
+import java.util.concurrent.ExecutionException;
 import javax.validation.Valid;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -34,7 +35,7 @@ public class EligibilityController {
      */
     @PostMapping(path = "/v1/eligibility", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseBody
-    public EligibilityResponse getDecision(@RequestBody @Valid PersonDTO person) {
+    public EligibilityResponse getDecision(@RequestBody @Valid PersonDTO person) throws ExecutionException, InterruptedException {
         log.debug("Received eligibility request");
         return eligibilityService.checkEligibility(person);
     }

@@ -13,7 +13,9 @@ import uk.gov.dhsc.htbhf.eligibility.model.dwp.DWPEligibilityRequest;
 import uk.gov.dhsc.htbhf.eligibility.model.hmrc.HMRCEligibilityRequest;
 
 import java.math.BigDecimal;
+import java.util.concurrent.ExecutionException;
 
+import static java.util.concurrent.CompletableFuture.completedFuture;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
@@ -38,10 +40,10 @@ class EligibilityServiceTest {
     private EligibilityStatusCalculator statusCalculator;
 
     @Test
-    void shouldCreateRequestWithValuesFromConfig() {
+    void shouldCreateRequestWithValuesFromConfig() throws ExecutionException, InterruptedException {
         PersonDTO person = aPerson();
-        given(dwpClient.checkEligibility(any())).willReturn(aDWPEligibilityResponse());
-        given(hmrcClient.checkEligibility(any())).willReturn(anHMRCEligibilityResponse());
+        given(dwpClient.checkEligibility(any())).willReturn(completedFuture(aDWPEligibilityResponse()));
+        given(hmrcClient.checkEligibility(any())).willReturn(completedFuture(anHMRCEligibilityResponse()));
         given(statusCalculator.determineStatus(any(), any())).willReturn(ELIGIBLE);
 
         EligibilityResponse response = eligibilityService.checkEligibility(person);
