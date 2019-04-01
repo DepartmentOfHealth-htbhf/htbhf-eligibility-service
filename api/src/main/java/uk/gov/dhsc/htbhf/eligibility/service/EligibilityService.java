@@ -11,6 +11,8 @@ import uk.gov.dhsc.htbhf.eligibility.model.hmrc.HMRCEligibilityResponse;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 @Service
 public class EligibilityService {
@@ -44,15 +46,17 @@ public class EligibilityService {
      * @param person The person to check
      * @return The eligibility response
      */
-    public EligibilityResponse checkEligibility(PersonDTO person) {
+    public EligibilityResponse checkEligibility(PersonDTO person) throws ExecutionException, InterruptedException {
         LocalDate currentDate = LocalDate.now();
 
         DWPEligibilityRequest dwpEligibilityRequest = createDWPRequest(person, currentDate);
         HMRCEligibilityRequest hmrcEligibilityRequest = createHMRCRequest(person, currentDate);
 
-        DWPEligibilityResponse dwpEligibilityResponse = dwpClient.checkEligibility(dwpEligibilityRequest);
-        HMRCEligibilityResponse hmrcEligibilityResponse = hmrcClient.checkEligibility(hmrcEligibilityRequest);
-        return buildEligibilityResponse(dwpEligibilityResponse, hmrcEligibilityResponse);
+        CompletableFuture<DWPEligibilityResponse> dwpEligibilityResponse = dwpClient.checkEligibility(dwpEligibilityRequest);
+        CompletableFuture<HMRCEligibilityResponse> hmrcEligibilityResponse = hmrcClient.checkEligibility(hmrcEligibilityRequest);
+
+        CompletableFuture.allOf(dwpEligibilityResponse, hmrcEligibilityResponse);
+        return buildEligibilityResponse(dwpEligibilityResponse.get(), hmrcEligibilityResponse.get());
     }
 
     private DWPEligibilityRequest createDWPRequest(PersonDTO person, LocalDate currentDate) {

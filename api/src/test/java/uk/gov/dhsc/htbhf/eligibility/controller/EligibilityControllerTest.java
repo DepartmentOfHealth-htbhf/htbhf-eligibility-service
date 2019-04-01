@@ -13,6 +13,8 @@ import uk.gov.dhsc.htbhf.eligibility.model.PersonDTO;
 import uk.gov.dhsc.htbhf.eligibility.service.EligibilityService;
 import uk.gov.dhsc.htbhf.errorhandler.ErrorResponse;
 
+import java.util.concurrent.ExecutionException;
+
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.http.HttpStatus.OK;
@@ -34,7 +36,7 @@ class EligibilityControllerTest {
     private EligibilityService eligibilityService;
 
     @Test
-    void shouldGetEligibility() {
+    void shouldGetEligibility() throws ExecutionException, InterruptedException {
         PersonDTO person = aPerson();
         EligibilityResponse eligibilityResponse = anEligibilityResponse();
         given(eligibilityService.checkEligibility(person)).willReturn(eligibilityResponse);

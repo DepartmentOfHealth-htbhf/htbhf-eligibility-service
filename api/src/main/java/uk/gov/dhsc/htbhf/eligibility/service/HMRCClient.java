@@ -2,10 +2,13 @@ package uk.gov.dhsc.htbhf.eligibility.service;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import uk.gov.dhsc.htbhf.eligibility.model.hmrc.HMRCEligibilityRequest;
 import uk.gov.dhsc.htbhf.eligibility.model.hmrc.HMRCEligibilityResponse;
+
+import java.util.concurrent.CompletableFuture;
 
 @Service
 public class HMRCClient {
@@ -20,8 +23,9 @@ public class HMRCClient {
         this.restTemplate = restTemplate;
     }
 
-    public HMRCEligibilityResponse checkEligibility(HMRCEligibilityRequest request) {
+    @Async
+    public CompletableFuture<HMRCEligibilityResponse> checkEligibility(HMRCEligibilityRequest request) {
         ResponseEntity<HMRCEligibilityResponse> response = restTemplate.postForEntity(uri, request, HMRCEligibilityResponse.class);
-        return response.getBody();
+        return CompletableFuture.completedFuture(response.getBody());
     }
 }
