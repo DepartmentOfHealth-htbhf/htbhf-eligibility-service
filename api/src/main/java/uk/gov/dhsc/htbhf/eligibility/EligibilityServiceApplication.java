@@ -23,8 +23,8 @@ public class EligibilityServiceApplication {
     }
 
     @Bean
-    public TaskExecutor taskExecutor(@Value("${threadpool.min-size}") Integer threadpoolMinSize,
-                                     @Value("${threadpool.max-size}") Integer threadpoolMaxSize) {
+    public TaskExecutor taskExecutor(@Value("${taskexecutor.threadpool.min-size}") Integer threadpoolMinSize,
+                                     @Value("${taskexecutor.threadpool.max-size}") Integer threadpoolMaxSize) {
         var executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(threadpoolMinSize);
         executor.setMaxPoolSize(threadpoolMaxSize);

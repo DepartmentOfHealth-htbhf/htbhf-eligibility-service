@@ -27,6 +27,7 @@ hmrc:
   base-uri: ${HMRC_API_URI:http://localhost:8130}
   ctc-annual-income-threshold: 16190.00
 
-threadpool:
-  min-size: 2
-  max-size: 200
+taskexecutor:
+  threadpool:
+    min-size: 2
+    max-size: 200
