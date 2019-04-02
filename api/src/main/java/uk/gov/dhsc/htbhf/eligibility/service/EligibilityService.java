@@ -3,6 +3,7 @@ package uk.gov.dhsc.htbhf.eligibility.service;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse;
+import uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus;
 import uk.gov.dhsc.htbhf.eligibility.model.PersonDTO;
 import uk.gov.dhsc.htbhf.eligibility.model.dwp.DWPEligibilityRequest;
 import uk.gov.dhsc.htbhf.eligibility.model.dwp.DWPEligibilityResponse;
@@ -39,12 +40,15 @@ public class EligibilityService {
         this.statusCalculator = statusCalculator;
     }
 
+
     /**
      * Checks the eligibility of a given person.
      * Build the DWP Eligibility Request and send to to DWP as an Async call.
      *
      * @param person The person to check
      * @return The eligibility response
+     * @throws ExecutionException   If problems with parallel calls to DWP and HMRC to check eligibility
+     * @throws InterruptedException If problems with parallel calls to DWP and HMRC to check eligibility
      */
     public EligibilityResponse checkEligibility(PersonDTO person) throws ExecutionException, InterruptedException {
         LocalDate currentDate = LocalDate.now();
@@ -79,10 +83,19 @@ public class EligibilityService {
 
     private EligibilityResponse buildEligibilityResponse(DWPEligibilityResponse dwpEligibilityResponse,
                                                          HMRCEligibilityResponse hmrcEligibilityResponse) {
-        return EligibilityResponse.builder()
-                .eligibilityStatus(statusCalculator.determineStatus(dwpEligibilityResponse, hmrcEligibilityResponse))
-                .dwpHouseholdIdentifier(dwpEligibilityResponse.getHouseholdIdentifier())
-                .hmrcHouseholdIdentifier(hmrcEligibilityResponse.getHouseholdIdentifier())
-                .build();
+
+        EligibilityResponse.EligibilityResponseBuilder builder = EligibilityResponse.builder()
+                .eligibilityStatus(statusCalculator.determineStatus(dwpEligibilityResponse, hmrcEligibilityResponse));
+
+        if (EligibilityStatus.ELIGIBLE == dwpEligibilityResponse.getEligibilityStatus()) {
+            builder.dwpHouseholdIdentifier(dwpEligibilityResponse.getHouseholdIdentifier());
+        }
+
+        if (EligibilityStatus.ELIGIBLE == hmrcEligibilityResponse.getEligibilityStatus()) {
+            builder.hmrcHouseholdIdentifier(hmrcEligibilityResponse.getHouseholdIdentifier());
+        }
+
+        return builder.build();
     }
+
 }

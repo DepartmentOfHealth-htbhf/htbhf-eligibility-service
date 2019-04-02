@@ -10,7 +10,9 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse;
 import uk.gov.dhsc.htbhf.eligibility.model.PersonDTO;
 import uk.gov.dhsc.htbhf.eligibility.model.dwp.DWPEligibilityRequest;
+import uk.gov.dhsc.htbhf.eligibility.model.dwp.DWPEligibilityResponse;
 import uk.gov.dhsc.htbhf.eligibility.model.hmrc.HMRCEligibilityRequest;
+import uk.gov.dhsc.htbhf.eligibility.model.hmrc.HMRCEligibilityResponse;
 
 import java.math.BigDecimal;
 import java.util.concurrent.ExecutionException;
@@ -20,10 +22,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
-import static uk.gov.dhsc.htbhf.eligibility.helper.DWPEligibilityResponseTestFactory.aDWPEligibilityResponse;
-import static uk.gov.dhsc.htbhf.eligibility.helper.HMRCEligibilityResponseTestFactory.anHMRCEligibilityResponse;
+import static uk.gov.dhsc.htbhf.eligibility.helper.DWPEligibilityResponseTestFactory.aDWPEligibilityResponseWithStatus;
+import static uk.gov.dhsc.htbhf.eligibility.helper.HMRCEligibilityResponseTestFactory.anHMRCEligibilityResponseWithStatus;
 import static uk.gov.dhsc.htbhf.eligibility.helper.PersonDTOTestFactory.aPerson;
 import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.ELIGIBLE;
+import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.INELIGIBLE;
+import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.PENDING;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -40,10 +44,12 @@ class EligibilityServiceTest {
     private EligibilityStatusCalculator statusCalculator;
 
     @Test
-    void shouldCreateRequestWithValuesFromConfig() throws ExecutionException, InterruptedException {
+    void shouldCheckEligibilityWithEligibleResponseFromBothDwpAndHmrc() throws ExecutionException, InterruptedException {
         PersonDTO person = aPerson();
-        given(dwpClient.checkEligibility(any())).willReturn(completedFuture(aDWPEligibilityResponse()));
-        given(hmrcClient.checkEligibility(any())).willReturn(completedFuture(anHMRCEligibilityResponse()));
+        DWPEligibilityResponse dwpEligibilityResponse = aDWPEligibilityResponseWithStatus(ELIGIBLE);
+        given(dwpClient.checkEligibility(any())).willReturn(completedFuture(dwpEligibilityResponse));
+        HMRCEligibilityResponse hmrcEligibilityResponse = anHMRCEligibilityResponseWithStatus(ELIGIBLE);
+        given(hmrcClient.checkEligibility(any())).willReturn(completedFuture(hmrcEligibilityResponse));
         given(statusCalculator.determineStatus(any(), any())).willReturn(ELIGIBLE);
 
         EligibilityResponse response = eligibilityService.checkEligibility(person);
@@ -51,7 +57,64 @@ class EligibilityServiceTest {
         assertThat(response.getEligibilityStatus()).isEqualTo(ELIGIBLE);
         assertThat(response.getDwpHouseholdIdentifier()).isEqualTo("dwpHousehold1");
         assertThat(response.getHmrcHouseholdIdentifier()).isEqualTo("hmrcHousehold1");
-        verify(statusCalculator).determineStatus(aDWPEligibilityResponse(), anHMRCEligibilityResponse());
+        verify(statusCalculator).determineStatus(dwpEligibilityResponse, hmrcEligibilityResponse);
+        verifyDWPRequestSent(person);
+        verifyHMRCRequestSent(person);
+    }
+
+    @Test
+    void shouldCheckEligibilityWithEligibleResponseFromDwpOnly() throws ExecutionException, InterruptedException {
+        PersonDTO person = aPerson();
+        DWPEligibilityResponse dwpEligibilityResponse = aDWPEligibilityResponseWithStatus(ELIGIBLE);
+        given(dwpClient.checkEligibility(any())).willReturn(completedFuture(dwpEligibilityResponse));
+        HMRCEligibilityResponse hmrcEligibilityResponse = anHMRCEligibilityResponseWithStatus(INELIGIBLE);
+        given(hmrcClient.checkEligibility(any())).willReturn(completedFuture(hmrcEligibilityResponse));
+        given(statusCalculator.determineStatus(any(), any())).willReturn(ELIGIBLE);
+
+        EligibilityResponse response = eligibilityService.checkEligibility(person);
+
+        assertThat(response.getEligibilityStatus()).isEqualTo(ELIGIBLE);
+        assertThat(response.getDwpHouseholdIdentifier()).isEqualTo("dwpHousehold1");
+        assertThat(response.getHmrcHouseholdIdentifier()).isNull();
+        verify(statusCalculator).determineStatus(dwpEligibilityResponse, hmrcEligibilityResponse);
+        verifyDWPRequestSent(person);
+        verifyHMRCRequestSent(person);
+    }
+
+    @Test
+    void shouldCheckEligibilityWithEligibleResponseFromHmrcOnly() throws ExecutionException, InterruptedException {
+        PersonDTO person = aPerson();
+        DWPEligibilityResponse dwpEligibilityResponse = aDWPEligibilityResponseWithStatus(PENDING);
+        given(dwpClient.checkEligibility(any())).willReturn(completedFuture(dwpEligibilityResponse));
+        HMRCEligibilityResponse hmrcEligibilityResponse = anHMRCEligibilityResponseWithStatus(ELIGIBLE);
+        given(hmrcClient.checkEligibility(any())).willReturn(completedFuture(hmrcEligibilityResponse));
+        given(statusCalculator.determineStatus(any(), any())).willReturn(ELIGIBLE);
+
+        EligibilityResponse response = eligibilityService.checkEligibility(person);
+
+        assertThat(response.getEligibilityStatus()).isEqualTo(ELIGIBLE);
+        assertThat(response.getDwpHouseholdIdentifier()).isNull();
+        assertThat(response.getHmrcHouseholdIdentifier()).isEqualTo("hmrcHousehold1");
+        verify(statusCalculator).determineStatus(dwpEligibilityResponse, hmrcEligibilityResponse);
+        verifyDWPRequestSent(person);
+        verifyHMRCRequestSent(person);
+    }
+
+    @Test
+    void shouldCheckEligibilityWithIneligibleResponseFromBothHmrcAndDwpOnly() throws ExecutionException, InterruptedException {
+        PersonDTO person = aPerson();
+        DWPEligibilityResponse dwpEligibilityResponse = aDWPEligibilityResponseWithStatus(INELIGIBLE);
+        given(dwpClient.checkEligibility(any())).willReturn(completedFuture(dwpEligibilityResponse));
+        HMRCEligibilityResponse hmrcEligibilityResponse = anHMRCEligibilityResponseWithStatus(INELIGIBLE);
+        given(hmrcClient.checkEligibility(any())).willReturn(completedFuture(hmrcEligibilityResponse));
+        given(statusCalculator.determineStatus(any(), any())).willReturn(INELIGIBLE);
+
+        EligibilityResponse response = eligibilityService.checkEligibility(person);
+
+        assertThat(response.getEligibilityStatus()).isEqualTo(INELIGIBLE);
+        assertThat(response.getDwpHouseholdIdentifier()).isNull();
+        assertThat(response.getHmrcHouseholdIdentifier()).isNull();
+        verify(statusCalculator).determineStatus(dwpEligibilityResponse, hmrcEligibilityResponse);
         verifyDWPRequestSent(person);
         verifyHMRCRequestSent(person);
     }
