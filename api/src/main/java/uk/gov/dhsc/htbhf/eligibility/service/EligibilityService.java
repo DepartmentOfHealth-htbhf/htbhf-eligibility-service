@@ -3,7 +3,6 @@ package uk.gov.dhsc.htbhf.eligibility.service;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse;
-import uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus;
 import uk.gov.dhsc.htbhf.eligibility.model.PersonDTO;
 import uk.gov.dhsc.htbhf.eligibility.model.dwp.DWPEligibilityRequest;
 import uk.gov.dhsc.htbhf.eligibility.model.dwp.DWPEligibilityResponse;
@@ -14,6 +13,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
+
+import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.ELIGIBLE;
 
 @Service
 public class EligibilityService {
@@ -87,11 +88,11 @@ public class EligibilityService {
         EligibilityResponse.EligibilityResponseBuilder builder = EligibilityResponse.builder()
                 .eligibilityStatus(statusCalculator.determineStatus(dwpEligibilityResponse, hmrcEligibilityResponse));
 
-        if (EligibilityStatus.ELIGIBLE == dwpEligibilityResponse.getEligibilityStatus()) {
+        if (dwpEligibilityResponse.getEligibilityStatus() == ELIGIBLE) {
             builder.dwpHouseholdIdentifier(dwpEligibilityResponse.getHouseholdIdentifier());
         }
 
-        if (EligibilityStatus.ELIGIBLE == hmrcEligibilityResponse.getEligibilityStatus()) {
+        if (hmrcEligibilityResponse.getEligibilityStatus() == ELIGIBLE) {
             builder.hmrcHouseholdIdentifier(hmrcEligibilityResponse.getHouseholdIdentifier());
         }
 
