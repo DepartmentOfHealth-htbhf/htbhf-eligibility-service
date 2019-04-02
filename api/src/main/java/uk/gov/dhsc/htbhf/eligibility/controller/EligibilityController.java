@@ -2,11 +2,14 @@ package uk.gov.dhsc.htbhf.eligibility.controller;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse;
+import uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus;
 import uk.gov.dhsc.htbhf.eligibility.model.PersonDTO;
 import uk.gov.dhsc.htbhf.eligibility.service.EligibilityService;
 
@@ -35,9 +38,13 @@ public class EligibilityController {
      */
     @PostMapping(path = "/v1/eligibility", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseBody
-    public EligibilityResponse getDecision(@RequestBody @Valid PersonDTO person) throws ExecutionException, InterruptedException {
+    public ResponseEntity<EligibilityResponse> getDecision(@RequestBody @Valid PersonDTO person) throws ExecutionException, InterruptedException {
         log.debug("Received eligibility request");
-        return eligibilityService.checkEligibility(person);
+
+        EligibilityResponse eligibilityResponse = eligibilityService.checkEligibility(person);
+
+        HttpStatus status = eligibilityResponse.getEligibilityStatus() == EligibilityStatus.NOMATCH ? HttpStatus.NOT_FOUND : HttpStatus.OK;
+        return new ResponseEntity<>(eligibilityResponse, status);
     }
 
 }
