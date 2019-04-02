@@ -2,11 +2,14 @@
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse;
+import uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus;
 import uk.gov.dhsc.htbhf.eligibility.model.PersonDTO;
 import uk.gov.dhsc.htbhf.eligibility.service.EligibilityService;
 
@@ -20,7 +23,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
  * and returning the eligibility result.
  */
 @Controller
-<span class="fc" id="L23">@Slf4j</span>
+<span class="fc" id="L26">@Slf4j</span>
 @AllArgsConstructor
 public class EligibilityController {
 
@@ -35,9 +38,13 @@ public class EligibilityController {
      */
     @PostMapping(path = &quot;/v1/eligibility&quot;, consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseBody
-    public EligibilityResponse getDecision(@RequestBody @Valid PersonDTO person) throws ExecutionException, InterruptedException {
-<span class="fc" id="L39">        log.debug(&quot;Received eligibility request&quot;);</span>
-<span class="fc" id="L40">        return eligibilityService.checkEligibility(person);</span>
+    public ResponseEntity&lt;EligibilityResponse&gt; getDecision(@RequestBody @Valid PersonDTO person) throws ExecutionException, InterruptedException {
+<span class="fc" id="L42">        log.debug(&quot;Received eligibility request&quot;);</span>
+
+<span class="fc" id="L44">        EligibilityResponse eligibilityResponse = eligibilityService.checkEligibility(person);</span>
+
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        HttpStatus status = eligibilityResponse.getEligibilityStatus() == EligibilityStatus.NOMATCH ? HttpStatus.NOT_FOUND : HttpStatus.OK;</span>
+<span class="fc" id="L47">        return new ResponseEntity&lt;&gt;(eligibilityResponse, status);</span>
     }
 
 }
