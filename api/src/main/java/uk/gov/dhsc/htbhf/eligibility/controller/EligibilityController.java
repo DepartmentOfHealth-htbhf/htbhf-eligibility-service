@@ -35,6 +35,8 @@ public class EligibilityController {
      *
      * @param person the {@link PersonDTO}
      * @return the {@link EligibilityResponse}
+     * @throws ExecutionException   If problems with parallel calls to DWP and HMRC to check eligibility
+     * @throws InterruptedException If problems with parallel calls to DWP and HMRC to check eligibility
      */
     @PostMapping(path = "/v1/eligibility", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseBody
