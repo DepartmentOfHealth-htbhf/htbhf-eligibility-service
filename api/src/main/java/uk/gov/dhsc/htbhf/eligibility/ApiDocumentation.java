@@ -52,7 +52,7 @@ public class ApiDocumentation {
                 "Responsible for deciding whether an applicant is eligible for help-to-buy-healthy-foods",
                 appVersion,
                 "",
-                new Contact("Department Of Health", "https://github.com/DepartmentOfHealth-htbhf", "dh-htbhf-team@equalexperts.com"),
+                new Contact("Department Of Health and Social Care", "https://github.com/DepartmentOfHealth-htbhf", "dh-htbhf-team@equalexperts.com"),
                 "MIT",
                 "https://opensource.org/licenses/MIT",
                 emptyList()
