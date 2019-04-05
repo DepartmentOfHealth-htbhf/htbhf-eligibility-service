@@ -3,7 +3,7 @@ info:
   description: "Responsible for deciding whether an applicant is eligible for help-to-buy-healthy-foods"
   title: "Eligibility Service"
   contact:
-    name: "Department Of Health"
+    name: "Department Of Health and Social Care"
     url: "https://github.com/DepartmentOfHealth-htbhf"
     email: "dh-htbhf-team@equalexperts.com"
   license:

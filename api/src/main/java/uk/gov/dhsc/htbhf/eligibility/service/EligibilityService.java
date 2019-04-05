@@ -2,6 +2,7 @@ package uk.gov.dhsc.htbhf.eligibility.service;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import uk.gov.dhsc.htbhf.eligibility.exception.NoEligibilityStatusProvidedException;
 import uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse;
 import uk.gov.dhsc.htbhf.eligibility.model.PersonDTO;
 import uk.gov.dhsc.htbhf.eligibility.model.dwp.DWPEligibilityRequest;
@@ -61,6 +62,9 @@ public class EligibilityService {
         CompletableFuture<HMRCEligibilityResponse> hmrcEligibilityResponse = hmrcClient.checkEligibility(hmrcEligibilityRequest);
 
         CompletableFuture.allOf(dwpEligibilityResponse, hmrcEligibilityResponse);
+
+        assertResponsesContainEligibilityStatus(dwpEligibilityResponse.get(), hmrcEligibilityResponse.get());
+
         return buildEligibilityResponse(dwpEligibilityResponse.get(), hmrcEligibilityResponse.get());
     }
 
@@ -99,4 +103,13 @@ public class EligibilityService {
         return builder.build();
     }
 
+    private void assertResponsesContainEligibilityStatus(DWPEligibilityResponse dwpEligibilityResponse,
+                                                         HMRCEligibilityResponse hmrcEligibilityResponse) {
+        if (dwpEligibilityResponse.getEligibilityStatus() == null) {
+            throw new NoEligibilityStatusProvidedException("No eligibilityStatus returned by DWP: " + dwpEligibilityResponse);
+        }
+        if (hmrcEligibilityResponse.getEligibilityStatus() == null) {
+            throw new NoEligibilityStatusProvidedException("No eligibilityStatus returned by HMRC: " + hmrcEligibilityResponse);
+        }
+    }
 }
