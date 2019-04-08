@@ -18,7 +18,7 @@ public final class TestConstants {
 
     public static final LocalDate ELIGIBLE_END_DATE = LocalDate.parse("2019-03-01");
     public static final LocalDate ELIGIBLE_START_DATE = LocalDate.parse("2019-02-14");
-    public static final BigDecimal UC_MONTHLY_INCOME_THRESHOLD = BigDecimal.valueOf(408);
+    public static final BigDecimal UC_MONTHLY_INCOME_THRESHOLD = BigDecimal.valueOf(408.0);
     public static final BigDecimal CTC_ANNUAL_INCOME_THRESHOLD = BigDecimal.valueOf(16190.00);
 
     public static final String SIMPSON_DWP_HOUSEHOLD_IDENTIFIER = "dwpHousehold1";

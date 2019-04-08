@@ -1,6 +1,7 @@
 package uk.gov.dhsc.htbhf.eligibility.testhelper;
 
 import uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse;
+import uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus;
 
 import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.ELIGIBLE;
 import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.NO_MATCH;
@@ -14,6 +15,26 @@ public class EligibilityResponseTestDataFactory {
                 .eligibilityStatus(ELIGIBLE)
                 .dwpHouseholdIdentifier(SIMPSON_DWP_HOUSEHOLD_IDENTIFIER)
                 .hmrcHouseholdIdentifier(SIMPSON_HMRC_HOUSEHOLD_IDENTIFIER)
+                .build();
+    }
+
+    public static EligibilityResponse anEligibilityResponseWithDwpHouseholdIdentifier(EligibilityStatus eligibilityStatus, String householdIdentifier) {
+        return EligibilityResponse.builder()
+                .eligibilityStatus(eligibilityStatus)
+                .dwpHouseholdIdentifier(householdIdentifier)
+                .build();
+    }
+
+    public static EligibilityResponse anEligibilityResponseWithHmrcHouseholdIdentifier(EligibilityStatus eligibilityStatus, String householdIdentifier) {
+        return EligibilityResponse.builder()
+                .eligibilityStatus(eligibilityStatus)
+                .hmrcHouseholdIdentifier(householdIdentifier)
+                .build();
+    }
+
+    public static EligibilityResponse anEligibilityResponseWithStatus(EligibilityStatus eligibilityStatus) {
+        return EligibilityResponse.builder()
+                .eligibilityStatus(eligibilityStatus)
                 .build();
     }
 

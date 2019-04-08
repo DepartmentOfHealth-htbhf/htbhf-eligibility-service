@@ -45,8 +45,12 @@ public class EligibilityController {
 
         EligibilityResponse eligibilityResponse = eligibilityService.checkEligibility(person);
 
-        HttpStatus status = eligibilityResponse.getEligibilityStatus() == NO_MATCH ? HttpStatus.NOT_FOUND : HttpStatus.OK;
-        return new ResponseEntity<>(eligibilityResponse, status);
+        HttpStatus httpStatus = determineHttpStatusFromEligibilityStatus(eligibilityResponse);
+        return new ResponseEntity<>(eligibilityResponse, httpStatus);
+    }
+
+    private HttpStatus determineHttpStatusFromEligibilityStatus(EligibilityResponse eligibilityResponse) {
+        return eligibilityResponse.getEligibilityStatus() == NO_MATCH ? HttpStatus.NOT_FOUND : HttpStatus.OK;
     }
 
 }
