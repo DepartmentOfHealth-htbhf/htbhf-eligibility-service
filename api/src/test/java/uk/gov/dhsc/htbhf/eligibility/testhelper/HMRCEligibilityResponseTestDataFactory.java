@@ -9,16 +9,18 @@ import static uk.gov.dhsc.htbhf.eligibility.testhelper.TestConstants.SIMPSON_HMR
 public class HMRCEligibilityResponseTestDataFactory {
 
     public static HMRCEligibilityResponse anHMRCEligibilityResponse() {
-        return HMRCEligibilityResponse.builder()
-                .eligibilityStatus(ELIGIBLE)
-                .householdIdentifier(SIMPSON_HMRC_HOUSEHOLD_IDENTIFIER)
+        return anHMRCEligibilityResponseBuilder(ELIGIBLE)
                 .build();
     }
 
     public static HMRCEligibilityResponse anHMRCEligibilityResponseWithStatus(EligibilityStatus eligibilityStatus) {
+        return anHMRCEligibilityResponseBuilder(eligibilityStatus)
+                .build();
+    }
+
+    public static HMRCEligibilityResponse.HMRCEligibilityResponseBuilder anHMRCEligibilityResponseBuilder(EligibilityStatus eligibilityStatus) {
         return HMRCEligibilityResponse.builder()
                 .eligibilityStatus(eligibilityStatus)
-                .householdIdentifier(SIMPSON_HMRC_HOUSEHOLD_IDENTIFIER)
-                .build();
+                .householdIdentifier(SIMPSON_HMRC_HOUSEHOLD_IDENTIFIER);
     }
 }

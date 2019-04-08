@@ -2,6 +2,7 @@ package uk.gov.dhsc.htbhf.eligibility.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,4 +20,12 @@ public class EligibilityResponse {
 
     @JsonProperty("hmrcHouseholdIdentifier")
     private String hmrcHouseholdIdentifier;
+
+    @JsonProperty("numberOfChildrenUnderOne")
+    @ApiModelProperty(notes = "The number of children under 1 that the person has", example = "1")
+    private final Integer numberOfChildrenUnderOne;
+
+    @JsonProperty("numberOfChildrenUnderFour")
+    @ApiModelProperty(notes = "The number of children under 4 that the person has (which will include the number of children under 1)", example = "1")
+    private final Integer numberOfChildrenUnderFour;
 }
