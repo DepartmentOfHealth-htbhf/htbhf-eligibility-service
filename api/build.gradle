@@ -21,6 +21,11 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'jacoco'
 
+configurations.all {
+    resolutionStrategy {
+        cacheDynamicVersionsFor 0, 'seconds'
+    }
+}
 
 lombok {
     version = '1.18.4'
