@@ -1,23 +1,15 @@
-package uk.gov.dhsc.htbhf.eligibility.helper;
+package uk.gov.dhsc.htbhf.eligibility.testhelper;
 
 import uk.gov.dhsc.htbhf.eligibility.model.PersonDTO;
 
-import java.time.LocalDate;
+import static uk.gov.dhsc.htbhf.eligibility.testhelper.AddressDTOTestDataFactory.aValidAddress;
+import static uk.gov.dhsc.htbhf.eligibility.testhelper.AddressDTOTestDataFactory.anAddressWithPostcode;
+import static uk.gov.dhsc.htbhf.eligibility.testhelper.TestConstants.*;
 
-import static uk.gov.dhsc.htbhf.eligibility.helper.AddressDTOTestDataFactory.aValidAddress;
-import static uk.gov.dhsc.htbhf.eligibility.helper.AddressDTOTestDataFactory.anAddressWithPostcode;
-
-public class PersonDTOTestFactory {
-
-    private static final LocalDate DOB = LocalDate.parse("1985-12-31");
-    private static final String NINO = "EB123456C";
-    private static final String FIRST_NAME = "Lisa";
-    private static final String LAST_NAME = "Simpson";
-    private static final LocalDate FUTURE_DATE = LocalDate.now().plusMonths(1);
+public class PersonDTOTestDataFactory {
 
     public static PersonDTO aPerson() {
-        String nino = "IA000000C";
-        return buildDefaultPerson().nino(nino).build();
+        return buildDefaultPerson().build();
     }
 
     public static PersonDTO aPersonWithNoNino() {
@@ -44,10 +36,10 @@ public class PersonDTOTestFactory {
 
     public static PersonDTO.PersonDTOBuilder buildDefaultPerson() {
         return PersonDTO.builder()
-                .dateOfBirth(DOB)
-                .nino(NINO)
+                .dateOfBirth(LISA_DATE_OF_BIRTH)
+                .nino(LISA_NINO)
                 .address(aValidAddress())
-                .firstName(FIRST_NAME)
-                .lastName(LAST_NAME);
+                .firstName(LISA_FIRST_NAME)
+                .lastName(SIMPSON_LAST_NAME);
     }
 }
