@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse;
-import uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus;
 import uk.gov.dhsc.htbhf.eligibility.model.PersonDTO;
 import uk.gov.dhsc.htbhf.eligibility.service.EligibilityService;
 
@@ -17,6 +16,7 @@ import java.util.concurrent.ExecutionException;
 import javax.validation.Valid;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.NO_MATCH;
 
 /**
  * Responsible for obtaining a decision on eligibility from downstream services, sending the application to the claimant service
@@ -45,7 +45,7 @@ public class EligibilityController {
 
         EligibilityResponse eligibilityResponse = eligibilityService.checkEligibility(person);
 
-        HttpStatus status = eligibilityResponse.getEligibilityStatus() == EligibilityStatus.NOMATCH ? HttpStatus.NOT_FOUND : HttpStatus.OK;
+        HttpStatus status = eligibilityResponse.getEligibilityStatus() == NO_MATCH ? HttpStatus.NOT_FOUND : HttpStatus.OK;
         return new ResponseEntity<>(eligibilityResponse, status);
     }
 

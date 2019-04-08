@@ -76,8 +76,9 @@ definitions:
         - "ELIGIBLE"
         - "INELIGIBLE"
         - "PENDING"
-        - "NOMATCH"
+        - "NO_MATCH"
         - "ERROR"
+        - "DUPLICATE"
       hmrcHouseholdIdentifier:
         type: "string"
     title: "EligibilityResponse"

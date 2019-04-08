@@ -9,7 +9,7 @@ import uk.gov.dhsc.htbhf.eligibility.model.hmrc.HMRCEligibilityResponse;
 import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.ELIGIBLE;
 import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.ERROR;
 import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.INELIGIBLE;
-import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.NOMATCH;
+import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.NO_MATCH;
 import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.PENDING;
 
 @Service
@@ -22,7 +22,7 @@ public class EligibilityStatusCalculator {
      * If either is PENDING then PENDING
      * If there was an error connecting to either service, then ERROR
      * If either is INELIGIBLE then INELIGIBLE
-     * Otherwise NOMATCH
+     * Otherwise NO_MATCH
      *
      * @param dwpEligibilityResponse  dwp response
      * @param hmrcEligibilityResponse hmrc response
@@ -47,7 +47,7 @@ public class EligibilityStatusCalculator {
             return INELIGIBLE;
         }
 
-        return NOMATCH;
+        return NO_MATCH;
     }
 
 
