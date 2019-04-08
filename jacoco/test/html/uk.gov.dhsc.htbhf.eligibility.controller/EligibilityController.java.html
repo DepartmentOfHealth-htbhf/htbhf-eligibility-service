@@ -45,8 +45,12 @@ public class EligibilityController {
 
 <span class="fc" id="L46">        EligibilityResponse eligibilityResponse = eligibilityService.checkEligibility(person);</span>
 
-<span class="fc bfc" id="L48" title="All 2 branches covered.">        HttpStatus status = eligibilityResponse.getEligibilityStatus() == NO_MATCH ? HttpStatus.NOT_FOUND : HttpStatus.OK;</span>
-<span class="fc" id="L49">        return new ResponseEntity&lt;&gt;(eligibilityResponse, status);</span>
+<span class="fc" id="L48">        HttpStatus httpStatus = determineHttpStatusFromEligibilityStatus(eligibilityResponse);</span>
+<span class="fc" id="L49">        return new ResponseEntity&lt;&gt;(eligibilityResponse, httpStatus);</span>
+    }
+
+    private HttpStatus determineHttpStatusFromEligibilityStatus(EligibilityResponse eligibilityResponse) {
+<span class="fc bfc" id="L53" title="All 2 branches covered.">        return eligibilityResponse.getEligibilityStatus() == NO_MATCH ? HttpStatus.NOT_FOUND : HttpStatus.OK;</span>
     }
 
 }

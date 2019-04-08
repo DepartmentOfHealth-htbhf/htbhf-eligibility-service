@@ -2,6 +2,8 @@
 <checkstyle version="8.15">
 <file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/EligibilityServiceApplicationTests.java">
 </file>
+<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/EligibilityServiceIntegrationTests.java">
+</file>
 <file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/controller/EligibilityControllerTest.java">
 </file>
 <file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/model/AddressDTOTest.java">
