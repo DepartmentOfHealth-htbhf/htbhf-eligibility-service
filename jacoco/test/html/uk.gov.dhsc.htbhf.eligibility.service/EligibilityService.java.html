@@ -61,43 +61,43 @@ public class EligibilityService {
 <span class="fc" id="L61">        CompletableFuture&lt;HMRCEligibilityResponse&gt; hmrcEligibilityResponse = hmrcClient.checkEligibility(hmrcEligibilityRequest);</span>
 
 <span class="fc" id="L63">        CompletableFuture.allOf(dwpEligibilityResponse, hmrcEligibilityResponse);</span>
-<span class="fc" id="L64">        return buildEligibilityResponse(dwpEligibilityResponse.get(), hmrcEligibilityResponse.get());</span>
+
+<span class="fc" id="L65">        return buildEligibilityResponse(dwpEligibilityResponse.get(), hmrcEligibilityResponse.get());</span>
     }
 
     private DWPEligibilityRequest createDWPRequest(PersonDTO person, LocalDate currentDate) {
-<span class="fc" id="L68">        return DWPEligibilityRequest.builder()</span>
-<span class="fc" id="L69">                .person(person)</span>
-<span class="fc" id="L70">                .eligibleEndDate(currentDate)</span>
-<span class="fc" id="L71">                .eligibleStartDate(currentDate.minusDays(eligibilityCheckPeriodLength))</span>
-<span class="fc" id="L72">                .ucMonthlyIncomeThreshold(ucMonthlyIncomeThreshold)</span>
-<span class="fc" id="L73">                .build();</span>
+<span class="fc" id="L69">        return DWPEligibilityRequest.builder()</span>
+<span class="fc" id="L70">                .person(person)</span>
+<span class="fc" id="L71">                .eligibleEndDate(currentDate)</span>
+<span class="fc" id="L72">                .eligibleStartDate(currentDate.minusDays(eligibilityCheckPeriodLength))</span>
+<span class="fc" id="L73">                .ucMonthlyIncomeThreshold(ucMonthlyIncomeThreshold)</span>
+<span class="fc" id="L74">                .build();</span>
     }
 
     private HMRCEligibilityRequest createHMRCRequest(PersonDTO person, LocalDate currentDate) {
-<span class="fc" id="L77">        return HMRCEligibilityRequest.builder()</span>
-<span class="fc" id="L78">                .person(person)</span>
-<span class="fc" id="L79">                .eligibleEndDate(currentDate)</span>
-<span class="fc" id="L80">                .eligibleStartDate(currentDate.minusDays(eligibilityCheckPeriodLength))</span>
-<span class="fc" id="L81">                .ctcAnnualIncomeThreshold(ctcAnnualIncomeThreshold)</span>
-<span class="fc" id="L82">                .build();</span>
+<span class="fc" id="L78">        return HMRCEligibilityRequest.builder()</span>
+<span class="fc" id="L79">                .person(person)</span>
+<span class="fc" id="L80">                .eligibleEndDate(currentDate)</span>
+<span class="fc" id="L81">                .eligibleStartDate(currentDate.minusDays(eligibilityCheckPeriodLength))</span>
+<span class="fc" id="L82">                .ctcAnnualIncomeThreshold(ctcAnnualIncomeThreshold)</span>
+<span class="fc" id="L83">                .build();</span>
     }
 
     private EligibilityResponse buildEligibilityResponse(DWPEligibilityResponse dwpEligibilityResponse,
                                                          HMRCEligibilityResponse hmrcEligibilityResponse) {
 
-<span class="fc" id="L88">        EligibilityResponse.EligibilityResponseBuilder builder = EligibilityResponse.builder()</span>
-<span class="fc" id="L89">                .eligibilityStatus(statusCalculator.determineStatus(dwpEligibilityResponse, hmrcEligibilityResponse));</span>
+<span class="fc" id="L89">        EligibilityResponse.EligibilityResponseBuilder builder = EligibilityResponse.builder()</span>
+<span class="fc" id="L90">                .eligibilityStatus(statusCalculator.determineStatus(dwpEligibilityResponse, hmrcEligibilityResponse));</span>
 
-<span class="fc bfc" id="L91" title="All 2 branches covered.">        if (dwpEligibilityResponse.getEligibilityStatus() == ELIGIBLE) {</span>
-<span class="fc" id="L92">            builder.dwpHouseholdIdentifier(dwpEligibilityResponse.getHouseholdIdentifier());</span>
+<span class="fc bfc" id="L92" title="All 2 branches covered.">        if (dwpEligibilityResponse.getEligibilityStatus() == ELIGIBLE) {</span>
+<span class="fc" id="L93">            builder.dwpHouseholdIdentifier(dwpEligibilityResponse.getHouseholdIdentifier());</span>
         }
 
-<span class="fc bfc" id="L95" title="All 2 branches covered.">        if (hmrcEligibilityResponse.getEligibilityStatus() == ELIGIBLE) {</span>
-<span class="fc" id="L96">            builder.hmrcHouseholdIdentifier(hmrcEligibilityResponse.getHouseholdIdentifier());</span>
+<span class="fc bfc" id="L96" title="All 2 branches covered.">        if (hmrcEligibilityResponse.getEligibilityStatus() == ELIGIBLE) {</span>
+<span class="fc" id="L97">            builder.hmrcHouseholdIdentifier(hmrcEligibilityResponse.getHouseholdIdentifier());</span>
         }
 
-<span class="fc" id="L99">        return builder.build();</span>
+<span class="fc" id="L100">        return builder.build();</span>
     }
-
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
