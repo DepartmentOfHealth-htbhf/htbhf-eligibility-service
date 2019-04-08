@@ -1,13 +1,13 @@
-package uk.gov.dhsc.htbhf.eligibility.helper;
+package uk.gov.dhsc.htbhf.eligibility.testhelper;
 
 import uk.gov.dhsc.htbhf.eligibility.model.AddressDTO;
 
-public class AddressDTOTestDataFactory {
+import static uk.gov.dhsc.htbhf.eligibility.testhelper.TestConstants.ADDRESS_LINE_1;
+import static uk.gov.dhsc.htbhf.eligibility.testhelper.TestConstants.ADDRESS_LINE_2;
+import static uk.gov.dhsc.htbhf.eligibility.testhelper.TestConstants.POSTCODE;
+import static uk.gov.dhsc.htbhf.eligibility.testhelper.TestConstants.TOWN_OR_CITY;
 
-    private static final String ADDRESS_LINE_1 = "742 Evergreen Terrace";
-    private static final String ADDRESS_LINE_2 = "123 Fake street";
-    private static final String TOWN_OR_CITY = "Springfield";
-    private static final String POSTCODE = "AA1 1AA";
+public class AddressDTOTestDataFactory {
 
     public static AddressDTO aValidAddress() {
         return aValidAddressBuilder().build();

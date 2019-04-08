@@ -28,8 +28,8 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 import static org.springframework.http.HttpStatus.OK;
-import static uk.gov.dhsc.htbhf.eligibility.helper.DWPEligibilityRequestTestFactory.aDWPEligibilityRequest;
-import static uk.gov.dhsc.htbhf.eligibility.helper.DWPEligibilityResponseTestFactory.aDWPEligibilityResponse;
+import static uk.gov.dhsc.htbhf.eligibility.testhelper.DWPEligibilityRequestTestDataFactory.aDWPEligibilityRequest;
+import static uk.gov.dhsc.htbhf.eligibility.testhelper.DWPEligibilityResponseTestDataFactory.aDWPEligibilityResponse;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest

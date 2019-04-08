@@ -22,12 +22,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
-import static uk.gov.dhsc.htbhf.eligibility.helper.DWPEligibilityResponseTestFactory.aDWPEligibilityResponseWithStatus;
-import static uk.gov.dhsc.htbhf.eligibility.helper.HMRCEligibilityResponseTestFactory.anHMRCEligibilityResponseWithStatus;
-import static uk.gov.dhsc.htbhf.eligibility.helper.PersonDTOTestFactory.aPerson;
 import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.ELIGIBLE;
 import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.INELIGIBLE;
 import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.PENDING;
+import static uk.gov.dhsc.htbhf.eligibility.testhelper.DWPEligibilityResponseTestDataFactory.aDWPEligibilityResponseWithStatus;
+import static uk.gov.dhsc.htbhf.eligibility.testhelper.HMRCEligibilityResponseTestDataFactory.anHMRCEligibilityResponseWithStatus;
+import static uk.gov.dhsc.htbhf.eligibility.testhelper.PersonDTOTestDataFactory.aPerson;
+import static uk.gov.dhsc.htbhf.eligibility.testhelper.TestConstants.DWP_HOUSEHOLD_IDENTIFIER;
+import static uk.gov.dhsc.htbhf.eligibility.testhelper.TestConstants.HMRC_HOUSEHOLD_IDENTIFIER;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -55,8 +57,8 @@ class EligibilityServiceTest {
         EligibilityResponse response = eligibilityService.checkEligibility(person);
 
         assertThat(response.getEligibilityStatus()).isEqualTo(ELIGIBLE);
-        assertThat(response.getDwpHouseholdIdentifier()).isEqualTo("dwpHousehold1");
-        assertThat(response.getHmrcHouseholdIdentifier()).isEqualTo("hmrcHousehold1");
+        assertThat(response.getDwpHouseholdIdentifier()).isEqualTo(DWP_HOUSEHOLD_IDENTIFIER);
+        assertThat(response.getHmrcHouseholdIdentifier()).isEqualTo(HMRC_HOUSEHOLD_IDENTIFIER);
         verify(statusCalculator).determineStatus(dwpEligibilityResponse, hmrcEligibilityResponse);
         verifyDWPRequestSent(person);
         verifyHMRCRequestSent(person);
@@ -74,7 +76,7 @@ class EligibilityServiceTest {
         EligibilityResponse response = eligibilityService.checkEligibility(person);
 
         assertThat(response.getEligibilityStatus()).isEqualTo(ELIGIBLE);
-        assertThat(response.getDwpHouseholdIdentifier()).isEqualTo("dwpHousehold1");
+        assertThat(response.getDwpHouseholdIdentifier()).isEqualTo(DWP_HOUSEHOLD_IDENTIFIER);
         assertThat(response.getHmrcHouseholdIdentifier()).isNull();
         verify(statusCalculator).determineStatus(dwpEligibilityResponse, hmrcEligibilityResponse);
         verifyDWPRequestSent(person);
@@ -94,7 +96,7 @@ class EligibilityServiceTest {
 
         assertThat(response.getEligibilityStatus()).isEqualTo(ELIGIBLE);
         assertThat(response.getDwpHouseholdIdentifier()).isNull();
-        assertThat(response.getHmrcHouseholdIdentifier()).isEqualTo("hmrcHousehold1");
+        assertThat(response.getHmrcHouseholdIdentifier()).isEqualTo(HMRC_HOUSEHOLD_IDENTIFIER);
         verify(statusCalculator).determineStatus(dwpEligibilityResponse, hmrcEligibilityResponse);
         verifyDWPRequestSent(person);
         verifyHMRCRequestSent(person);

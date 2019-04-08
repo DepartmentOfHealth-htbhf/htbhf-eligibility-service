@@ -9,7 +9,7 @@ import java.util.Set;
 import javax.validation.ConstraintViolation;
 
 import static uk.gov.dhsc.htbhf.assertions.ConstraintViolationAssert.assertThat;
-import static uk.gov.dhsc.htbhf.eligibility.helper.PersonDTOTestFactory.*;
+import static uk.gov.dhsc.htbhf.eligibility.testhelper.PersonDTOTestDataFactory.*;
 
 class PersonDTOTest extends AbstractValidationTest {
 

@@ -20,10 +20,10 @@ import static org.mockito.BDDMockito.given;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.HttpStatus.OK;
 import static uk.gov.dhsc.htbhf.assertions.IntegrationTestAssertions.assertValidationErrorInResponse;
-import static uk.gov.dhsc.htbhf.eligibility.helper.EligibilityResponseTestFactory.aNonMatchingEligibilityResponse;
-import static uk.gov.dhsc.htbhf.eligibility.helper.EligibilityResponseTestFactory.anEligibleEligibilityResponse;
-import static uk.gov.dhsc.htbhf.eligibility.helper.PersonDTOTestFactory.aPerson;
-import static uk.gov.dhsc.htbhf.eligibility.helper.PersonDTOTestFactory.aPersonWithNoNino;
+import static uk.gov.dhsc.htbhf.eligibility.testhelper.EligibilityResponseTestDataFactory.aNonMatchingEligibilityResponse;
+import static uk.gov.dhsc.htbhf.eligibility.testhelper.EligibilityResponseTestDataFactory.anEligibleEligibilityResponse;
+import static uk.gov.dhsc.htbhf.eligibility.testhelper.PersonDTOTestDataFactory.aPerson;
+import static uk.gov.dhsc.htbhf.eligibility.testhelper.PersonDTOTestDataFactory.aPersonWithNoNino;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
