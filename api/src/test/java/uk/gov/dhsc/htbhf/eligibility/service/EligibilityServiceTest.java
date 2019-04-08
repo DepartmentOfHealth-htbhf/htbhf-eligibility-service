@@ -28,8 +28,8 @@ import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.PENDING;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.DWPEligibilityResponseTestDataFactory.aDWPEligibilityResponseWithStatus;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.HMRCEligibilityResponseTestDataFactory.anHMRCEligibilityResponseWithStatus;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.PersonDTOTestDataFactory.aPerson;
-import static uk.gov.dhsc.htbhf.eligibility.testhelper.TestConstants.DWP_HOUSEHOLD_IDENTIFIER;
-import static uk.gov.dhsc.htbhf.eligibility.testhelper.TestConstants.HMRC_HOUSEHOLD_IDENTIFIER;
+import static uk.gov.dhsc.htbhf.eligibility.testhelper.TestConstants.SIMPSON_DWP_HOUSEHOLD_IDENTIFIER;
+import static uk.gov.dhsc.htbhf.eligibility.testhelper.TestConstants.SIMPSON_HMRC_HOUSEHOLD_IDENTIFIER;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -57,8 +57,8 @@ class EligibilityServiceTest {
         EligibilityResponse response = eligibilityService.checkEligibility(person);
 
         assertThat(response.getEligibilityStatus()).isEqualTo(ELIGIBLE);
-        assertThat(response.getDwpHouseholdIdentifier()).isEqualTo(DWP_HOUSEHOLD_IDENTIFIER);
-        assertThat(response.getHmrcHouseholdIdentifier()).isEqualTo(HMRC_HOUSEHOLD_IDENTIFIER);
+        assertThat(response.getDwpHouseholdIdentifier()).isEqualTo(SIMPSON_DWP_HOUSEHOLD_IDENTIFIER);
+        assertThat(response.getHmrcHouseholdIdentifier()).isEqualTo(SIMPSON_HMRC_HOUSEHOLD_IDENTIFIER);
         verify(statusCalculator).determineStatus(dwpEligibilityResponse, hmrcEligibilityResponse);
         verifyDWPRequestSent(person);
         verifyHMRCRequestSent(person);
@@ -76,7 +76,7 @@ class EligibilityServiceTest {
         EligibilityResponse response = eligibilityService.checkEligibility(person);
 
         assertThat(response.getEligibilityStatus()).isEqualTo(ELIGIBLE);
-        assertThat(response.getDwpHouseholdIdentifier()).isEqualTo(DWP_HOUSEHOLD_IDENTIFIER);
+        assertThat(response.getDwpHouseholdIdentifier()).isEqualTo(SIMPSON_DWP_HOUSEHOLD_IDENTIFIER);
         assertThat(response.getHmrcHouseholdIdentifier()).isNull();
         verify(statusCalculator).determineStatus(dwpEligibilityResponse, hmrcEligibilityResponse);
         verifyDWPRequestSent(person);
@@ -96,7 +96,7 @@ class EligibilityServiceTest {
 
         assertThat(response.getEligibilityStatus()).isEqualTo(ELIGIBLE);
         assertThat(response.getDwpHouseholdIdentifier()).isNull();
-        assertThat(response.getHmrcHouseholdIdentifier()).isEqualTo(HMRC_HOUSEHOLD_IDENTIFIER);
+        assertThat(response.getHmrcHouseholdIdentifier()).isEqualTo(SIMPSON_HMRC_HOUSEHOLD_IDENTIFIER);
         verify(statusCalculator).determineStatus(dwpEligibilityResponse, hmrcEligibilityResponse);
         verifyDWPRequestSent(person);
         verifyHMRCRequestSent(person);

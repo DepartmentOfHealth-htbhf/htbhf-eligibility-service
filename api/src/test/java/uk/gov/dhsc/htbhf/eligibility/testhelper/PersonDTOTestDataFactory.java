@@ -36,10 +36,10 @@ public class PersonDTOTestDataFactory {
 
     public static PersonDTO.PersonDTOBuilder buildDefaultPerson() {
         return PersonDTO.builder()
-                .dateOfBirth(DOB)
-                .nino(NINO)
+                .dateOfBirth(LISA_DATE_OF_BIRTH)
+                .nino(LISA_NINO)
                 .address(aValidAddress())
-                .firstName(FIRST_NAME)
-                .lastName(LAST_NAME);
+                .firstName(LISA_FIRST_NAME)
+                .lastName(SIMPSON_LAST_NAME);
     }
 }
