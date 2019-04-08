@@ -1,14 +1,18 @@
 package uk.gov.dhsc.htbhf.eligibility.service;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import uk.gov.dhsc.htbhf.eligibility.exception.NoEligibilityStatusProvidedException;
 import uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus;
 import uk.gov.dhsc.htbhf.eligibility.model.dwp.DWPEligibilityResponse;
 import uk.gov.dhsc.htbhf.eligibility.model.hmrc.HMRCEligibilityResponse;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.catchThrowable;
 import static uk.gov.dhsc.htbhf.eligibility.helper.DWPEligibilityResponseTestFactory.aDWPEligibilityResponseWithStatus;
 import static uk.gov.dhsc.htbhf.eligibility.helper.HMRCEligibilityResponseTestFactory.anHMRCEligibilityResponseWithStatus;
+import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.ELIGIBLE;
 
 public class EligibilityStatusCalculatorTest {
 
@@ -50,4 +54,30 @@ public class EligibilityStatusCalculatorTest {
 
         assertThat(result).isEqualTo(responseStatus);
     }
+
+
+    @Test
+    void shouldThrowExceptionWhenNotGivenEligibilityStatusInDWPResponse() {
+        shouldThrowExceptionWhenNotGivenEligibilityStatusInResponse(null, ELIGIBLE);
+    }
+
+    @Test
+    void shouldThrowExceptionWhenNotGivenEligibilityStatusInHMRCResponse() {
+        shouldThrowExceptionWhenNotGivenEligibilityStatusInResponse(ELIGIBLE, null);
+    }
+
+    @Test
+    void shouldThrowExceptionWhenNotGivenEligibilityStatusInDWPOrHMRCResponse() {
+        shouldThrowExceptionWhenNotGivenEligibilityStatusInResponse(null, null);
+    }
+
+    private void shouldThrowExceptionWhenNotGivenEligibilityStatusInResponse(EligibilityStatus dwpStatus, EligibilityStatus hmrcStatus) {
+        DWPEligibilityResponse dwpEligibilityResponse = aDWPEligibilityResponseWithStatus(dwpStatus);
+        HMRCEligibilityResponse hmrcEligibilityResponse = anHMRCEligibilityResponseWithStatus(hmrcStatus);
+
+        Throwable thrown = catchThrowable(() -> statusCalculator.determineStatus(dwpEligibilityResponse, hmrcEligibilityResponse));
+
+        assertThat(thrown).isInstanceOf(NoEligibilityStatusProvidedException.class);
+    }
+
 }

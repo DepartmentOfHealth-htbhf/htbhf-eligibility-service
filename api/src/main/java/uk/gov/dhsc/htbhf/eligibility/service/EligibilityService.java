@@ -61,6 +61,7 @@ public class EligibilityService {
         CompletableFuture<HMRCEligibilityResponse> hmrcEligibilityResponse = hmrcClient.checkEligibility(hmrcEligibilityRequest);
 
         CompletableFuture.allOf(dwpEligibilityResponse, hmrcEligibilityResponse);
+
         return buildEligibilityResponse(dwpEligibilityResponse.get(), hmrcEligibilityResponse.get());
     }
 
@@ -98,5 +99,4 @@ public class EligibilityService {
 
         return builder.build();
     }
-
 }
