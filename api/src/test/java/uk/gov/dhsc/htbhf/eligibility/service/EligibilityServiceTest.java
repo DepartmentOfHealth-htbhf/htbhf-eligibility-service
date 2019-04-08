@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import uk.gov.dhsc.htbhf.eligibility.exception.NoEligibilityStatusProvidedException;
 import uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse;
-import uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus;
 import uk.gov.dhsc.htbhf.eligibility.model.PersonDTO;
 import uk.gov.dhsc.htbhf.eligibility.model.dwp.DWPEligibilityRequest;
 import uk.gov.dhsc.htbhf.eligibility.model.dwp.DWPEligibilityResponse;
@@ -21,7 +19,6 @@ import java.util.concurrent.ExecutionException;
 
 import static java.util.concurrent.CompletableFuture.completedFuture;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
@@ -118,35 +115,6 @@ class EligibilityServiceTest {
         assertThat(response.getDwpHouseholdIdentifier()).isNull();
         assertThat(response.getHmrcHouseholdIdentifier()).isNull();
         verify(statusCalculator).determineStatus(dwpEligibilityResponse, hmrcEligibilityResponse);
-        verifyDWPRequestSent(person);
-        verifyHMRCRequestSent(person);
-    }
-
-    @Test
-    void shouldThrowExceptionWhenNotGivenEligibilityStatusInDWPResponse() {
-        shouldThrowExceptionWhenNotGivenEligibilityStatusInResponse(null, ELIGIBLE);
-    }
-
-    @Test
-    void shouldThrowExceptionWhenNotGivenEligibilityStatusInHMRCResponse() {
-        shouldThrowExceptionWhenNotGivenEligibilityStatusInResponse(ELIGIBLE, null);
-    }
-
-    @Test
-    void shouldThrowExceptionWhenNotGivenEligibilityStatusInDWPOrHMRCResponse() {
-        shouldThrowExceptionWhenNotGivenEligibilityStatusInResponse(null, null);
-    }
-
-    private void shouldThrowExceptionWhenNotGivenEligibilityStatusInResponse(EligibilityStatus dwpStatus, EligibilityStatus hmrcStatus) {
-        PersonDTO person = aPerson();
-        DWPEligibilityResponse dwpEligibilityResponse = aDWPEligibilityResponseWithStatus(dwpStatus);
-        given(dwpClient.checkEligibility(any())).willReturn(completedFuture(dwpEligibilityResponse));
-        HMRCEligibilityResponse hmrcEligibilityResponse = anHMRCEligibilityResponseWithStatus(hmrcStatus);
-        given(hmrcClient.checkEligibility(any())).willReturn(completedFuture(hmrcEligibilityResponse));
-
-        Throwable thrown = catchThrowable(() -> eligibilityService.checkEligibility(person));
-
-        assertThat(thrown).isInstanceOf(NoEligibilityStatusProvidedException.class);
         verifyDWPRequestSent(person);
         verifyHMRCRequestSent(person);
     }

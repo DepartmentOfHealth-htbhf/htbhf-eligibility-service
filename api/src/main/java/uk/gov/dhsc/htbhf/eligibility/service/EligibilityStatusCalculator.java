@@ -1,6 +1,7 @@
 package uk.gov.dhsc.htbhf.eligibility.service;
 
 import org.springframework.stereotype.Service;
+import uk.gov.dhsc.htbhf.eligibility.exception.NoEligibilityStatusProvidedException;
 import uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus;
 import uk.gov.dhsc.htbhf.eligibility.model.dwp.DWPEligibilityResponse;
 import uk.gov.dhsc.htbhf.eligibility.model.hmrc.HMRCEligibilityResponse;
@@ -26,9 +27,13 @@ public class EligibilityStatusCalculator {
      * @param dwpEligibilityResponse  dwp response
      * @param hmrcEligibilityResponse hmrc response
      * @return the calculated eligibility status
+     * @throws NoEligibilityStatusProvidedException if neither HMRC nor DWP provide an EligibilityStatus
      */
     public EligibilityStatus determineStatus(DWPEligibilityResponse dwpEligibilityResponse,
                                              HMRCEligibilityResponse hmrcEligibilityResponse) {
+
+        assertResponsesContainEligibilityStatus(dwpEligibilityResponse, hmrcEligibilityResponse);
+
         EligibilityStatus dwpStatus = dwpEligibilityResponse.getEligibilityStatus();
         EligibilityStatus hmrcStatus = hmrcEligibilityResponse.getEligibilityStatus();
 
@@ -44,4 +49,16 @@ public class EligibilityStatusCalculator {
 
         return NOMATCH;
     }
+
+
+    private void assertResponsesContainEligibilityStatus(DWPEligibilityResponse dwpEligibilityResponse,
+                                                         HMRCEligibilityResponse hmrcEligibilityResponse) {
+        if (dwpEligibilityResponse.getEligibilityStatus() == null) {
+            throw new NoEligibilityStatusProvidedException("No eligibilityStatus returned by DWP: " + dwpEligibilityResponse);
+        }
+        if (hmrcEligibilityResponse.getEligibilityStatus() == null) {
+            throw new NoEligibilityStatusProvidedException("No eligibilityStatus returned by HMRC: " + hmrcEligibilityResponse);
+        }
+    }
+
 }
