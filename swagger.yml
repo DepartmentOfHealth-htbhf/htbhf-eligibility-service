@@ -81,6 +81,17 @@ definitions:
         - "DUPLICATE"
       hmrcHouseholdIdentifier:
         type: "string"
+      numberOfChildrenUnderFour:
+        type: "integer"
+        format: "int32"
+        example: 1
+        description: "The number of children under 4 that the person has (which will\
+          \ include the number of children under 1)"
+      numberOfChildrenUnderOne:
+        type: "integer"
+        format: "int32"
+        example: 1
+        description: "The number of children under 1 that the person has"
     title: "EligibilityResponse"
   PersonDTO:
     type: "object"

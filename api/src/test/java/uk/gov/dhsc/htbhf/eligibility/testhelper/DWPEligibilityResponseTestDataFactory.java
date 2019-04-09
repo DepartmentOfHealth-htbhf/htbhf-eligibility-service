@@ -9,16 +9,18 @@ import static uk.gov.dhsc.htbhf.eligibility.testhelper.TestConstants.SIMPSON_DWP
 public class DWPEligibilityResponseTestDataFactory {
 
     public static DWPEligibilityResponse aDWPEligibilityResponse() {
-        return DWPEligibilityResponse.builder()
-                .eligibilityStatus(ELIGIBLE)
-                .householdIdentifier(SIMPSON_DWP_HOUSEHOLD_IDENTIFIER)
+        return aDwpEligibilityResponseBuilder(ELIGIBLE)
                 .build();
     }
 
     public static DWPEligibilityResponse aDWPEligibilityResponseWithStatus(EligibilityStatus eligibilityStatus) {
+        return aDwpEligibilityResponseBuilder(eligibilityStatus)
+                .build();
+    }
+
+    public static DWPEligibilityResponse.DWPEligibilityResponseBuilder aDwpEligibilityResponseBuilder(EligibilityStatus eligibilityStatus) {
         return DWPEligibilityResponse.builder()
                 .eligibilityStatus(eligibilityStatus)
-                .householdIdentifier(SIMPSON_DWP_HOUSEHOLD_IDENTIFIER)
-                .build();
+                .householdIdentifier(SIMPSON_DWP_HOUSEHOLD_IDENTIFIER);
     }
 }

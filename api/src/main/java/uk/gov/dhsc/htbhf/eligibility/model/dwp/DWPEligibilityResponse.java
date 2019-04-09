@@ -18,4 +18,10 @@ public class DWPEligibilityResponse {
     @JsonProperty("householdIdentifier")
     private String householdIdentifier;
 
+    @JsonProperty("numberOfChildrenUnderOne")
+    private final Integer numberOfChildrenUnderOne;
+
+    @JsonProperty("numberOfChildrenUnderFour")
+    private final Integer numberOfChildrenUnderFour;
+
 }
