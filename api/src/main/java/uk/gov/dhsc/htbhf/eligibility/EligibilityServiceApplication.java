@@ -24,11 +24,12 @@ public class EligibilityServiceApplication {
 
     @Bean
     public TaskExecutor taskExecutor(@Value("${taskexecutor.threadpool.min-size}") Integer threadpoolMinSize,
-                                     @Value("${taskexecutor.threadpool.max-size}") Integer threadpoolMaxSize) {
+                                     @Value("${taskexecutor.threadpool.max-size}") Integer threadpoolMaxSize,
+                                     ContextCopyingDecorator contextCopyingDecorator) {
         var executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(threadpoolMinSize);
         executor.setMaxPoolSize(threadpoolMaxSize);
-        executor.setTaskDecorator(new ContextCopyingDecorator());
+        executor.setTaskDecorator(contextCopyingDecorator);
         return executor;
     }
 }
