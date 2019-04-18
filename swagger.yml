@@ -65,9 +65,22 @@ definitions:
         pattern: "([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\\\
           s?[0-9][A-Za-z]{2})"
     title: "AddressDTO"
+  ChildDTO:
+    type: "object"
+    properties:
+      dateOfBirth:
+        type: "string"
+        format: "date"
+        description: "The date of birth of the child"
+    title: "ChildDTO"
+    description: "A child in a household."
   EligibilityResponse:
     type: "object"
     properties:
+      children:
+        type: "array"
+        items:
+          $ref: "#/definitions/ChildDTO"
       dwpHouseholdIdentifier:
         type: "string"
       eligibilityStatus:

@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Builder
 @AllArgsConstructor(onConstructor_ = {@JsonCreator})
@@ -28,4 +30,7 @@ public class EligibilityResponse {
     @JsonProperty("numberOfChildrenUnderFour")
     @ApiModelProperty(notes = "The number of children under 4 that the person has (which will include the number of children under 1)", example = "1")
     private final Integer numberOfChildrenUnderFour;
+
+    @JsonProperty("children")
+    private final List<ChildDTO> children;
 }
