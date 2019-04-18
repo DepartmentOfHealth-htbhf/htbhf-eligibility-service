@@ -1,35 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EligibilityServiceApplication.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">htbhf-eligibility-service</a> &gt; <a href="index.source.html" class="el_package">uk.gov.dhsc.htbhf.eligibility</a> &gt; <span class="el_source">EligibilityServiceApplication.java</span></div><h1>EligibilityServiceApplication.java</h1><pre class="source lang-java linenums">package uk.gov.dhsc.htbhf.eligibility;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.event.EventListener;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import uk.gov.dhsc.htbhf.CommonRestConfiguration;
+import uk.gov.dhsc.htbhf.logging.EventLogger;
+import uk.gov.dhsc.htbhf.logging.LoggingConfiguration;
+import uk.gov.dhsc.htbhf.logging.event.ApplicationStartedEvent;
+
 
 @SuppressWarnings(&quot;PMD.UseUtilityClass&quot;)
 @SpringBootApplication
 @EnableSwagger2
 @EnableAsync
-@Import(CommonRestConfiguration.class)
-<span class="fc" id="L19">public class EligibilityServiceApplication {</span>
+@Import({CommonRestConfiguration.class, LoggingConfiguration.class})
+<span class="fc" id="L26">public class EligibilityServiceApplication {</span>
+
+    @Value(&quot;${app.version:}&quot;) // use APP_VERSION env variable if available, otherwise give no version info
+    private String appVersion;
+
+    @Value(&quot;${instance.index:}&quot;) // use INSTANCE_INDEX env variable if available, otherwise give no index info
+    private String instanceIndex;
+
+    @Value(&quot;${vcap.application.application_id:}&quot;) // the id of the application as provided by cf
+    private String applicationId;
+
+    @Autowired
+    private EventLogger eventLogger;
 
     public static void main(String[] args) {
-<span class="nc" id="L22">        SpringApplication.run(EligibilityServiceApplication.class, args);</span>
-<span class="nc" id="L23">    }</span>
+<span class="nc" id="L41">        SpringApplication.run(EligibilityServiceApplication.class, args);</span>
+<span class="nc" id="L42">    }</span>
+
+    @EventListener(ApplicationReadyEvent.class)
+    public void logAfterStartup() {
+<span class="fc" id="L46">        eventLogger.logEvent(ApplicationStartedEvent.builder()</span>
+<span class="fc" id="L47">                .applicationId(applicationId)</span>
+<span class="fc" id="L48">                .applicationVersion(appVersion)</span>
+<span class="fc" id="L49">                .instanceIndex(instanceIndex)</span>
+<span class="fc" id="L50">                .build()</span>
+        );
+<span class="fc" id="L52">    }</span>
 
     @Bean
     public TaskExecutor taskExecutor(@Value(&quot;${taskexecutor.threadpool.min-size}&quot;) Integer threadpoolMinSize,
-                                     @Value(&quot;${taskexecutor.threadpool.max-size}&quot;) Integer threadpoolMaxSize) {
-<span class="fc" id="L28">        var executor = new ThreadPoolTaskExecutor();</span>
-<span class="fc" id="L29">        executor.setCorePoolSize(threadpoolMinSize);</span>
-<span class="fc" id="L30">        executor.setMaxPoolSize(threadpoolMaxSize);</span>
-<span class="fc" id="L31">        executor.setTaskDecorator(new ContextCopyingDecorator());</span>
-<span class="fc" id="L32">        return executor;</span>
+                                     @Value(&quot;${taskexecutor.threadpool.max-size}&quot;) Integer threadpoolMaxSize,
+                                     ContextCopyingDecorator contextCopyingDecorator) {
+<span class="fc" id="L58">        var executor = new ThreadPoolTaskExecutor();</span>
+<span class="fc" id="L59">        executor.setCorePoolSize(threadpoolMinSize);</span>
+<span class="fc" id="L60">        executor.setMaxPoolSize(threadpoolMaxSize);</span>
+<span class="fc" id="L61">        executor.setTaskDecorator(contextCopyingDecorator);</span>
+<span class="fc" id="L62">        return executor;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
