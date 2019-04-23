@@ -60,8 +60,8 @@ public class EligibilityResponseFactory {
     }
 
     private List<ChildDTO> createChildren(DWPEligibilityResponse dwpResponse, HMRCEligibilityResponse hmrcResponse) {
-        List<ChildDTO> dwpChildren = getListOfEmptyIfNull(dwpResponse.getChildren());
-        List<ChildDTO> hmrcChildren = getListOfEmptyIfNull(hmrcResponse.getChildren());
+        List<ChildDTO> dwpChildren = getEmptyListIfNull(dwpResponse.getChildren());
+        List<ChildDTO> hmrcChildren = getEmptyListIfNull(hmrcResponse.getChildren());
 
         if (dwpChildren.size() >= hmrcChildren.size()) {
             return dwpResponse.getChildren();
@@ -71,7 +71,7 @@ public class EligibilityResponseFactory {
     }
 
     // Return the list if it's not null, otherwise return any empty list.
-    private List<ChildDTO> getListOfEmptyIfNull(List<ChildDTO> children) {
+    private List<ChildDTO> getEmptyListIfNull(List<ChildDTO> children) {
         return firstNonNull(children, ImmutableList.of());
     }
 
