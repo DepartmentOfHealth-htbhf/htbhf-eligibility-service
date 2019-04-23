@@ -7,11 +7,14 @@ import org.junit.jupiter.params.provider.EnumSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import uk.gov.dhsc.htbhf.eligibility.model.ChildDTO;
 import uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse;
 import uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus;
 import uk.gov.dhsc.htbhf.eligibility.model.dwp.DWPEligibilityResponse;
 import uk.gov.dhsc.htbhf.eligibility.model.hmrc.HMRCEligibilityResponse;
 import uk.gov.dhsc.htbhf.eligibility.service.EligibilityStatusCalculator;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
@@ -20,6 +23,7 @@ import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.INELIGIBLE;
 import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.PENDING;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.DWPEligibilityResponseTestDataFactory.aDWPEligibilityResponseWithStatus;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.DWPEligibilityResponseTestDataFactory.aDwpEligibilityResponseBuilder;
+import static uk.gov.dhsc.htbhf.eligibility.testhelper.DWPEligibilityResponseTestDataFactory.createChildren;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.HMRCEligibilityResponseTestDataFactory.anHMRCEligibilityResponseBuilder;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.HMRCEligibilityResponseTestDataFactory.anHMRCEligibilityResponseWithStatus;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.TestConstants.SIMPSON_DWP_HOUSEHOLD_IDENTIFIER;
@@ -33,7 +37,6 @@ class EligibilityResponseFactoryTest {
 
     @InjectMocks
     EligibilityResponseFactory factory;
-
 
     @ParameterizedTest
     @EnumSource(EligibilityStatus.class)
@@ -97,13 +100,16 @@ class EligibilityResponseFactoryTest {
 
     @Test
     void shouldUseMaximumCountOfChildren() {
+        List<ChildDTO> children = createChildren(1, 2);
         DWPEligibilityResponse dwpEligibilityResponse = aDwpEligibilityResponseBuilder(ELIGIBLE)
                 .numberOfChildrenUnderOne(1)
                 .numberOfChildrenUnderFour(2)
+                .children(children)
                 .build();
         HMRCEligibilityResponse hmrcEligibilityResponse = anHMRCEligibilityResponseBuilder(ELIGIBLE)
                 .numberOfChildrenUnderOne(0)
                 .numberOfChildrenUnderFour(0)
+                .children(null)
                 .build();
         given(statusCalculator.determineStatus(dwpEligibilityResponse, hmrcEligibilityResponse)).willReturn(ELIGIBLE);
 
@@ -111,7 +117,7 @@ class EligibilityResponseFactoryTest {
 
         assertThat(response.getNumberOfChildrenUnderOne()).isEqualTo(1);
         assertThat(response.getNumberOfChildrenUnderFour()).isEqualTo(2);
-
+        assertThat(response.getChildren()).isEqualTo(children);
     }
 
     @Test
@@ -119,10 +125,13 @@ class EligibilityResponseFactoryTest {
         DWPEligibilityResponse dwpEligibilityResponse = aDwpEligibilityResponseBuilder(ELIGIBLE)
                 .numberOfChildrenUnderOne(null)
                 .numberOfChildrenUnderFour(null)
+                .children(null)
                 .build();
+        List<ChildDTO> children = createChildren(1, 2);
         HMRCEligibilityResponse hmrcEligibilityResponse = anHMRCEligibilityResponseBuilder(ELIGIBLE)
                 .numberOfChildrenUnderOne(1)
                 .numberOfChildrenUnderFour(2)
+                .children(children)
                 .build();
         given(statusCalculator.determineStatus(dwpEligibilityResponse, hmrcEligibilityResponse)).willReturn(ELIGIBLE);
 
@@ -130,6 +139,7 @@ class EligibilityResponseFactoryTest {
 
         assertThat(response.getNumberOfChildrenUnderOne()).isEqualTo(1);
         assertThat(response.getNumberOfChildrenUnderFour()).isEqualTo(2);
+        assertThat(response.getChildren()).isEqualTo(children);
 
     }
 
@@ -138,10 +148,12 @@ class EligibilityResponseFactoryTest {
         DWPEligibilityResponse dwpEligibilityResponse = aDwpEligibilityResponseBuilder(ELIGIBLE)
                 .numberOfChildrenUnderOne(null)
                 .numberOfChildrenUnderFour(null)
+                .children(null)
                 .build();
         HMRCEligibilityResponse hmrcEligibilityResponse = anHMRCEligibilityResponseBuilder(ELIGIBLE)
                 .numberOfChildrenUnderOne(null)
                 .numberOfChildrenUnderFour(null)
+                .children(null)
                 .build();
         given(statusCalculator.determineStatus(dwpEligibilityResponse, hmrcEligibilityResponse)).willReturn(ELIGIBLE);
 
@@ -149,6 +161,6 @@ class EligibilityResponseFactoryTest {
 
         assertThat(response.getNumberOfChildrenUnderOne()).isNull();
         assertThat(response.getNumberOfChildrenUnderFour()).isNull();
-
+        assertThat(response.getChildren()).isNull();
     }
 }

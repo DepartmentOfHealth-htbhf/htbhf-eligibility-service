@@ -5,11 +5,14 @@ import java.time.LocalDate;
 
 public final class TestConstants {
 
-    public static final LocalDate LISA_DATE_OF_BIRTH = LocalDate.parse("1985-12-31");
-    public static final String LISA_NINO = "EB123456C";
-    public static final String LISA_FIRST_NAME = "Lisa";
+    public static final LocalDate HOMER_DATE_OF_BIRTH = LocalDate.parse("1985-12-31");
+    public static final String HOMER_NINO = "EB123456C";
+    public static final String HOMER_FIRST_NAME = "Lisa";
     public static final String SIMPSON_LAST_NAME = "Simpson";
     public static final LocalDate FUTURE_DATE = LocalDate.now().plusMonths(1);
+
+    public static final LocalDate MAGGIE_DOB = LocalDate.now().minusMonths(6);
+    public static final LocalDate LISA_DOB = LocalDate.now().minusMonths(24);
 
     public static final String SIMPSONS_ADDRESS_LINE_1 = "742 Evergreen Terrace";
     public static final String SIMPSONS_ADDRESS_LINE_2 = "Suburb";

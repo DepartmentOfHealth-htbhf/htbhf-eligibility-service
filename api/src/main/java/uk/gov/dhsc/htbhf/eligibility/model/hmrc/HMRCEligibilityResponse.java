@@ -5,7 +5,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import uk.gov.dhsc.htbhf.eligibility.model.ChildDTO;
 import uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus;
+
+import java.util.List;
 
 @Data
 @Builder
@@ -24,4 +27,6 @@ public class HMRCEligibilityResponse {
     @JsonProperty("numberOfChildrenUnderFour")
     private final Integer numberOfChildrenUnderFour;
 
+    @JsonProperty("children")
+    private final List<ChildDTO> children;
 }
