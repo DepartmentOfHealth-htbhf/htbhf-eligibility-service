@@ -31,6 +31,10 @@ public class EligibilityResponseFactory {
      * If either is INELIGIBLE then INELIGIBLE
      * Otherwise NOMATCH
      *
+     * <p>The children returned will be from which ever response contains the most number of children. The is because when someone has a child
+     * (or adopts etc) they will move from CTC to UC, so in the cycle in which they transfer the CTC information will probably be out of date
+     * (having one fewer children) than UTC.
+     *
      * @param dwpResponse  dwp response
      * @param hmrcResponse hmrc response
      * @return an EligibilityResponse
