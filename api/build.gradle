@@ -43,6 +43,7 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation "uk.gov.dhsc.htbhf:htbhf-common-rest:latest.release"
     implementation "uk.gov.dhsc.htbhf:htbhf-common-logging:latest.release"
