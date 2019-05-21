@@ -5,6 +5,9 @@ buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
+    ext {
+        jacksonVersion = '2.9.9'
+    }
 }
 
 plugins {
