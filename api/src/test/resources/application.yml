@@ -3,12 +3,13 @@ server:
 
 eligibility-check-period-length: 28
 
+# set dwp and hmrc ports to be the same so they can be stubbed with single wiremock instances.
 dwp:
   base-uri: ${DWP_API_URI:http://localhost:8110}
   uc-monthly-income-threshold: 408.00
 
 hmrc:
-  base-uri: ${HMRC_API_URI:http://localhost:8130}
+  base-uri: ${HMRC_API_URI:http://localhost:8110}
   ctc-annual-income-threshold: 16190.00
 
 taskexecutor:

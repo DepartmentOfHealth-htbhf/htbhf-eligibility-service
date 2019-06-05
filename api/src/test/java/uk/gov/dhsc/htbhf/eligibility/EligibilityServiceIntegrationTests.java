@@ -1,80 +1,86 @@
 package uk.gov.dhsc.htbhf.eligibility;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.tomakehurst.wiremock.client.WireMock;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.*;
+import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.web.client.RestClientException;
-import org.springframework.web.client.RestTemplate;
 import uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse;
 import uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus;
 import uk.gov.dhsc.htbhf.eligibility.model.PersonDTO;
-import uk.gov.dhsc.htbhf.eligibility.model.dwp.DWPEligibilityRequest;
 import uk.gov.dhsc.htbhf.eligibility.model.dwp.DWPEligibilityResponse;
-import uk.gov.dhsc.htbhf.eligibility.model.hmrc.HMRCEligibilityRequest;
 import uk.gov.dhsc.htbhf.eligibility.model.hmrc.HMRCEligibilityResponse;
 import uk.gov.dhsc.htbhf.errorhandler.ErrorResponse;
 
 import java.net.URI;
-import java.time.LocalDate;
 
+import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.springframework.http.HttpMethod.POST;
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.HttpStatus.OK;
 import static uk.gov.dhsc.htbhf.assertions.IntegrationTestAssertions.assertInternalServerErrorResponse;
+import static uk.gov.dhsc.htbhf.assertions.IntegrationTestAssertions.assertValidationErrorInResponse;
 import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.ELIGIBLE;
 import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.NO_MATCH;
-import static uk.gov.dhsc.htbhf.eligibility.testhelper.DWPEligibilityRequestTestDataFactory.aDWPEligibilityRequestWithEligibilityDates;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.DWPEligibilityResponseTestDataFactory.aDWPEligibilityResponseWithStatus;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.EligibilityResponseTestDataFactory.anEligibilityResponseWithDwpHouseholdIdentifier;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.EligibilityResponseTestDataFactory.anEligibilityResponseWithHmrcHouseholdIdentifier;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.EligibilityResponseTestDataFactory.anEligibilityResponseWithStatus;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.EligibilityResponseTestDataFactory.anEligibleEligibilityResponse;
-import static uk.gov.dhsc.htbhf.eligibility.testhelper.HMRCEligibilityRequestTestDataFactory.anHMRCEligibilityRequestWithEligibilityDates;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.HMRCEligibilityResponseTestDataFactory.anHMRCEligibilityResponseWithStatus;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.PersonDTOTestDataFactory.aPerson;
+import static uk.gov.dhsc.htbhf.eligibility.testhelper.PersonDTOTestDataFactory.aPersonWithNoNino;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.TestConstants.SIMPSON_DWP_HOUSEHOLD_IDENTIFIER;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.TestConstants.SIMPSON_HMRC_HOUSEHOLD_IDENTIFIER;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class EligibilityServiceIntegrationTests {
+@AutoConfigureWireMock(port = 8110)
+class EligibilityServiceIntegrationTests {
 
     private static final URI ENDPOINT = URI.create("/v1/eligibility");
+    private static final String DWP_ENDPOINT = "/v1/dwp/eligibility";
+    private static final String HMRC_ENDPOINT = "/v1/hmrc/eligibility";
 
     @Autowired
     private TestRestTemplate restTemplate;
 
-    @MockBean
-    private RestTemplate restTemplateWithIdHeaders;
+    @Autowired
+    private ObjectMapper objectMapper;
 
-    @Value("${hmrc.base-uri}")
-    private String hmrcUri;
-
-    @Value("${dwp.base-uri}")
-    private String dwpUri;
-
-    @Value("${eligibility-check-period-length}")
-    private Integer eligibilityCheckPeriodLength;
+    @AfterEach
+    void tearDown() {
+        WireMock.reset();
+    }
 
     @Test
-    void shouldReturnEligibleResponseGivenEligibleResponseReturnedFromBothDwpAndHmrc() {
+    void shouldReturnEligibleResponseGivenEligibleResponseReturnedFromBothDwpAndHmrc() throws JsonProcessingException {
         runIntegrationTestReturningEligibilityResponse(ELIGIBLE, ELIGIBLE, anEligibleEligibilityResponse());
+    }
+
+    @Test
+    void shouldReturnBadRequestForMissingNino() {
+        PersonDTO person = aPersonWithNoNino();
+
+        ResponseEntity<ErrorResponse> response = restTemplate.exchange(buildRequestEntity(person), ErrorResponse.class);
+
+        assertValidationErrorInResponse(response, "nino", "must not be null");
     }
 
     @ParameterizedTest(name = "Should return ELIGIBLE response from eligibility-service when DWP status returned is ELIGIBLE and HMRC is {0}")
@@ -84,7 +90,7 @@ public class EligibilityServiceIntegrationTests {
             "ERROR",
             "NO_MATCH"
     })
-    void shouldReturnEligibleResponseGivenEligibleResponseFromDwp(EligibilityStatus hmrcResponseEligibilityStatus) {
+    void shouldReturnEligibleResponseGivenEligibleResponseFromDwp(EligibilityStatus hmrcResponseEligibilityStatus) throws JsonProcessingException {
         runIntegrationTestReturningEligibilityResponse(ELIGIBLE,
                 hmrcResponseEligibilityStatus,
                 anEligibilityResponseWithDwpHouseholdIdentifier(ELIGIBLE, SIMPSON_DWP_HOUSEHOLD_IDENTIFIER));
@@ -110,7 +116,7 @@ public class EligibilityServiceIntegrationTests {
     })
     void shouldReturnEligibilityResponseGivenANonEligibleResponseFromEitherDwpOrHmrc(EligibilityStatus dwpResponseEligibilityStatus,
                                                                                      EligibilityStatus hmrcResponseEligibilityStatus,
-                                                                                     EligibilityStatus expectedStatus) {
+                                                                                     EligibilityStatus expectedStatus) throws JsonProcessingException {
         runIntegrationTestReturningEligibilityResponse(dwpResponseEligibilityStatus,
                 hmrcResponseEligibilityStatus,
                 anEligibilityResponseWithStatus(expectedStatus));
@@ -123,21 +129,19 @@ public class EligibilityServiceIntegrationTests {
             "INELIGIBLE",
             "NO_MATCH"
     })
-    void shouldReturnEligibleResponseGivenEligibleResponseFromHmrc(EligibilityStatus dwpResponseEligibilityStatus) {
+    void shouldReturnEligibleResponseGivenEligibleResponseFromHmrc(EligibilityStatus dwpResponseEligibilityStatus) throws JsonProcessingException {
         runIntegrationTestReturningEligibilityResponse(dwpResponseEligibilityStatus,
                 ELIGIBLE,
                 anEligibilityResponseWithHmrcHouseholdIdentifier(ELIGIBLE, SIMPSON_HMRC_HOUSEHOLD_IDENTIFIER));
     }
 
     @Test
-    void shouldReturnInternalServerErrorWhenExceptionFromDwpRestCall() {
+    void shouldReturnInternalServerErrorWhenExceptionFromDwpRestCall() throws JsonProcessingException {
         //Given
         PersonDTO person = aPerson();
-        given(restTemplateWithIdHeaders.postForEntity(anyString(), any(), eq(DWPEligibilityResponse.class)))
-                .willThrow(new RestClientException("Testing a failed REST call"));
+        stubDWPEndpointWithInternalServerError();
         HMRCEligibilityResponse hmrcEligibilityResponse = anHMRCEligibilityResponseWithStatus(ELIGIBLE);
-        given(restTemplateWithIdHeaders.postForEntity(anyString(), any(), eq(HMRCEligibilityResponse.class)))
-                .willReturn(new ResponseEntity<>(hmrcEligibilityResponse, OK));
+        stubHMRCEndpointWithSuccessfulResponse(hmrcEligibilityResponse);
 
         //When
         ResponseEntity<ErrorResponse> response = restTemplate.exchange(buildRequestEntity(person), ErrorResponse.class);
@@ -145,20 +149,16 @@ public class EligibilityServiceIntegrationTests {
         //Then
         assertThat(response).isNotNull();
         assertInternalServerErrorResponse(response);
-        verify(restTemplateWithIdHeaders).postForEntity(buildDwpUri(), buildDwpExpectedRequest(), DWPEligibilityResponse.class);
-        verify(restTemplateWithIdHeaders).postForEntity(buildHmrcUri(), buildHmrcExpectedRequest(), HMRCEligibilityResponse.class);
-        verifyNoMoreInteractions(restTemplateWithIdHeaders);
+        verifyDWPAndHMRCEndpointsCalled();
     }
 
     @Test
-    void shouldReturnInternalServerErrorWhenExceptionFromHmrcRestCall() {
+    void shouldReturnInternalServerErrorWhenExceptionFromHmrcRestCall() throws JsonProcessingException {
         //Given
         PersonDTO person = aPerson();
         DWPEligibilityResponse dwpEligibilityResponse = aDWPEligibilityResponseWithStatus(ELIGIBLE);
-        given(restTemplateWithIdHeaders.postForEntity(anyString(), any(), eq(DWPEligibilityResponse.class)))
-                .willReturn(new ResponseEntity<>(dwpEligibilityResponse, OK));
-        given(restTemplateWithIdHeaders.postForEntity(anyString(), any(), eq(HMRCEligibilityResponse.class)))
-                .willThrow(new RestClientException("Testing a failed REST call"));
+        stubDWPEndpointWithSuccessfulResponse(dwpEligibilityResponse);
+        stubHMRCEndpointWithInternalServerError();
 
         //When
         ResponseEntity<ErrorResponse> response = restTemplate.exchange(buildRequestEntity(person), ErrorResponse.class);
@@ -166,22 +166,18 @@ public class EligibilityServiceIntegrationTests {
         //Then
         assertThat(response).isNotNull();
         assertInternalServerErrorResponse(response);
-        verify(restTemplateWithIdHeaders).postForEntity(buildDwpUri(), buildDwpExpectedRequest(), DWPEligibilityResponse.class);
-        verify(restTemplateWithIdHeaders).postForEntity(buildHmrcUri(), buildHmrcExpectedRequest(), HMRCEligibilityResponse.class);
-        verifyNoMoreInteractions(restTemplateWithIdHeaders);
+        verifyDWPAndHMRCEndpointsCalled();
     }
 
     private void runIntegrationTestReturningEligibilityResponse(EligibilityStatus dwpResponseEligibilityStatus,
                                                                 EligibilityStatus hmrcResponseEligibilityStatus,
-                                                                EligibilityResponse expectedResponse) {
+                                                                EligibilityResponse expectedResponse) throws JsonProcessingException {
         //Given
         PersonDTO person = aPerson();
         DWPEligibilityResponse dwpEligibilityResponse = aDWPEligibilityResponseWithStatus(dwpResponseEligibilityStatus);
-        given(restTemplateWithIdHeaders.postForEntity(anyString(), any(), eq(DWPEligibilityResponse.class)))
-                .willReturn(new ResponseEntity<>(dwpEligibilityResponse, OK));
         HMRCEligibilityResponse hmrcEligibilityResponse = anHMRCEligibilityResponseWithStatus(hmrcResponseEligibilityStatus);
-        given(restTemplateWithIdHeaders.postForEntity(anyString(), any(), eq(HMRCEligibilityResponse.class)))
-                .willReturn(new ResponseEntity<>(hmrcEligibilityResponse, OK));
+        stubDWPEndpointWithSuccessfulResponse(dwpEligibilityResponse);
+        stubHMRCEndpointWithSuccessfulResponse(hmrcEligibilityResponse);
 
         //When
         ResponseEntity<EligibilityResponse> response = callService(person);
@@ -191,9 +187,30 @@ public class EligibilityServiceIntegrationTests {
         HttpStatus httpStatus = (expectedResponse.getEligibilityStatus() == NO_MATCH) ? NOT_FOUND : OK;
         assertThat(response.getStatusCode()).isEqualTo(httpStatus);
         assertResponseCorrect(response, expectedResponse);
-        verify(restTemplateWithIdHeaders).postForEntity(buildDwpUri(), buildDwpExpectedRequest(), DWPEligibilityResponse.class);
-        verify(restTemplateWithIdHeaders).postForEntity(buildHmrcUri(), buildHmrcExpectedRequest(), HMRCEligibilityResponse.class);
-        verifyNoMoreInteractions(restTemplateWithIdHeaders);
+        verifyDWPAndHMRCEndpointsCalled();
+    }
+
+    private void stubDWPEndpointWithSuccessfulResponse(DWPEligibilityResponse dwpEligibilityResponse) throws JsonProcessingException {
+        String json = objectMapper.writeValueAsString(dwpEligibilityResponse);
+        stubFor(post(urlEqualTo(DWP_ENDPOINT)).willReturn(okJson(json)));
+    }
+
+    private void stubHMRCEndpointWithSuccessfulResponse(HMRCEligibilityResponse hmrcEligibilityResponse) throws JsonProcessingException {
+        String json = objectMapper.writeValueAsString(hmrcEligibilityResponse);
+        stubFor(post(urlEqualTo(HMRC_ENDPOINT)).willReturn(okJson(json)));
+    }
+
+    private void stubDWPEndpointWithInternalServerError() {
+        stubFor(post(urlEqualTo(DWP_ENDPOINT)).willReturn(aResponse().withStatus(INTERNAL_SERVER_ERROR.value())));
+    }
+
+    private void stubHMRCEndpointWithInternalServerError() {
+        stubFor(post(urlEqualTo(HMRC_ENDPOINT)).willReturn(aResponse().withStatus(INTERNAL_SERVER_ERROR.value())));
+    }
+
+    private void verifyDWPAndHMRCEndpointsCalled() {
+        verify(postRequestedFor(urlEqualTo(DWP_ENDPOINT)));
+        verify(postRequestedFor(urlEqualTo(HMRC_ENDPOINT)));
     }
 
     private ResponseEntity<EligibilityResponse> callService(PersonDTO personDTO) {
@@ -211,29 +228,5 @@ public class EligibilityServiceIntegrationTests {
         EligibilityResponse eligibilityResponse = response.getBody();
         assertThat(eligibilityResponse).isNotNull();
         assertThat(eligibilityResponse).isEqualTo(expectedResponse);
-    }
-
-    private String buildDwpUri() {
-        return dwpUri + "/v1/dwp/eligibility";
-    }
-
-    private String buildHmrcUri() {
-        return hmrcUri + "/v1/hmrc/eligibility";
-    }
-
-    private HMRCEligibilityRequest buildHmrcExpectedRequest() {
-        return anHMRCEligibilityRequestWithEligibilityDates(getEligibilityStartDate(), getEligibilityEndDate());
-    }
-
-    private DWPEligibilityRequest buildDwpExpectedRequest() {
-        return aDWPEligibilityRequestWithEligibilityDates(getEligibilityStartDate(), getEligibilityEndDate());
-    }
-
-    private LocalDate getEligibilityStartDate() {
-        return LocalDate.now().minusDays(eligibilityCheckPeriodLength);
-    }
-
-    private LocalDate getEligibilityEndDate() {
-        return LocalDate.now();
     }
 }
