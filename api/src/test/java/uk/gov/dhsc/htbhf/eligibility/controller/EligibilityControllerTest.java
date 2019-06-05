@@ -2,16 +2,13 @@ package uk.gov.dhsc.htbhf.eligibility.controller;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse;
 import uk.gov.dhsc.htbhf.eligibility.model.PersonDTO;
 import uk.gov.dhsc.htbhf.eligibility.service.EligibilityService;
-import uk.gov.dhsc.htbhf.errorhandler.ErrorResponse;
 
 import java.util.concurrent.ExecutionException;
 
@@ -19,25 +16,19 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.HttpStatus.OK;
-import static uk.gov.dhsc.htbhf.assertions.IntegrationTestAssertions.assertValidationErrorInResponse;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.EligibilityResponseTestDataFactory.aNonMatchingEligibilityResponse;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.EligibilityResponseTestDataFactory.anEligibleEligibilityResponse;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.PersonDTOTestDataFactory.aPerson;
-import static uk.gov.dhsc.htbhf.eligibility.testhelper.PersonDTOTestDataFactory.aPersonWithNoNino;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@ExtendWith(MockitoExtension.class)
 class EligibilityControllerTest {
 
-    private static final String ENDPOINT_URL = "/v1/eligibility";
+    @InjectMocks
+    private EligibilityController eligibilityController;
 
-    @Autowired
-    private TestRestTemplate restTemplate;
-
-    @MockBean
+    @Mock
     private EligibilityService eligibilityService;
 
     @Test
@@ -46,7 +37,7 @@ class EligibilityControllerTest {
         EligibilityResponse eligibilityResponse = anEligibleEligibilityResponse();
         given(eligibilityService.checkEligibility(any())).willReturn(eligibilityResponse);
 
-        ResponseEntity<EligibilityResponse> response = restTemplate.postForEntity(ENDPOINT_URL, person, EligibilityResponse.class);
+        ResponseEntity<EligibilityResponse> response = eligibilityController.getDecision(person);
 
         assertThat(response.getStatusCode()).isEqualTo(OK);
         assertThat(response.getBody()).isNotNull();
@@ -60,21 +51,11 @@ class EligibilityControllerTest {
         EligibilityResponse eligibilityResponse = aNonMatchingEligibilityResponse();
         given(eligibilityService.checkEligibility(any())).willReturn(eligibilityResponse);
 
-        ResponseEntity<EligibilityResponse> response = restTemplate.postForEntity(ENDPOINT_URL, person, EligibilityResponse.class);
+        ResponseEntity<EligibilityResponse> response = eligibilityController.getDecision(person);
 
         assertThat(response.getStatusCode()).isEqualTo(NOT_FOUND);
         assertThat(response.getBody()).isNotNull();
         assertThat(response.getBody()).isEqualTo(eligibilityResponse);
         verify(eligibilityService).checkEligibility(person);
-    }
-
-    @Test
-    void shouldReturnBadRequestForMissingNino() {
-        PersonDTO person = aPersonWithNoNino();
-
-        ResponseEntity<ErrorResponse> response = restTemplate.postForEntity(ENDPOINT_URL, person, ErrorResponse.class);
-
-        assertValidationErrorInResponse(response, "nino", "must not be null");
-        verifyZeroInteractions(eligibilityService);
     }
 }

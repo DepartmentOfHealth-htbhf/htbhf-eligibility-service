@@ -3,14 +3,11 @@ package uk.gov.dhsc.htbhf.eligibility.service;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.slf4j.MDC;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockHttpServletRequest;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletWebRequest;
@@ -31,16 +28,13 @@ import static org.springframework.http.HttpStatus.OK;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.HMRCEligibilityRequestTestDataFactory.anHMRCEligibilityRequest;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.HMRCEligibilityResponseTestDataFactory.anHMRCEligibilityResponse;
 
-@ExtendWith(SpringExtension.class)
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 class HMRCClientTest {
 
-    @MockBean
+    @Mock
     private RestTemplate restTemplate;
-    @Value("${hmrc.base-uri}")
-    private String uri;
+    private String uri = "http://localhost:8130";
 
-    @Autowired
     private HMRCClient hmrcClient;
 
     /**
@@ -51,6 +45,7 @@ class HMRCClientTest {
     void setUp() {
         RequestContextHolder.setRequestAttributes(new ServletWebRequest(new MockHttpServletRequest()));
         MDC.setContextMap(new HashMap<>());
+        hmrcClient = new HMRCClient(uri, restTemplate);
     }
 
     @Test
