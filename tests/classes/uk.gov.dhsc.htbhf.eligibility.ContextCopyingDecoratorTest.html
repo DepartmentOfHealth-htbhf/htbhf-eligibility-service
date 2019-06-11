@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.011s</div>
+<div class="counter">0.023s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,7 +79,7 @@
 </thead>
 <tr>
 <td class="success">shouldCopyRequestContext()</td>
-<td class="success">0.011s</td>
+<td class="success">0.023s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -87,12 +87,12 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>2019-06-05 09:34:40.237  INFO 5436 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [uk.gov.dhsc.htbhf.eligibility.ContextCopyingDecoratorTest], using SpringBootContextLoader
-2019-06-05 09:34:40.239  INFO 5436 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [uk.gov.dhsc.htbhf.eligibility.ContextCopyingDecoratorTest]: no resource found for suffixes {-context.xml, Context.groovy}.
-2019-06-05 09:34:40.239  INFO 5436 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [uk.gov.dhsc.htbhf.eligibility.ContextCopyingDecoratorTest]: ContextCopyingDecoratorTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2019-06-05 09:34:40.251  INFO 5436 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration uk.gov.dhsc.htbhf.eligibility.EligibilityServiceApplication for test class uk.gov.dhsc.htbhf.eligibility.ContextCopyingDecoratorTest
-2019-06-05 09:34:40.253  INFO 5436 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.cloud.contract.stubrunner.provider.wiremock.StubRunnerWireMockTestExecutionListener, org.springframework.cloud.contract.wiremock.WireMockTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
-2019-06-05 09:34:40.254  INFO 5436 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@6a603444, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@549eb4aa, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@79a55c7d, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@6633880b, org.springframework.test.context.support.DirtiesContextTestExecutionListener@d1a429d, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@2c009c70, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@7f956b39, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@59cd710, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@5a4d6394, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@728697b1, org.springframework.cloud.contract.stubrunner.provider.wiremock.StubRunnerWireMockTestExecutionListener@261ef67b, org.springframework.cloud.contract.wiremock.WireMockTestExecutionListener@455981ff]
+<pre>2019-06-11 09:01:17.277  INFO 5514 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [uk.gov.dhsc.htbhf.eligibility.ContextCopyingDecoratorTest], using SpringBootContextLoader
+2019-06-11 09:01:17.279  INFO 5514 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [uk.gov.dhsc.htbhf.eligibility.ContextCopyingDecoratorTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2019-06-11 09:01:17.279  INFO 5514 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [uk.gov.dhsc.htbhf.eligibility.ContextCopyingDecoratorTest]: ContextCopyingDecoratorTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2019-06-11 09:01:17.299  INFO 5514 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration uk.gov.dhsc.htbhf.eligibility.EligibilityServiceApplication for test class uk.gov.dhsc.htbhf.eligibility.ContextCopyingDecoratorTest
+2019-06-11 09:01:17.302  INFO 5514 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.cloud.contract.stubrunner.provider.wiremock.StubRunnerWireMockTestExecutionListener, org.springframework.cloud.contract.wiremock.WireMockTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2019-06-11 09:01:17.304  INFO 5514 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@665edc25, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@18992c34, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@32dd2aab, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@3db61670, org.springframework.test.context.support.DirtiesContextTestExecutionListener@2d995a17, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@7cb03b1c, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@2763ce53, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@2aeb5959, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@4dc5e7f1, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@30504d8e, org.springframework.cloud.contract.stubrunner.provider.wiremock.StubRunnerWireMockTestExecutionListener@9780c81, org.springframework.cloud.contract.wiremock.WireMockTestExecutionListener@79a9bd66]
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -102,17 +102,17 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.1.2.RELEASE)
 
-2019-06-05 09:34:40.288  INFO 5436 --- [    Test worker] u.g.d.h.e.ContextCopyingDecoratorTest    : Starting ContextCopyingDecoratorTest on travis-job-6e1ebd03-043b-4e53-91bb-a1c78857cba9 with PID 5436 (started by travis in /home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api)
-2019-06-05 09:34:40.289  INFO 5436 --- [    Test worker] u.g.d.h.e.ContextCopyingDecoratorTest    : No active profile set, falling back to default profiles: default
-2019-06-05 09:34:41.949  INFO 5436 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
-2019-06-05 09:34:42.248  INFO 5436 --- [    Test worker] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity&lt;springfox.documentation.spring.web.json.Json&gt; springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
-2019-06-05 09:34:42.278  INFO 5436 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'taskExecutor'
-2019-06-05 09:34:43.203  INFO 5436 --- [    Test worker] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2019-06-05 09:34:43.205  INFO 5436 --- [    Test worker] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2019-06-05 09:34:43.229  INFO 5436 --- [    Test worker] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2019-06-05 09:34:43.331  INFO 5436 --- [    Test worker] u.g.d.h.e.ContextCopyingDecoratorTest    : Started ContextCopyingDecoratorTest in 3.071 seconds (JVM running for 31.924)
-2019-06-05 09:34:43.339  INFO 5436 --- [    Test worker] uk.gov.dhsc.htbhf.logging.EventLogger    : {&quot;eventType&quot;:&quot;APPLICATION_STARTED&quot;,&quot;timestamp&quot;:&quot;2019-06-05T09:34:43.337233&quot;,&quot;applicationId&quot;:&quot;&quot;,&quot;applicationVersion&quot;:&quot;&quot;,&quot;instanceIndex&quot;:&quot;&quot;}
-2019-06-05 09:34:43.340  INFO 5436 --- [    Test worker] u.g.d.h.eligibility.ApiDocumentation     : Application started. App version=, app id=, instance index=
+2019-06-11 09:01:17.357  INFO 5514 --- [    Test worker] u.g.d.h.e.ContextCopyingDecoratorTest    : Starting ContextCopyingDecoratorTest on travis-job-8887ac85-180b-4a4e-9668-4a438358c70b with PID 5514 (started by travis in /home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api)
+2019-06-11 09:01:17.358  INFO 5514 --- [    Test worker] u.g.d.h.e.ContextCopyingDecoratorTest    : No active profile set, falling back to default profiles: default
+2019-06-11 09:01:19.052  INFO 5514 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2019-06-11 09:01:19.481  INFO 5514 --- [    Test worker] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [public org.springframework.http.ResponseEntity&lt;springfox.documentation.spring.web.json.Json&gt; springfox.documentation.swagger2.web.Swagger2Controller.getDocumentation(java.lang.String,javax.servlet.http.HttpServletRequest)]
+2019-06-11 09:01:19.513  INFO 5514 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'taskExecutor'
+2019-06-11 09:01:20.371  INFO 5514 --- [    Test worker] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-06-11 09:01:20.372  INFO 5514 --- [    Test worker] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-06-11 09:01:20.401  INFO 5514 --- [    Test worker] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-06-11 09:01:20.481  INFO 5514 --- [    Test worker] u.g.d.h.e.ContextCopyingDecoratorTest    : Started ContextCopyingDecoratorTest in 3.17 seconds (JVM running for 28.464)
+2019-06-11 09:01:20.553  INFO 5514 --- [    Test worker] uk.gov.dhsc.htbhf.logging.EventLogger    : {&quot;eventType&quot;:&quot;APPLICATION_STARTED&quot;,&quot;timestamp&quot;:&quot;2019-06-11T09:01:20.548345&quot;,&quot;applicationId&quot;:&quot;&quot;,&quot;applicationVersion&quot;:&quot;&quot;,&quot;instanceIndex&quot;:&quot;&quot;}
+2019-06-11 09:01:20.554  INFO 5514 --- [    Test worker] u.g.d.h.eligibility.ApiDocumentation     : Application started. App version=, app id=, instance index=
 </pre>
 </span>
 </div>
@@ -124,7 +124,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 5.0</a> at Jun 5, 2019, 9:38:04 AM</p>
+<a href="http://www.gradle.org">Gradle 5.4.1</a> at Jun 11, 2019, 9:04:56 AM</p>
 </div>
 </div>
 </body>
