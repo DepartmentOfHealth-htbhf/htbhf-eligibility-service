@@ -1,5 +1,6 @@
 package uk.gov.dhsc.htbhf.eligibility.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import uk.gov.dhsc.htbhf.eligibility.factory.EligibilityResponseFactory;
@@ -16,6 +17,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 @Service
+@Slf4j
 public class EligibilityService {
 
     private final DWPClient dwpClient;
@@ -53,13 +55,14 @@ public class EligibilityService {
     public EligibilityResponse checkEligibility(PersonDTO person) throws ExecutionException, InterruptedException {
         LocalDate currentDate = LocalDate.now();
 
+        log.debug("Checking eligibility");
         DWPEligibilityRequest dwpEligibilityRequest = createDWPRequest(person, currentDate);
         HMRCEligibilityRequest hmrcEligibilityRequest = createHMRCRequest(person, currentDate);
 
         CompletableFuture<DWPEligibilityResponse> dwpEligibilityResponse = dwpClient.checkEligibility(dwpEligibilityRequest);
         CompletableFuture<HMRCEligibilityResponse> hmrcEligibilityResponse = hmrcClient.checkEligibility(hmrcEligibilityRequest);
 
-        CompletableFuture.allOf(dwpEligibilityResponse, hmrcEligibilityResponse);
+        CompletableFuture.allOf(dwpEligibilityResponse, hmrcEligibilityResponse).join();
 
         return responseFactory.createEligibilityResponse(dwpEligibilityResponse.get(), hmrcEligibilityResponse.get());
     }
