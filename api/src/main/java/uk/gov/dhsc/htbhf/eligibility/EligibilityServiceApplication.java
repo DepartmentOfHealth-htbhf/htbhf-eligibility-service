@@ -1,5 +1,6 @@
 package uk.gov.dhsc.htbhf.eligibility;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -23,6 +24,7 @@ import uk.gov.dhsc.htbhf.logging.event.ApplicationStartedEvent;
 @EnableSwagger2
 @EnableAsync
 @Import({CommonRestConfiguration.class, LoggingConfiguration.class})
+@Slf4j
 public class EligibilityServiceApplication {
 
     @Value("${app.version:}") // use APP_VERSION env variable if available, otherwise give no version info
@@ -55,10 +57,13 @@ public class EligibilityServiceApplication {
     public TaskExecutor taskExecutor(@Value("${taskexecutor.threadpool.min-size}") Integer threadpoolMinSize,
                                      @Value("${taskexecutor.threadpool.max-size}") Integer threadpoolMaxSize,
                                      ContextCopyingDecorator contextCopyingDecorator) {
+        log.info("Creating ThreadPoolTaskExecutor with min pool size {} and max {}", threadpoolMinSize, threadpoolMaxSize);
         var executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(threadpoolMinSize);
         executor.setMaxPoolSize(threadpoolMaxSize);
         executor.setTaskDecorator(contextCopyingDecorator);
+        // set queue size to zero to prevent tasks waiting in the queue before spinning up more threads.
+        executor.setQueueCapacity(0);
         return executor;
     }
 }
