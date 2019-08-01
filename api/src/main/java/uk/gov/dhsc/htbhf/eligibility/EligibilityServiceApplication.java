@@ -62,6 +62,8 @@ public class EligibilityServiceApplication {
         executor.setCorePoolSize(threadpoolMinSize);
         executor.setMaxPoolSize(threadpoolMaxSize);
         executor.setTaskDecorator(contextCopyingDecorator);
+        // set queue size to zero to prevent tasks waiting in the queue before spinning up more threads.
+        executor.setQueueCapacity(0);
         return executor;
     }
 }
