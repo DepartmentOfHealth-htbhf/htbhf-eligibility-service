@@ -57,6 +57,7 @@ dependencies {
     // Need to upgrade the version of Guava to address Snyk vulnerability found in SpringFox.
     // https://app.snyk.io/vuln/SNYK-JAVA-COMGOOGLEGUAVA-32236
     implementation "com.google.guava:guava:27.0.1-jre"
+    implementation "io.micrometer:micrometer-registry-prometheus:1.1.4"
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation "org.mockito:mockito-junit-jupiter:2.23.4"

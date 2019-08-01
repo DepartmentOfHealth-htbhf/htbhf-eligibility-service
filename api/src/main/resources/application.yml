@@ -17,6 +17,12 @@ logging:
     ROOT: ${vcap.services.variable-service.credentials.eligibility-root-loglevel:info}
     uk.gov.dhsc: ${vcap.services.variable-service.credentials.eligibility-app-loglevel:debug}
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics, prometheus, env
+
 eligibility-check-period-length: 28
 
 dwp:
