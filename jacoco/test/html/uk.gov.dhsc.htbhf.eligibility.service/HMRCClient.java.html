@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HMRCClient.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">htbhf-eligibility-service</a> &gt; <a href="index.source.html" class="el_package">uk.gov.dhsc.htbhf.eligibility.service</a> &gt; <span class="el_source">HMRCClient.java</span></div><h1>HMRCClient.java</h1><pre class="source lang-java linenums">package uk.gov.dhsc.htbhf.eligibility.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Async;
@@ -11,6 +12,7 @@ import uk.gov.dhsc.htbhf.eligibility.model.hmrc.HMRCEligibilityResponse;
 import java.util.concurrent.CompletableFuture;
 
 @Service
+<span class="fc" id="L15">@Slf4j</span>
 public class HMRCClient {
 
     private static final String HMRC_ENDPOINT = &quot;/v1/hmrc/eligibility&quot;;
@@ -18,15 +20,16 @@ public class HMRCClient {
     private final RestTemplate restTemplate;
 
     public HMRCClient(@Value(&quot;${hmrc.base-uri}&quot;) String baseUri,
-<span class="fc" id="L21">                      RestTemplate restTemplate) {</span>
-<span class="fc" id="L22">        this.uri = baseUri + HMRC_ENDPOINT;</span>
-<span class="fc" id="L23">        this.restTemplate = restTemplate;</span>
-<span class="fc" id="L24">    }</span>
+<span class="fc" id="L23">                      RestTemplate restTemplate) {</span>
+<span class="fc" id="L24">        this.uri = baseUri + HMRC_ENDPOINT;</span>
+<span class="fc" id="L25">        this.restTemplate = restTemplate;</span>
+<span class="fc" id="L26">    }</span>
 
     @Async
     public CompletableFuture&lt;HMRCEligibilityResponse&gt; checkEligibility(HMRCEligibilityRequest request) {
-<span class="fc" id="L28">        ResponseEntity&lt;HMRCEligibilityResponse&gt; response = restTemplate.postForEntity(uri, request, HMRCEligibilityResponse.class);</span>
-<span class="fc" id="L29">        return CompletableFuture.completedFuture(response.getBody());</span>
+<span class="fc" id="L30">        log.debug(&quot;Checking HRMC eligibility&quot;);</span>
+<span class="fc" id="L31">        ResponseEntity&lt;HMRCEligibilityResponse&gt; response = restTemplate.postForEntity(uri, request, HMRCEligibilityResponse.class);</span>
+<span class="fc" id="L32">        return CompletableFuture.completedFuture(response.getBody());</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
