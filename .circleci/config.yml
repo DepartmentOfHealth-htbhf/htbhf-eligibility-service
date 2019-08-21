@@ -48,7 +48,8 @@ jobs:
       - run:
           name: Set app version and path
           command: |
-            echo "export APP_VERSION=`cat version.properties | grep "version" | cut -d'=' -f2`" >> $BASH_ENV
+            export APP_VERSION=`cat version.properties | grep "version" | cut -d'=' -f2`
+            echo "export APP_VERSION=${APP_VERSION}" >> $BASH_ENV
             echo "export APP_PATH="api/build/libs/$APP_NAME-$APP_VERSION.jar"" >> $BASH_ENV
             source $BASH_ENV
             echo "APP_VERSION=${APP_VERSION}, APP_PATH=${APP_PATH}"
