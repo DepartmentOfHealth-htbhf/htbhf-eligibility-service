@@ -90,7 +90,9 @@ jobs:
           command: chmod +x ./bin/deployment-scripts/*.sh && chmod +x ./bin/deployment-scripts/management-scripts/*.sh && chmod +x ./ci_scripts/*.sh
       - run:
           name: Trigger cd build
-          command: ./bin/deployment-scripts/management-scripts/trigger_circleci_cd_to_deploy_java_app.sh
+          command: |
+            export NEW_APP_VERSION=`cat version.properties | grep "version" | cut -d'=' -f2`
+            if [ "${APP_VERSION}" == "${NEW_APP_VERSION}" ]; then echo "No changes - not invoking cd pipeline"; else ./bin/deployment-scripts/management-scripts/trigger_circleci_cd_to_deploy_java_app.sh; fi
 
 workflows:
   version: 2
