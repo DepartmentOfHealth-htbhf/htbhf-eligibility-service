@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="8.15">
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/ApiDocumentation.java">
+<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/ApiDocumentation.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/ContextCopyingDecorator.java">
+<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/ContextCopyingDecorator.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/EligibilityServiceApplication.java">
+<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/EligibilityServiceApplication.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/controller/EligibilityController.java">
+<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/controller/EligibilityController.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/exception/NoEligibilityStatusProvidedException.java">
+<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/exception/NoEligibilityStatusProvidedException.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/factory/EligibilityResponseFactory.java">
+<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/factory/EligibilityResponseFactory.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/AddressDTO.java">
+<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/AddressDTO.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/ChildDTO.java">
+<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/ChildDTO.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/EligibilityResponse.java">
+<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/EligibilityResponse.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/PersonDTO.java">
+<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/PersonDTO.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/dwp/DWPEligibilityRequest.java">
+<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/dwp/DWPEligibilityRequest.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/dwp/DWPEligibilityResponse.java">
+<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/dwp/DWPEligibilityResponse.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/hmrc/HMRCEligibilityRequest.java">
+<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/hmrc/HMRCEligibilityRequest.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/hmrc/HMRCEligibilityResponse.java">
+<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/hmrc/HMRCEligibilityResponse.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/regex/PostcodeRegex.java">
+<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/regex/PostcodeRegex.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/service/DWPClient.java">
+<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/service/DWPClient.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/service/EligibilityService.java">
+<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/service/EligibilityService.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/service/EligibilityStatusCalculator.java">
+<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/service/EligibilityStatusCalculator.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/service/HMRCClient.java">
+<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/service/HMRCClient.java">
 </file>
 </checkstyle>

@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <checkstyle version="8.15">
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/ContextCopyingDecoratorTest.java">
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/ContextCopyingDecoratorTest.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/EligibilityServiceApplicationTests.java">
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/EligibilityServiceApplicationTests.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/EligibilityServiceIntegrationTests.java">
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/EligibilityServiceIntegrationTests.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/controller/EligibilityControllerTest.java">
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/controller/EligibilityControllerTest.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/factory/EligibilityResponseFactoryTest.java">
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/factory/EligibilityResponseFactoryTest.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/model/AddressDTOTest.java">
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/model/AddressDTOTest.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/model/PersonDTOTest.java">
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/model/PersonDTOTest.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/service/DWPClientTest.java">
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/service/DWPClientTest.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/service/EligibilityServiceTest.java">
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/service/EligibilityServiceTest.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/service/EligibilityStatusCalculatorTest.java">
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/service/EligibilityStatusCalculatorTest.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/service/HMRCClientTest.java">
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/service/HMRCClientTest.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/testhelper/AddressDTOTestDataFactory.java">
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/testhelper/AddressDTOTestDataFactory.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/testhelper/DWPEligibilityRequestTestDataFactory.java">
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/testhelper/DWPEligibilityRequestTestDataFactory.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/testhelper/DWPEligibilityResponseTestDataFactory.java">
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/testhelper/DWPEligibilityResponseTestDataFactory.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/testhelper/EligibilityResponseTestDataFactory.java">
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/testhelper/EligibilityResponseTestDataFactory.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/testhelper/HMRCEligibilityRequestTestDataFactory.java">
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/testhelper/HMRCEligibilityRequestTestDataFactory.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/testhelper/HMRCEligibilityResponseTestDataFactory.java">
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/testhelper/HMRCEligibilityResponseTestDataFactory.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/testhelper/PersonDTOTestDataFactory.java">
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/testhelper/PersonDTOTestDataFactory.java">
 </file>
-<file name="/home/travis/build/DepartmentOfHealth-htbhf/htbhf-eligibility-service/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/testhelper/TestConstants.java">
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/testhelper/TestConstants.java">
 </file>
 </checkstyle>
