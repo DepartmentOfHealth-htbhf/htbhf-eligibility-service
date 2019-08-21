@@ -51,6 +51,7 @@ jobs:
             echo "export APP_VERSION=`cat version.properties | grep "version" | cut -d'=' -f2`" >> $BASH_ENV
             echo "export APP_PATH="api/build/libs/$APP_NAME-$APP_VERSION.jar"" >> $BASH_ENV
             source $BASH_ENV
+            echo "APP_VERSION=${APP_VERSION}, APP_PATH=${APP_PATH}"
       - run:
           name: deploy to dev
           command: ./ci_scripts/ci_deploy.sh
