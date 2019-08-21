@@ -25,7 +25,7 @@ allprojects {
                userOrg = 'departmentofhealth-htbhf' // https://bintray.com/departmentofhealth-htbhf
                user = System.getenv('BINTRAY_USER')
                licenses = ['MIT']
-               labels = ['help to buy healthy food', 'eligibility service']
+               labels = ['apply for healthy start', 'eligibility service']
            }
        }
    }

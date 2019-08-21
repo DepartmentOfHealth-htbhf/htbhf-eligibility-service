@@ -49,7 +49,7 @@ public class ApiDocumentation {
     private ApiInfo getApiInfo() {
         return new ApiInfo(
                 "Eligibility Service",
-                "Responsible for deciding whether an applicant is eligible for help-to-buy-healthy-foods",
+                "Responsible for deciding whether an applicant is eligible for apply-for-healthy-start",
                 appVersion,
                 "",
                 new Contact("Department Of Health and Social Care", "https://github.com/DepartmentOfHealth-htbhf", "dh-htbhf-team@equalexperts.com"),

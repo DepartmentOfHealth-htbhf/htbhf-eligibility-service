@@ -1,6 +1,6 @@
 swagger: "2.0"
 info:
-  description: "Responsible for deciding whether an applicant is eligible for help-to-buy-healthy-foods"
+  description: "Responsible for deciding whether an applicant is eligible for apply-for-healthy-start"
   title: "Eligibility Service"
   contact:
     name: "Department Of Health and Social Care"

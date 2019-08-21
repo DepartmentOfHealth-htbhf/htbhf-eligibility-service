@@ -7,7 +7,7 @@
 
 [View latest test reports](https://departmentofhealth-htbhf.github.io/htbhf-eligibility-service/)
 
-This is a Spring Boot project to provide a rest service responsible for deciding whether an applicant is eligible for help-to-buy-healthy-foods,
+This is a Spring Boot project to provide a rest service responsible for deciding whether an applicant is eligible for apply-for-healthy-start,
 and forwarding the application on to the claimant service.
 
 
