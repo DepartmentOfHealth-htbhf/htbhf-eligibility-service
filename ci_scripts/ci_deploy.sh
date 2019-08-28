@@ -33,5 +33,8 @@ export SCRIPT_DIR=${BIN_DIR}/deployment-scripts
 export APP_VERSION=`cat version.properties | grep "version" | cut -d'=' -f2`
 export APP_PATH="api/build/libs/$APP_NAME-$APP_VERSION.jar"
 
+# define the space to deploy to
+export CF_SPACE=development
+
 # run the deployment script
 /bin/bash ${SCRIPT_DIR}/deploy.sh
