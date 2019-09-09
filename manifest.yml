@@ -11,6 +11,7 @@ applications:
     JBP_CONFIG_OPEN_JDK_JRE: '{jre: { version: 11.+ }}'
     DWP_API_URI: http://htbhf-dwp-api((space-suffix)).apps.internal:8080
     HMRC_API_URI: http://htbhf-hmrc-api((space-suffix)).apps.internal:8080
+    APP_VERSION: ((app-version))
   services:
     - logit-ssl-drain
     - variable-service
