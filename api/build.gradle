@@ -7,7 +7,6 @@ buildscript {
         classpath "com.google.guava:guava:27.0.1-jre" // to fix an issue exposed by spotbugs 2.0.0: https://github.com/spotbugs/spotbugs-gradle-plugin/issues/120
     }
     ext {
-        jacksonDatabindVersion = '2.9.9.1'
         jacksonDataformatVersion = '2.9.9'
     }
 }
@@ -48,7 +47,6 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonDatabindVersion}"
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation "uk.gov.dhsc.htbhf:htbhf-common-rest:latest.release"
     implementation "uk.gov.dhsc.htbhf:htbhf-common-logging:latest.release"
