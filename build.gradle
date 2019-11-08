@@ -5,11 +5,6 @@ buildscript {
         junitVersion = '5.3.2'
         springFoxVersion = '2.9.2'
     }
-
-    repositories {
-        jcenter()
-        mavenCentral()
-    }
 }
 
 plugins {
