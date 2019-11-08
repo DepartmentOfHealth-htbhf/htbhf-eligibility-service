@@ -38,13 +38,6 @@ lombok {
 group = 'uk.gov.dhsc.htbhf'
 sourceCompatibility = 1.11
 
-repositories {
-    mavenCentral()
-    maven {
-        url "https://dl.bintray.com/departmentofhealth-htbhf/maven"
-    }
-}
-
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
