@@ -7,7 +7,7 @@ buildscript {
         classpath "com.google.guava:guava:27.0.1-jre" // to fix an issue exposed by spotbugs 2.0.0: https://github.com/spotbugs/spotbugs-gradle-plugin/issues/120
     }
     ext {
-        jacksonDataformatVersion = '2.9.9'
+        jacksonDataformatVersion = '2.10.0'
     }
 }
 
