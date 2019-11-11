@@ -6,36 +6,36 @@
 </file>
 <file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/EligibilityServiceIntegrationTests.java">
 </file>
-<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/controller/EligibilityControllerTest.java">
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/controller/v1/EligibilityControllerTest.java">
 </file>
-<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/factory/EligibilityResponseFactoryTest.java">
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/factory/v1/EligibilityResponseFactoryTest.java">
 </file>
-<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/model/AddressDTOTest.java">
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/model/v1/AddressDTOTest.java">
 </file>
-<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/model/PersonDTOTest.java">
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/model/v1/PersonDTOTest.java">
 </file>
-<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/service/DWPClientTest.java">
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/service/v1/DWPClientTest.java">
 </file>
-<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/service/EligibilityServiceTest.java">
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/service/v1/EligibilityServiceTest.java">
 </file>
-<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/service/EligibilityStatusCalculatorTest.java">
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/service/v1/EligibilityStatusCalculatorTest.java">
 </file>
-<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/service/HMRCClientTest.java">
-</file>
-<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/testhelper/AddressDTOTestDataFactory.java">
-</file>
-<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/testhelper/DWPEligibilityRequestTestDataFactory.java">
-</file>
-<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/testhelper/DWPEligibilityResponseTestDataFactory.java">
-</file>
-<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/testhelper/EligibilityResponseTestDataFactory.java">
-</file>
-<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/testhelper/HMRCEligibilityRequestTestDataFactory.java">
-</file>
-<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/testhelper/HMRCEligibilityResponseTestDataFactory.java">
-</file>
-<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/testhelper/PersonDTOTestDataFactory.java">
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/service/v1/HMRCClientTest.java">
 </file>
 <file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/testhelper/TestConstants.java">
+</file>
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/testhelper/v1/AddressDTOTestDataFactory.java">
+</file>
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/testhelper/v1/DWPEligibilityRequestTestDataFactory.java">
+</file>
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/testhelper/v1/DWPEligibilityResponseTestDataFactory.java">
+</file>
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/testhelper/v1/EligibilityResponseTestDataFactory.java">
+</file>
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/testhelper/v1/HMRCEligibilityRequestTestDataFactory.java">
+</file>
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/testhelper/v1/HMRCEligibilityResponseTestDataFactory.java">
+</file>
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/testhelper/v1/PersonDTOTestDataFactory.java">
 </file>
 </checkstyle>

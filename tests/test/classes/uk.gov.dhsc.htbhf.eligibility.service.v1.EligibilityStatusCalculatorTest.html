@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - EligibilityStatusCalculatorTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>EligibilityStatusCalculatorTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/uk.gov.dhsc.htbhf.eligibility.service.v1.html">uk.gov.dhsc.htbhf.eligibility.service.v1</a> &gt; EligibilityStatusCalculatorTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">28</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.015s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Method name</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">Should return PENDING when DWP status is PENDING and HMRC status is NO_MATCH</td>
+<td class="success">shouldReturnCorrectEligibilityStatus(EligibilityStatus, EligibilityStatus, EligibilityStatus)[10]</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Should return ERROR when DWP status is ERROR and HMRC status is ERROR</td>
+<td class="success">shouldReturnCorrectEligibilityStatus(EligibilityStatus, EligibilityStatus, EligibilityStatus)[11]</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Should return ERROR when DWP status is ERROR and HMRC status is INELIGIBLE</td>
+<td class="success">shouldReturnCorrectEligibilityStatus(EligibilityStatus, EligibilityStatus, EligibilityStatus)[12]</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Should return ELIGIBLE when DWP status is ERROR and HMRC status is ELIGIBLE</td>
+<td class="success">shouldReturnCorrectEligibilityStatus(EligibilityStatus, EligibilityStatus, EligibilityStatus)[13]</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Should return PENDING when DWP status is ERROR and HMRC status is PENDING</td>
+<td class="success">shouldReturnCorrectEligibilityStatus(EligibilityStatus, EligibilityStatus, EligibilityStatus)[14]</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Should return ERROR when DWP status is ERROR and HMRC status is NO_MATCH</td>
+<td class="success">shouldReturnCorrectEligibilityStatus(EligibilityStatus, EligibilityStatus, EligibilityStatus)[15]</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Should return ELIGIBLE when DWP status is INELIGIBLE and HMRC status is ELIGIBLE</td>
+<td class="success">shouldReturnCorrectEligibilityStatus(EligibilityStatus, EligibilityStatus, EligibilityStatus)[16]</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Should return PENDING when DWP status is INELIGIBLE and HMRC status is PENDING</td>
+<td class="success">shouldReturnCorrectEligibilityStatus(EligibilityStatus, EligibilityStatus, EligibilityStatus)[17]</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Should return INELIGIBLE when DWP status is INELIGIBLE and HMRC status is INELIGIBLE</td>
+<td class="success">shouldReturnCorrectEligibilityStatus(EligibilityStatus, EligibilityStatus, EligibilityStatus)[18]</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Should return INELIGIBLE when DWP status is INELIGIBLE and HMRC status is NO_MATCH</td>
+<td class="success">shouldReturnCorrectEligibilityStatus(EligibilityStatus, EligibilityStatus, EligibilityStatus)[19]</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Should return ELIGIBLE when DWP status is ELIGIBLE and HMRC status is ELIGIBLE</td>
+<td class="success">shouldReturnCorrectEligibilityStatus(EligibilityStatus, EligibilityStatus, EligibilityStatus)[1]</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Should return ERROR when DWP status is INELIGIBLE and HMRC status is ERROR</td>
+<td class="success">shouldReturnCorrectEligibilityStatus(EligibilityStatus, EligibilityStatus, EligibilityStatus)[20]</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Should return INELIGIBLE when DWP status is NO_MATCH and HMRC status is INELIGIBLE</td>
+<td class="success">shouldReturnCorrectEligibilityStatus(EligibilityStatus, EligibilityStatus, EligibilityStatus)[21]</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Should return ELIGIBLE when DWP status is NO_MATCH and HMRC status is ELIGIBLE</td>
+<td class="success">shouldReturnCorrectEligibilityStatus(EligibilityStatus, EligibilityStatus, EligibilityStatus)[22]</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Should return PENDING when DWP status is NO_MATCH and HMRC status is PENDING</td>
+<td class="success">shouldReturnCorrectEligibilityStatus(EligibilityStatus, EligibilityStatus, EligibilityStatus)[23]</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Should return ERROR when DWP status is NO_MATCH and HMRC status is ERROR</td>
+<td class="success">shouldReturnCorrectEligibilityStatus(EligibilityStatus, EligibilityStatus, EligibilityStatus)[24]</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Should return NO_MATCH when DWP status is NO_MATCH and HMRC status is NO_MATCH</td>
+<td class="success">shouldReturnCorrectEligibilityStatus(EligibilityStatus, EligibilityStatus, EligibilityStatus)[25]</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Should return ELIGIBLE when DWP status is ELIGIBLE and HMRC status is INELIGIBLE</td>
+<td class="success">shouldReturnCorrectEligibilityStatus(EligibilityStatus, EligibilityStatus, EligibilityStatus)[2]</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Should return ELIGIBLE when DWP status is ELIGIBLE and HMRC status is PENDING</td>
+<td class="success">shouldReturnCorrectEligibilityStatus(EligibilityStatus, EligibilityStatus, EligibilityStatus)[3]</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Should return ELIGIBLE when DWP status is ELIGIBLE and HMRC status is ERROR</td>
+<td class="success">shouldReturnCorrectEligibilityStatus(EligibilityStatus, EligibilityStatus, EligibilityStatus)[4]</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Should return ELIGIBLE when DWP status is ELIGIBLE and HMRC status is NO_MATCH</td>
+<td class="success">shouldReturnCorrectEligibilityStatus(EligibilityStatus, EligibilityStatus, EligibilityStatus)[5]</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Should return PENDING when DWP status is PENDING and HMRC status is PENDING</td>
+<td class="success">shouldReturnCorrectEligibilityStatus(EligibilityStatus, EligibilityStatus, EligibilityStatus)[6]</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Should return PENDING when DWP status is PENDING and HMRC status is INELIGIBLE</td>
+<td class="success">shouldReturnCorrectEligibilityStatus(EligibilityStatus, EligibilityStatus, EligibilityStatus)[7]</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Should return ELIGIBLE when DWP status is PENDING and HMRC status is ELIGIBLE</td>
+<td class="success">shouldReturnCorrectEligibilityStatus(EligibilityStatus, EligibilityStatus, EligibilityStatus)[8]</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">Should return PENDING when DWP status is PENDING and HMRC status is ERROR</td>
+<td class="success">shouldReturnCorrectEligibilityStatus(EligibilityStatus, EligibilityStatus, EligibilityStatus)[9]</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">shouldThrowExceptionWhenNotGivenEligibilityStatusInDWPOrHMRCResponse()</td>
+<td class="success">shouldThrowExceptionWhenNotGivenEligibilityStatusInDWPOrHMRCResponse()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">shouldThrowExceptionWhenNotGivenEligibilityStatusInDWPResponse()</td>
+<td class="success">shouldThrowExceptionWhenNotGivenEligibilityStatusInDWPResponse()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">shouldThrowExceptionWhenNotGivenEligibilityStatusInHMRCResponse()</td>
+<td class="success">shouldThrowExceptionWhenNotGivenEligibilityStatusInHMRCResponse()</td>
+<td class="success">0.010s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 5.6</a> at Nov 11, 2019, 11:08:55 AM</p>
+</div>
+</div>
+</body>
+</html>
