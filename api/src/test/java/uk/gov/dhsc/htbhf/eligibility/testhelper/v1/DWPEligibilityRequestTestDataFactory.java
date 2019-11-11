@@ -4,9 +4,9 @@ import uk.gov.dhsc.htbhf.eligibility.model.v1.dwp.DWPEligibilityRequest;
 
 import java.time.LocalDate;
 
+import static uk.gov.dhsc.htbhf.dwp.testhelper.TestConstants.UC_MONTHLY_INCOME_THRESHOLD;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.TestConstants.ELIGIBLE_END_DATE;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.TestConstants.ELIGIBLE_START_DATE;
-import static uk.gov.dhsc.htbhf.eligibility.testhelper.TestConstants.UC_MONTHLY_INCOME_THRESHOLD;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.v1.PersonDTOTestDataFactory.aPerson;
 
 public class DWPEligibilityRequestTestDataFactory {

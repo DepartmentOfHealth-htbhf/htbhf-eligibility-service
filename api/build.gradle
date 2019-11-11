@@ -49,6 +49,7 @@ dependencies {
     // https://app.snyk.io/vuln/SNYK-JAVA-COMGOOGLEGUAVA-32236
     implementation "com.google.guava:guava:27.0.1-jre"
     implementation "io.micrometer:micrometer-registry-prometheus:1.1.4"
+    implementation "uk.gov.dhsc.htbhf:htbhf-common-dwp-api:latest.release"
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation "org.mockito:mockito-junit-jupiter:2.23.4"
@@ -59,6 +60,7 @@ dependencies {
     testImplementation "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${jacksonDataformatVersion}"
     testImplementation "org.springframework.cloud:spring-cloud-starter-contract-stub-runner:2.1.1.RELEASE"
     testImplementation "uk.gov.dhsc.htbhf:htbhf-common-test:latest.release"
+    testImplementation "uk.gov.dhsc.htbhf:htbhf-common-dwp-api-test:latest.release"
 
     spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.9.0'
 }
