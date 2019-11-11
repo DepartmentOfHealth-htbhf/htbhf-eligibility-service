@@ -13,17 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.RequestEntity;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import uk.gov.dhsc.htbhf.eligibility.model.EligibilityResponse;
 import uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus;
-import uk.gov.dhsc.htbhf.eligibility.model.PersonDTO;
-import uk.gov.dhsc.htbhf.eligibility.model.dwp.DWPEligibilityResponse;
-import uk.gov.dhsc.htbhf.eligibility.model.hmrc.HMRCEligibilityResponse;
+import uk.gov.dhsc.htbhf.eligibility.model.v1.EligibilityResponse;
+import uk.gov.dhsc.htbhf.eligibility.model.v1.PersonDTO;
+import uk.gov.dhsc.htbhf.eligibility.model.v1.dwp.DWPEligibilityResponse;
+import uk.gov.dhsc.htbhf.eligibility.model.v1.hmrc.HMRCEligibilityResponse;
 import uk.gov.dhsc.htbhf.errorhandler.ErrorResponse;
 
 import java.net.URI;
@@ -38,16 +34,16 @@ import static uk.gov.dhsc.htbhf.assertions.IntegrationTestAssertions.assertInter
 import static uk.gov.dhsc.htbhf.assertions.IntegrationTestAssertions.assertValidationErrorInResponse;
 import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.ELIGIBLE;
 import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.NO_MATCH;
-import static uk.gov.dhsc.htbhf.eligibility.testhelper.DWPEligibilityResponseTestDataFactory.aDWPEligibilityResponseWithStatus;
-import static uk.gov.dhsc.htbhf.eligibility.testhelper.EligibilityResponseTestDataFactory.anEligibilityResponseWithDwpHouseholdIdentifier;
-import static uk.gov.dhsc.htbhf.eligibility.testhelper.EligibilityResponseTestDataFactory.anEligibilityResponseWithHmrcHouseholdIdentifier;
-import static uk.gov.dhsc.htbhf.eligibility.testhelper.EligibilityResponseTestDataFactory.anEligibilityResponseWithStatus;
-import static uk.gov.dhsc.htbhf.eligibility.testhelper.EligibilityResponseTestDataFactory.anEligibleEligibilityResponse;
-import static uk.gov.dhsc.htbhf.eligibility.testhelper.HMRCEligibilityResponseTestDataFactory.anHMRCEligibilityResponseWithStatus;
-import static uk.gov.dhsc.htbhf.eligibility.testhelper.PersonDTOTestDataFactory.aPerson;
-import static uk.gov.dhsc.htbhf.eligibility.testhelper.PersonDTOTestDataFactory.aPersonWithNoNino;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.TestConstants.SIMPSON_DWP_HOUSEHOLD_IDENTIFIER;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.TestConstants.SIMPSON_HMRC_HOUSEHOLD_IDENTIFIER;
+import static uk.gov.dhsc.htbhf.eligibility.testhelper.v1.DWPEligibilityResponseTestDataFactory.aDWPEligibilityResponseWithStatus;
+import static uk.gov.dhsc.htbhf.eligibility.testhelper.v1.EligibilityResponseTestDataFactory.anEligibilityResponseWithDwpHouseholdIdentifier;
+import static uk.gov.dhsc.htbhf.eligibility.testhelper.v1.EligibilityResponseTestDataFactory.anEligibilityResponseWithHmrcHouseholdIdentifier;
+import static uk.gov.dhsc.htbhf.eligibility.testhelper.v1.EligibilityResponseTestDataFactory.anEligibilityResponseWithStatus;
+import static uk.gov.dhsc.htbhf.eligibility.testhelper.v1.EligibilityResponseTestDataFactory.anEligibleEligibilityResponse;
+import static uk.gov.dhsc.htbhf.eligibility.testhelper.v1.HMRCEligibilityResponseTestDataFactory.anHMRCEligibilityResponseWithStatus;
+import static uk.gov.dhsc.htbhf.eligibility.testhelper.v1.PersonDTOTestDataFactory.aPerson;
+import static uk.gov.dhsc.htbhf.eligibility.testhelper.v1.PersonDTOTestDataFactory.aPersonWithNoNino;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
