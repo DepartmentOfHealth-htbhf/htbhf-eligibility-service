@@ -6,7 +6,11 @@
 </file>
 <file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/EligibilityServiceIntegrationTests.java">
 </file>
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/EligibilityServiceIntegrationTestsV2.java">
+</file>
 <file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/controller/v1/EligibilityControllerTest.java">
+</file>
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/controller/v2/EligibilityControllerV2Test.java">
 </file>
 <file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/factory/v1/EligibilityResponseFactoryTest.java">
 </file>
