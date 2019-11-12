@@ -12,6 +12,7 @@ import uk.gov.dhsc.htbhf.eligibility.model.v1.hmrc.HMRCEligibilityRequest;
 import uk.gov.dhsc.htbhf.eligibility.model.v1.hmrc.HMRCEligibilityResponse;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -26,22 +27,21 @@ public class EligibilityService {
     private final Integer eligibilityCheckPeriodLength;
     private final BigDecimal ctcAnnualIncomeThreshold;
     private final EligibilityResponseFactory responseFactory;
-
+    private static final BigDecimal ONE_HUNDRED = new BigDecimal(100);
 
     public EligibilityService(@Value("${eligibility-check-period-length}") Integer eligibilityCheckPeriodLength,
-                              @Value("${dwp.uc-monthly-income-threshold}") BigDecimal ucMonthlyIncomeThreshold,
+                              @Value("${dwp.uc-monthly-income-threshold-in-pence}") int ucMonthlyIncomeThresholdInPence,
                               @Value("${hmrc.ctc-annual-income-threshold}") BigDecimal ctcAnnualIncomeThreshold,
                               DWPClient dwpClient,
                               HMRCClient hmrcClient,
                               EligibilityResponseFactory responseFactory) {
         this.dwpClient = dwpClient;
-        this.ucMonthlyIncomeThreshold = ucMonthlyIncomeThreshold;
+        this.ucMonthlyIncomeThreshold = getUcMonthlyIncomeThresholdInPounds(ucMonthlyIncomeThresholdInPence);
         this.eligibilityCheckPeriodLength = eligibilityCheckPeriodLength;
         this.hmrcClient = hmrcClient;
         this.ctcAnnualIncomeThreshold = ctcAnnualIncomeThreshold;
         this.responseFactory = responseFactory;
     }
-
 
     /**
      * Checks the eligibility of a given person.
@@ -84,4 +84,11 @@ public class EligibilityService {
                 .ctcAnnualIncomeThreshold(ctcAnnualIncomeThreshold)
                 .build();
     }
+
+    private BigDecimal getUcMonthlyIncomeThresholdInPounds(int ucMonthlyIncomeThresholdInPence) {
+        return new BigDecimal(ucMonthlyIncomeThresholdInPence)
+                .divide(ONE_HUNDRED, RoundingMode.HALF_UP)
+                .setScale(2, RoundingMode.HALF_UP);
+    }
+
 }
