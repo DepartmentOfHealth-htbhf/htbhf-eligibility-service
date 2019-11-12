@@ -27,7 +27,7 @@ eligibility-check-period-length: 28
 
 dwp:
   base-uri: ${DWP_API_URI:http://localhost:8110}
-  uc-monthly-income-threshold: 408.00
+  uc-monthly-income-threshold-in-pence: 40800
 
 hmrc:
   base-uri: ${HMRC_API_URI:http://localhost:8130}
