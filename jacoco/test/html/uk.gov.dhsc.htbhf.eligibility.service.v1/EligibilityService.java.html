@@ -12,12 +12,13 @@ import uk.gov.dhsc.htbhf.eligibility.model.v1.hmrc.HMRCEligibilityRequest;
 import uk.gov.dhsc.htbhf.eligibility.model.v1.hmrc.HMRCEligibilityResponse;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
 @Service
-<span class="fc" id="L20">@Slf4j</span>
+<span class="fc" id="L21">@Slf4j</span>
 public class EligibilityService {
 
     private final DWPClient dwpClient;
@@ -26,22 +27,21 @@ public class EligibilityService {
     private final Integer eligibilityCheckPeriodLength;
     private final BigDecimal ctcAnnualIncomeThreshold;
     private final EligibilityResponseFactory responseFactory;
-
+<span class="fc" id="L30">    private static final BigDecimal ONE_HUNDRED = new BigDecimal(100);</span>
 
     public EligibilityService(@Value(&quot;${eligibility-check-period-length}&quot;) Integer eligibilityCheckPeriodLength,
-                              @Value(&quot;${dwp.uc-monthly-income-threshold}&quot;) BigDecimal ucMonthlyIncomeThreshold,
+                              @Value(&quot;${dwp.uc-monthly-income-threshold-in-pence}&quot;) int ucMonthlyIncomeThresholdInPence,
                               @Value(&quot;${hmrc.ctc-annual-income-threshold}&quot;) BigDecimal ctcAnnualIncomeThreshold,
                               DWPClient dwpClient,
                               HMRCClient hmrcClient,
-<span class="fc" id="L36">                              EligibilityResponseFactory responseFactory) {</span>
-<span class="fc" id="L37">        this.dwpClient = dwpClient;</span>
-<span class="fc" id="L38">        this.ucMonthlyIncomeThreshold = ucMonthlyIncomeThreshold;</span>
-<span class="fc" id="L39">        this.eligibilityCheckPeriodLength = eligibilityCheckPeriodLength;</span>
-<span class="fc" id="L40">        this.hmrcClient = hmrcClient;</span>
-<span class="fc" id="L41">        this.ctcAnnualIncomeThreshold = ctcAnnualIncomeThreshold;</span>
-<span class="fc" id="L42">        this.responseFactory = responseFactory;</span>
-<span class="fc" id="L43">    }</span>
-
+<span class="fc" id="L37">                              EligibilityResponseFactory responseFactory) {</span>
+<span class="fc" id="L38">        this.dwpClient = dwpClient;</span>
+<span class="fc" id="L39">        this.ucMonthlyIncomeThreshold = getUcMonthlyIncomeThresholdInPounds(ucMonthlyIncomeThresholdInPence);</span>
+<span class="fc" id="L40">        this.eligibilityCheckPeriodLength = eligibilityCheckPeriodLength;</span>
+<span class="fc" id="L41">        this.hmrcClient = hmrcClient;</span>
+<span class="fc" id="L42">        this.ctcAnnualIncomeThreshold = ctcAnnualIncomeThreshold;</span>
+<span class="fc" id="L43">        this.responseFactory = responseFactory;</span>
+<span class="fc" id="L44">    }</span>
 
     /**
      * Checks the eligibility of a given person.
@@ -84,5 +84,12 @@ public class EligibilityService {
 <span class="fc" id="L84">                .ctcAnnualIncomeThreshold(ctcAnnualIncomeThreshold)</span>
 <span class="fc" id="L85">                .build();</span>
     }
+
+    private BigDecimal getUcMonthlyIncomeThresholdInPounds(int ucMonthlyIncomeThresholdInPence) {
+<span class="fc" id="L89">        return new BigDecimal(ucMonthlyIncomeThresholdInPence)</span>
+<span class="fc" id="L90">                .divide(ONE_HUNDRED, RoundingMode.HALF_UP)</span>
+<span class="fc" id="L91">                .setScale(2, RoundingMode.HALF_UP);</span>
+    }
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
