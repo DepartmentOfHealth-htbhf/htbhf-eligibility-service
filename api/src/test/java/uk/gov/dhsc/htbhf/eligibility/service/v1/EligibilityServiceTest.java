@@ -17,6 +17,7 @@ import uk.gov.dhsc.htbhf.eligibility.model.v1.hmrc.HMRCEligibilityResponse;
 import uk.gov.dhsc.htbhf.eligibility.testhelper.v1.EligibilityResponseTestDataFactory;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.concurrent.ExecutionException;
 
 import static java.util.concurrent.CompletableFuture.completedFuture;
@@ -66,7 +67,8 @@ class EligibilityServiceTest {
         DWPEligibilityRequest sentRequest = argumentCaptor.getValue();
         assertThat(sentRequest.getPerson()).isEqualTo(person);
         // Below values match those in test/resources/application.yml
-        assertThat(sentRequest.getUcMonthlyIncomeThreshold()).isEqualTo(BigDecimal.valueOf(408.0));
+        BigDecimal expectedThresholdInPounds = BigDecimal.valueOf(408.00).setScale(2, RoundingMode.HALF_UP);
+        assertThat(sentRequest.getUcMonthlyIncomeThreshold()).isEqualTo(expectedThresholdInPounds);
         assertThat(sentRequest.getEligibleStartDate()).isEqualTo(sentRequest.getEligibleEndDate().minusWeeks(4));
         assertThat(sentRequest.getEligibleEndDate()).isNotNull();
     }
