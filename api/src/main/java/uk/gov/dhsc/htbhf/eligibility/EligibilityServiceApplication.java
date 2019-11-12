@@ -14,6 +14,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import uk.gov.dhsc.htbhf.CommonRestConfiguration;
+import uk.gov.dhsc.htbhf.dwp.http.v2.GetRequestBuilder;
 import uk.gov.dhsc.htbhf.logging.EventLogger;
 import uk.gov.dhsc.htbhf.logging.LoggingConfiguration;
 import uk.gov.dhsc.htbhf.logging.event.ApplicationStartedEvent;
@@ -65,5 +66,10 @@ public class EligibilityServiceApplication {
         // set queue size to zero to prevent tasks waiting in the queue before spinning up more threads.
         executor.setQueueCapacity(0);
         return executor;
+    }
+
+    @Bean
+    public GetRequestBuilder getRequestBuilder() {
+        return new GetRequestBuilder();
     }
 }
