@@ -2,7 +2,11 @@ package uk.gov.dhsc.htbhf.eligibility.testhelper.v1;
 
 import uk.gov.dhsc.htbhf.eligibility.model.v1.PersonDTO;
 
-import static uk.gov.dhsc.htbhf.eligibility.testhelper.TestConstants.*;
+import static uk.gov.dhsc.htbhf.dwp.testhelper.TestConstants.HOMER_DATE_OF_BIRTH;
+import static uk.gov.dhsc.htbhf.dwp.testhelper.TestConstants.HOMER_FORENAME;
+import static uk.gov.dhsc.htbhf.dwp.testhelper.TestConstants.HOMER_NINO_V1;
+import static uk.gov.dhsc.htbhf.dwp.testhelper.TestConstants.SIMPSON_SURNAME;
+import static uk.gov.dhsc.htbhf.eligibility.testhelper.TestConstants.FUTURE_DATE;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.v1.AddressDTOTestDataFactory.aValidAddress;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.v1.AddressDTOTestDataFactory.anAddressWithPostcode;
 
@@ -35,9 +39,9 @@ public class PersonDTOTestDataFactory {
     public static PersonDTO.PersonDTOBuilder buildDefaultPerson() {
         return PersonDTO.builder()
                 .dateOfBirth(HOMER_DATE_OF_BIRTH)
-                .nino(HOMER_NINO)
+                .nino(HOMER_NINO_V1)
                 .address(aValidAddress())
-                .firstName(HOMER_FIRST_NAME)
-                .lastName(SIMPSON_LAST_NAME);
+                .firstName(HOMER_FORENAME)
+                .lastName(SIMPSON_SURNAME);
     }
 }
