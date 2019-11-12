@@ -14,6 +14,8 @@ basePath: "/"
 tags:
 - name: "eligibility-controller"
   description: "Eligibility Controller"
+- name: "eligibility-controller-v-2"
+  description: "Eligibility Controller V 2"
 paths:
   /v1/eligibility:
     post:
@@ -37,6 +39,37 @@ paths:
           description: "OK"
           schema:
             $ref: "#/definitions/EligibilityResponse"
+        "201":
+          description: "Created"
+        "401":
+          description: "Unauthorized"
+        "403":
+          description: "Forbidden"
+        "404":
+          description: "Not Found"
+      deprecated: false
+  /v2/eligibility:
+    post:
+      tags:
+      - "eligibility-controller-v-2"
+      summary: "getIdentityAndEligibilityDecision"
+      operationId: "getIdentityAndEligibilityDecisionUsingPOST"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "person"
+        description: "person"
+        required: true
+        schema:
+          $ref: "#/definitions/PersonDTOV2"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/IdentityAndEligibilityResponse"
         "201":
           description: "Created"
         "401":
@@ -106,6 +139,89 @@ definitions:
         example: 1
         description: "The number of children under 1 that the person has"
     title: "EligibilityResponse"
+  IdentityAndEligibilityResponse:
+    type: "object"
+    properties:
+      addressLine1Match:
+        type: "string"
+        enum:
+        - "matched"
+        - "not_matched"
+        - "not_held"
+        - "not_supplied"
+        - "invalid_format"
+        - "not_set"
+      deathVerificationFlag:
+        type: "string"
+        enum:
+        - "n/a"
+        - "death_not_verified"
+        - "limited_supporting_documentation"
+        - "partial_supporting_documentation"
+        - "full_supporting_documentation"
+      dobOfChildrenUnder4:
+        type: "array"
+        items:
+          $ref: "#/definitions/LocalDate"
+      eligibilityStatus:
+        type: "string"
+        enum:
+        - "confirmed"
+        - "not_confirmed"
+        - "not_set"
+      emailAddressMatch:
+        type: "string"
+        enum:
+        - "matched"
+        - "not_matched"
+        - "not_held"
+        - "not_supplied"
+        - "invalid_format"
+        - "not_set"
+      householdIdentifier:
+        type: "string"
+      identityStatus:
+        type: "string"
+        enum:
+        - "matched"
+        - "not_matched"
+      mobilePhoneMatch:
+        type: "string"
+        enum:
+        - "matched"
+        - "not_matched"
+        - "not_held"
+        - "not_supplied"
+        - "invalid_format"
+        - "not_set"
+      postcodeMatch:
+        type: "string"
+        enum:
+        - "matched"
+        - "not_matched"
+        - "not_held"
+        - "not_supplied"
+        - "invalid_format"
+        - "not_set"
+      pregnantChildDOBMatch:
+        type: "string"
+        enum:
+        - "matched"
+        - "not_matched"
+        - "not_held"
+        - "not_supplied"
+        - "invalid_format"
+        - "not_set"
+      qualifyingBenefits:
+        type: "string"
+        enum:
+        - "universal_credit"
+        - "employment_and_support_allowance"
+        - "income_support"
+        - "jobseekers_allowance"
+        - "pension_credit"
+        - "not_set"
+    title: "IdentityAndEligibilityResponse"
   PersonDTO:
     type: "object"
     required:
@@ -128,3 +244,37 @@ definitions:
       address:
         $ref: "#/definitions/AddressDTO"
     title: "PersonDTO"
+  PersonDTOV2:
+    type: "object"
+    required:
+    - "addressLine1"
+    - "dateOfBirth"
+    - "nino"
+    - "postcode"
+    - "surname"
+    properties:
+      surname:
+        type: "string"
+      nino:
+        type: "string"
+        pattern: "^(?!BG|GB|NK|KN|TN|NT|ZZ)[A-CEGHJ-PR-TW-Z][A-CEGHJ-NPR-TW-Z](\\\
+          d{6})[A-D]$"
+      dateOfBirth:
+        type: "string"
+        format: "date"
+      addressLine1:
+        type: "string"
+      postcode:
+        type: "string"
+        pattern: "^(GIR ?0AA|[A-PR-UWYZ]([0-9]{1,2}|([A-HK-Y][0-9]([0-9ABEHMNPRV-Y])?)|[0-9][A-HJKPS-UW])\
+          \ ?[0-9][ABD-HJLNP-UW-Z]{2})$"
+      emailAddress:
+        type: "string"
+        pattern: "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)"
+      mobilePhoneNumber:
+        type: "string"
+        pattern: "^\\+44\\d{9,10}$"
+      pregnantDependentDob:
+        type: "string"
+        format: "date"
+    title: "PersonDTOV2"
