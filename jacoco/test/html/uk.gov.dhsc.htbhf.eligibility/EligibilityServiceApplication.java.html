@@ -14,6 +14,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import uk.gov.dhsc.htbhf.CommonRestConfiguration;
+import uk.gov.dhsc.htbhf.dwp.http.v2.GetRequestBuilder;
 import uk.gov.dhsc.htbhf.logging.EventLogger;
 import uk.gov.dhsc.htbhf.logging.LoggingConfiguration;
 import uk.gov.dhsc.htbhf.logging.event.ApplicationStartedEvent;
@@ -24,8 +25,8 @@ import uk.gov.dhsc.htbhf.logging.event.ApplicationStartedEvent;
 @EnableSwagger2
 @EnableAsync
 @Import({CommonRestConfiguration.class, LoggingConfiguration.class})
-<span class="fc" id="L27">@Slf4j</span>
-<span class="fc" id="L28">public class EligibilityServiceApplication {</span>
+<span class="fc" id="L28">@Slf4j</span>
+<span class="fc" id="L29">public class EligibilityServiceApplication {</span>
 
     @Value(&quot;${app.version:}&quot;) // use APP_VERSION env variable if available, otherwise give no version info
     private String appVersion;
@@ -40,31 +41,36 @@ import uk.gov.dhsc.htbhf.logging.event.ApplicationStartedEvent;
     private EventLogger eventLogger;
 
     public static void main(String[] args) {
-<span class="nc" id="L43">        SpringApplication.run(EligibilityServiceApplication.class, args);</span>
-<span class="nc" id="L44">    }</span>
+<span class="nc" id="L44">        SpringApplication.run(EligibilityServiceApplication.class, args);</span>
+<span class="nc" id="L45">    }</span>
 
     @EventListener(ApplicationReadyEvent.class)
     public void logAfterStartup() {
-<span class="fc" id="L48">        eventLogger.logEvent(ApplicationStartedEvent.builder()</span>
-<span class="fc" id="L49">                .applicationId(applicationId)</span>
-<span class="fc" id="L50">                .applicationVersion(appVersion)</span>
-<span class="fc" id="L51">                .instanceIndex(instanceIndex)</span>
-<span class="fc" id="L52">                .build()</span>
+<span class="fc" id="L49">        eventLogger.logEvent(ApplicationStartedEvent.builder()</span>
+<span class="fc" id="L50">                .applicationId(applicationId)</span>
+<span class="fc" id="L51">                .applicationVersion(appVersion)</span>
+<span class="fc" id="L52">                .instanceIndex(instanceIndex)</span>
+<span class="fc" id="L53">                .build()</span>
         );
-<span class="fc" id="L54">    }</span>
+<span class="fc" id="L55">    }</span>
 
     @Bean
     public TaskExecutor taskExecutor(@Value(&quot;${taskexecutor.threadpool.min-size}&quot;) Integer threadpoolMinSize,
                                      @Value(&quot;${taskexecutor.threadpool.max-size}&quot;) Integer threadpoolMaxSize,
                                      ContextCopyingDecorator contextCopyingDecorator) {
-<span class="fc" id="L60">        log.info(&quot;Creating ThreadPoolTaskExecutor with min pool size {} and max {}&quot;, threadpoolMinSize, threadpoolMaxSize);</span>
-<span class="fc" id="L61">        var executor = new ThreadPoolTaskExecutor();</span>
-<span class="fc" id="L62">        executor.setCorePoolSize(threadpoolMinSize);</span>
-<span class="fc" id="L63">        executor.setMaxPoolSize(threadpoolMaxSize);</span>
-<span class="fc" id="L64">        executor.setTaskDecorator(contextCopyingDecorator);</span>
+<span class="fc" id="L61">        log.info(&quot;Creating ThreadPoolTaskExecutor with min pool size {} and max {}&quot;, threadpoolMinSize, threadpoolMaxSize);</span>
+<span class="fc" id="L62">        var executor = new ThreadPoolTaskExecutor();</span>
+<span class="fc" id="L63">        executor.setCorePoolSize(threadpoolMinSize);</span>
+<span class="fc" id="L64">        executor.setMaxPoolSize(threadpoolMaxSize);</span>
+<span class="fc" id="L65">        executor.setTaskDecorator(contextCopyingDecorator);</span>
         // set queue size to zero to prevent tasks waiting in the queue before spinning up more threads.
-<span class="fc" id="L66">        executor.setQueueCapacity(0);</span>
-<span class="fc" id="L67">        return executor;</span>
+<span class="fc" id="L67">        executor.setQueueCapacity(0);</span>
+<span class="fc" id="L68">        return executor;</span>
+    }
+
+    @Bean
+    public GetRequestBuilder getRequestBuilder() {
+<span class="fc" id="L73">        return new GetRequestBuilder();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
