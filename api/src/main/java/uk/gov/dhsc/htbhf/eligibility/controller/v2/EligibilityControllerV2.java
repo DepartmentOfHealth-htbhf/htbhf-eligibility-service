@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import uk.gov.dhsc.htbhf.dwp.model.v2.IdentityAndEligibilityResponse;
 import uk.gov.dhsc.htbhf.dwp.model.v2.PersonDTOV2;
 import uk.gov.dhsc.htbhf.eligibility.model.v1.PersonDTO;
+import uk.gov.dhsc.htbhf.eligibility.service.v2.IdentityAndEligibilityService;
 
 import javax.validation.Valid;
 
@@ -25,6 +26,8 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @AllArgsConstructor
 public class EligibilityControllerV2 {
 
+    private IdentityAndEligibilityService identityAndEligibilityService;
+
     /**
      * Invokes downstream services to obtain a decision on the identity and eligibility for the given person.
      *
@@ -36,7 +39,7 @@ public class EligibilityControllerV2 {
     public IdentityAndEligibilityResponse getIdentityAndEligibilityDecision(@RequestBody @Valid PersonDTOV2 person) {
         log.debug("Received eligibility request V2");
 
-        IdentityAndEligibilityResponse response = IdentityAndEligibilityResponse.builder().build();
+        IdentityAndEligibilityResponse response = identityAndEligibilityService.checkIdentityAndEligibility(person);
 
         logResponse(response);
         return response;
