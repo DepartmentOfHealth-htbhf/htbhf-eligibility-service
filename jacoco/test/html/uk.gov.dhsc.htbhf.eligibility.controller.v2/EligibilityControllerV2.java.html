@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import uk.gov.dhsc.htbhf.dwp.model.v2.IdentityAndEligibilityResponse;
 import uk.gov.dhsc.htbhf.dwp.model.v2.PersonDTOV2;
 import uk.gov.dhsc.htbhf.eligibility.model.v1.PersonDTO;
+import uk.gov.dhsc.htbhf.eligibility.service.v2.IdentityAndEligibilityService;
 
 import javax.validation.Valid;
 
@@ -21,9 +22,11 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
  */
 @RequestMapping(&quot;/v2/eligibility&quot;)
 @Controller
-<span class="fc" id="L24">@Slf4j</span>
+<span class="fc" id="L25">@Slf4j</span>
 @AllArgsConstructor
 public class EligibilityControllerV2 {
+
+    private IdentityAndEligibilityService identityAndEligibilityService;
 
     /**
      * Invokes downstream services to obtain a decision on the identity and eligibility for the given person.
@@ -34,19 +37,19 @@ public class EligibilityControllerV2 {
     @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseBody
     public IdentityAndEligibilityResponse getIdentityAndEligibilityDecision(@RequestBody @Valid PersonDTOV2 person) {
-<span class="fc" id="L37">        log.debug(&quot;Received eligibility request V2&quot;);</span>
+<span class="fc" id="L40">        log.debug(&quot;Received eligibility request V2&quot;);</span>
 
-<span class="fc" id="L39">        IdentityAndEligibilityResponse response = IdentityAndEligibilityResponse.builder().build();</span>
+<span class="fc" id="L42">        IdentityAndEligibilityResponse response = identityAndEligibilityService.checkIdentityAndEligibility(person);</span>
 
-<span class="fc" id="L41">        logResponse(response);</span>
-<span class="fc" id="L42">        return response;</span>
+<span class="fc" id="L44">        logResponse(response);</span>
+<span class="fc" id="L45">        return response;</span>
     }
 
     private void logResponse(IdentityAndEligibilityResponse response) {
-<span class="fc" id="L46">        log.debug(&quot;Returning identity status: {}, eligibility status: {}, qualifying benefits: {}, addressLine1: {}, postcode: {}, mobile: {}, email: {}&quot;,</span>
-<span class="fc" id="L47">                response.getIdentityStatus(), response.getEligibilityStatus(), response.getQualifyingBenefits(),</span>
-<span class="fc" id="L48">                response.getAddressLine1Match(), response.getPostcodeMatch(), response.getMobilePhoneMatch(), response.getEmailAddressMatch());</span>
-<span class="fc" id="L49">    }</span>
+<span class="fc" id="L49">        log.debug(&quot;Returning identity status: {}, eligibility status: {}, qualifying benefits: {}, addressLine1: {}, postcode: {}, mobile: {}, email: {}&quot;,</span>
+<span class="fc" id="L50">                response.getIdentityStatus(), response.getEligibilityStatus(), response.getQualifyingBenefits(),</span>
+<span class="fc" id="L51">                response.getAddressLine1Match(), response.getPostcodeMatch(), response.getMobilePhoneMatch(), response.getEmailAddressMatch());</span>
+<span class="fc" id="L52">    }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
