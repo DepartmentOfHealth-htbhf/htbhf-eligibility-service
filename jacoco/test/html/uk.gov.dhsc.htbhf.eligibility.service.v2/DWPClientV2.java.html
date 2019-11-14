@@ -6,13 +6,24 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 import uk.gov.dhsc.htbhf.dwp.http.v2.GetRequestBuilder;
 import uk.gov.dhsc.htbhf.dwp.model.v2.DWPEligibilityRequestV2;
 import uk.gov.dhsc.htbhf.dwp.model.v2.IdentityAndEligibilityResponse;
 
+import java.time.LocalDate;
+import java.util.Base64;
+import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
+
 @Service
-<span class="fc" id="L15">@Slf4j</span>
+<span class="fc" id="L26">@Slf4j</span>
 public class DWPClientV2 {
 
     private static final String DWP_ENDPOINT = &quot;/v2/dwp/eligibility&quot;;
@@ -21,17 +32,44 @@ public class DWPClientV2 {
     private final GetRequestBuilder getRequestBuilder;
 
     public DWPClientV2(@Value(&quot;${dwp.base-uri}&quot;) String baseUri,
-<span class="fc" id="L24">                       RestTemplate restTemplate, GetRequestBuilder getRequestBuilder) {</span>
-<span class="fc" id="L25">        this.uri = baseUri + DWP_ENDPOINT;</span>
-<span class="fc" id="L26">        this.restTemplate = restTemplate;</span>
-<span class="fc" id="L27">        this.getRequestBuilder = getRequestBuilder;</span>
-<span class="fc" id="L28">    }</span>
+<span class="fc" id="L35">                       RestTemplate restTemplate, GetRequestBuilder getRequestBuilder) {</span>
+<span class="fc" id="L36">        this.uri = baseUri + DWP_ENDPOINT;</span>
+<span class="fc" id="L37">        this.restTemplate = restTemplate;</span>
+<span class="fc" id="L38">        this.getRequestBuilder = getRequestBuilder;</span>
+<span class="fc" id="L39">    }</span>
 
     public IdentityAndEligibilityResponse checkIdentityAndEligibility(DWPEligibilityRequestV2 request) {
-<span class="fc" id="L31">        log.debug(&quot;Checking DWP eligibility V2&quot;);</span>
-<span class="fc" id="L32">        HttpEntity httpEntity = getRequestBuilder.buildRequestWithHeaders(request);</span>
-<span class="fc" id="L33">        ResponseEntity&lt;IdentityAndEligibilityResponse&gt; response = restTemplate.exchange(uri, HttpMethod.GET, httpEntity, IdentityAndEligibilityResponse.class);</span>
-<span class="fc" id="L34">        return response.getBody();</span>
+<span class="fc" id="L42">        log.debug(&quot;Checking DWP eligibility V2&quot;);</span>
+<span class="fc" id="L43">        HttpEntity httpEntity = getRequestBuilder.buildRequestWithHeaders(request);</span>
+<span class="fc" id="L44">        ResponseEntity&lt;IdentityAndEligibilityResponse&gt; response = restTemplate.exchange(uri, HttpMethod.GET, httpEntity, IdentityAndEligibilityResponse.class);</span>
+<span class="fc" id="L45">        IdentityAndEligibilityResponse body = response.getBody();</span>
+<span class="pc bpc" id="L46" title="1 of 2 branches missed.">        if (body == null) { // why, spotBugs, why? (This fixes a false positive Null Pointer dereference reported by spotBugs)</span>
+<span class="nc" id="L47">            throw new RestClientException(&quot;DWP response body was null&quot;);</span>
+        }
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        if (!StringUtils.isEmpty(body.getHouseholdIdentifier())) {</span>
+<span class="fc" id="L50">            return body;</span>
+        }
+<span class="fc" id="L52">        return addHouseholdIdentifierToResponse(request, body);</span>
+    }
+
+    private IdentityAndEligibilityResponse addHouseholdIdentifierToResponse(DWPEligibilityRequestV2 request, IdentityAndEligibilityResponse response) {
+<span class="fc" id="L56">        String idComponents = getHouseholdIdComponents(request, response);</span>
+<span class="fc" id="L57">        String householdId = encodeHouseholdId(idComponents);</span>
+<span class="fc" id="L58">        return response.toBuilder().householdIdentifier(householdId).build();</span>
+    }
+
+    private String getHouseholdIdComponents(DWPEligibilityRequestV2 request, IdentityAndEligibilityResponse response) {
+<span class="fc" id="L62">        List&lt;LocalDate&gt; dobOfChildrenUnder4 = response.getDobOfChildrenUnder4();</span>
+<span class="fc bfc" id="L63" title="All 2 branches covered.">        if (CollectionUtils.isEmpty(dobOfChildrenUnder4)) {</span>
+<span class="fc" id="L64">            log.debug(&quot;Creating synthetic household id using NINO&quot;);</span>
+<span class="fc" id="L65">            return request.getPerson().getNino();</span>
+        }
+<span class="fc" id="L67">        log.debug(&quot;Creating synthetic household id using postcode and children's dates of birth&quot;);</span>
+<span class="fc" id="L68">        return request.getPerson().getPostcode() + dobOfChildrenUnder4.stream().sorted().collect(Collectors.toList());</span>
+    }
+
+    private String encodeHouseholdId(String idString) {
+<span class="fc" id="L72">        return Base64.getEncoder().encodeToString(idString.replace(&quot; &quot;, &quot;&quot;).toUpperCase(Locale.UK).getBytes(UTF_8));</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
