@@ -13,8 +13,13 @@ import uk.gov.dhsc.htbhf.dwp.http.v2.GetRequestBuilder;
 import uk.gov.dhsc.htbhf.dwp.model.v2.DWPEligibilityRequestV2;
 import uk.gov.dhsc.htbhf.dwp.model.v2.IdentityAndEligibilityResponse;
 import uk.gov.dhsc.htbhf.dwp.testhelper.v2.DWPEligibilityRequestV2TestDataFactory;
-import uk.gov.dhsc.htbhf.dwp.testhelper.v2.IdentityAndEligibilityResponseTestDataFactory;
 
+import java.time.LocalDate;
+import java.util.Base64;
+import java.util.List;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
+import static java.util.Collections.emptyList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.any;
@@ -22,7 +27,9 @@ import static org.mockito.Mockito.anyString;
 import static org.mockito.Mockito.eq;
 import static org.mockito.Mockito.verify;
 import static org.springframework.http.HttpStatus.OK;
+import static uk.gov.dhsc.htbhf.dwp.testhelper.TestConstants.HOMER_NINO_V2;
 import static uk.gov.dhsc.htbhf.dwp.testhelper.v2.HttpRequestTestDataFactory.aValidEligibilityHttpEntity;
+import static uk.gov.dhsc.htbhf.dwp.testhelper.v2.IdentityAndEligibilityResponseTestDataFactory.anIdentityMatchedEligibilityConfirmedUCResponseWithAllMatches;
 
 @ExtendWith(MockitoExtension.class)
 class DWPClientV2Test {
@@ -46,8 +53,7 @@ class DWPClientV2Test {
     void shouldSendRequest() {
         //Given
         DWPEligibilityRequestV2 request = DWPEligibilityRequestV2TestDataFactory.aValidDWPEligibilityRequestV2();
-        IdentityAndEligibilityResponse identityAndEligibilityResponse =
-                IdentityAndEligibilityResponseTestDataFactory.anIdentityMatchedEligibilityConfirmedUCResponseWithAllMatches();
+        IdentityAndEligibilityResponse identityAndEligibilityResponse = identityAndEligibilityResponseWithHouseholdId("anExistingId");
         given(restTemplate.exchange(anyString(), any(), any(), eq(IdentityAndEligibilityResponse.class)))
                 .willReturn(new ResponseEntity<>(identityAndEligibilityResponse, OK));
         HttpEntity httpEntity = aValidEligibilityHttpEntity();
@@ -58,5 +64,75 @@ class DWPClientV2Test {
         assertThat(response).isEqualTo(identityAndEligibilityResponse);
         verify(restTemplate).exchange(uri + DWP_ENDPOINT, HttpMethod.GET, httpEntity, IdentityAndEligibilityResponse.class);
         verify(getRequestBuilder).buildRequestWithHeaders(request);
+    }
+
+    @Test
+    void shouldCreateSyntheticIdentifierForHouseholdWithChildren() {
+        //Given
+        DWPEligibilityRequestV2 request = DWPEligibilityRequestV2TestDataFactory.aValidDWPEligibilityRequestV2();
+        IdentityAndEligibilityResponse identityAndEligibilityResponse = identityAndEligibilityResponseWithHouseholdId("");
+        given(restTemplate.exchange(anyString(), any(), any(), eq(IdentityAndEligibilityResponse.class)))
+                .willReturn(new ResponseEntity<>(identityAndEligibilityResponse, OK));
+        HttpEntity httpEntity = aValidEligibilityHttpEntity();
+        given(getRequestBuilder.buildRequestWithHeaders(any())).willReturn(httpEntity);
+        //When
+        IdentityAndEligibilityResponse response = dwpClient.checkIdentityAndEligibility(request);
+        //Then
+        String syntheticIdComponents = "AA11AA[2017-11-14,2019-05-14]";
+        String expectedHouseholdId = Base64.getEncoder().encodeToString(syntheticIdComponents.getBytes(UTF_8));
+        assertThat(response.getHouseholdIdentifier()).isEqualTo(expectedHouseholdId);
+    }
+
+    @Test
+    void shouldCreateSyntheticIdentifierForHouseholdWithNoChildren() {
+        testSyntheticIdentifierForHouseholdWithNoChildren(emptyList());
+    }
+
+    @Test
+    void shouldCreateSyntheticIdentifierForHouseholdWithNullChildren() {
+        testSyntheticIdentifierForHouseholdWithNoChildren(null);
+    }
+
+    private void testSyntheticIdentifierForHouseholdWithNoChildren(List<LocalDate> dobOfChildrenUnder4) {
+        //Given
+        DWPEligibilityRequestV2 request = DWPEligibilityRequestV2TestDataFactory.aValidDWPEligibilityRequestV2();
+        IdentityAndEligibilityResponse identityAndEligibilityResponse =
+                anIdentityMatchedEligibilityConfirmedUCResponseWithAllMatches()
+                        .toBuilder()
+                        .householdIdentifier("")
+                        .dobOfChildrenUnder4(dobOfChildrenUnder4)
+                        .build();
+        given(restTemplate.exchange(anyString(), any(), any(), eq(IdentityAndEligibilityResponse.class)))
+                .willReturn(new ResponseEntity<>(identityAndEligibilityResponse, OK));
+        HttpEntity httpEntity = aValidEligibilityHttpEntity();
+        given(getRequestBuilder.buildRequestWithHeaders(any())).willReturn(httpEntity);
+        //When
+        IdentityAndEligibilityResponse response = dwpClient.checkIdentityAndEligibility(request);
+        //Then
+        String expectedHouseholdId = Base64.getEncoder().encodeToString(HOMER_NINO_V2.getBytes(UTF_8));
+        assertThat(response.getHouseholdIdentifier()).isEqualTo(expectedHouseholdId);
+    }
+
+    @Test
+    void shouldNotCreateSyntheticIdentifierForHouseholdWithIdentifier() {
+        //Given
+        DWPEligibilityRequestV2 request = DWPEligibilityRequestV2TestDataFactory.aValidDWPEligibilityRequestV2();
+        String existingHouseholdIdentifier = "AnExistingHouseholdIdentifier";
+        IdentityAndEligibilityResponse identityAndEligibilityResponse = identityAndEligibilityResponseWithHouseholdId(existingHouseholdIdentifier);
+        given(restTemplate.exchange(anyString(), any(), any(), eq(IdentityAndEligibilityResponse.class)))
+                .willReturn(new ResponseEntity<>(identityAndEligibilityResponse, OK));
+        HttpEntity httpEntity = aValidEligibilityHttpEntity();
+        given(getRequestBuilder.buildRequestWithHeaders(any())).willReturn(httpEntity);
+        //When
+        IdentityAndEligibilityResponse response = dwpClient.checkIdentityAndEligibility(request);
+        //Then
+        assertThat(response.getHouseholdIdentifier()).isEqualTo(existingHouseholdIdentifier);
+    }
+
+    private IdentityAndEligibilityResponse identityAndEligibilityResponseWithHouseholdId(String existingHouseholdIdentifier) {
+        return anIdentityMatchedEligibilityConfirmedUCResponseWithAllMatches()
+                .toBuilder()
+                .householdIdentifier(existingHouseholdIdentifier)
+                .build();
     }
 }

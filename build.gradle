@@ -18,6 +18,7 @@ allprojects {
     group = 'uk.gov.dhsc.htbhf'
 
     repositories {
+        mavenLocal()
         jcenter()
         mavenCentral()
         maven {
