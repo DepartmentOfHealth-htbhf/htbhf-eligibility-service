@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import uk.gov.dhsc.htbhf.dwp.model.v2.IdentityAndEligibilityResponse;
 import uk.gov.dhsc.htbhf.dwp.model.v2.PersonDTOV2;
-import uk.gov.dhsc.htbhf.eligibility.model.v1.PersonDTO;
 import uk.gov.dhsc.htbhf.eligibility.service.v2.IdentityAndEligibilityService;
 
 import javax.validation.Valid;
@@ -31,7 +30,7 @@ public class EligibilityControllerV2 {
     /**
      * Invokes downstream services to obtain a decision on the identity and eligibility for the given person.
      *
-     * @param person the {@link PersonDTO}
+     * @param person the {@link PersonDTOV2}
      * @return the {@link IdentityAndEligibilityResponse}
      */
     @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
