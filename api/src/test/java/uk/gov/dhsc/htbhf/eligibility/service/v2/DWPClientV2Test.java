@@ -15,6 +15,7 @@ import uk.gov.dhsc.htbhf.dwp.model.v2.IdentityAndEligibilityResponse;
 import uk.gov.dhsc.htbhf.dwp.testhelper.v2.DWPEligibilityRequestV2TestDataFactory;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Base64;
 import java.util.List;
 
@@ -28,6 +29,8 @@ import static org.mockito.Mockito.eq;
 import static org.mockito.Mockito.verify;
 import static org.springframework.http.HttpStatus.OK;
 import static uk.gov.dhsc.htbhf.dwp.testhelper.TestConstants.HOMER_NINO_V2;
+import static uk.gov.dhsc.htbhf.dwp.testhelper.TestConstants.LISA_DOB;
+import static uk.gov.dhsc.htbhf.dwp.testhelper.TestConstants.MAGGIE_DATE_OF_BIRTH_STRING;
 import static uk.gov.dhsc.htbhf.dwp.testhelper.v2.HttpRequestTestDataFactory.aValidEligibilityHttpEntity;
 import static uk.gov.dhsc.htbhf.dwp.testhelper.v2.IdentityAndEligibilityResponseTestDataFactory.anIdentityMatchedEligibilityConfirmedUCResponseWithAllMatches;
 
@@ -78,7 +81,8 @@ class DWPClientV2Test {
         //When
         IdentityAndEligibilityResponse response = dwpClient.checkIdentityAndEligibility(request);
         //Then
-        String syntheticIdComponents = "AA11AA[2017-11-14,2019-05-14]";
+        String lisaDobString = DateTimeFormatter.ISO_LOCAL_DATE.format(LISA_DOB);
+        String syntheticIdComponents = "AA11AA[" + lisaDobString + "," + MAGGIE_DATE_OF_BIRTH_STRING + "]";
         String expectedHouseholdId = Base64.getEncoder().encodeToString(syntheticIdComponents.getBytes(UTF_8));
         assertThat(response.getHouseholdIdentifier()).isEqualTo(expectedHouseholdId);
     }
