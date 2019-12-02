@@ -7,7 +7,10 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import uk.gov.dhsc.htbhf.dwp.model.v2.IdentityAndEligibilityResponse;
 import uk.gov.dhsc.htbhf.dwp.model.v2.PersonDTOV2;
+import uk.gov.dhsc.htbhf.dwp.testhelper.v2.IdentityAndEligibilityResponseTestDataFactory;
 import uk.gov.dhsc.htbhf.dwp.testhelper.v2.PersonDTOV2TestDataFactory;
+import uk.gov.dhsc.htbhf.eligibility.model.CombinedIdentityAndEligibilityResponse;
+import uk.gov.dhsc.htbhf.eligibility.testhelper.v2.CombinedIdAndEligibilityResponseTestDataFactory;
 
 import java.time.LocalDate;
 
@@ -16,7 +19,6 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.verify;
 import static uk.gov.dhsc.htbhf.dwp.testhelper.v2.DWPEligibilityRequestV2TestDataFactory.aValidDWPEligibilityRequestV2WithEligibilityEndDate;
-import static uk.gov.dhsc.htbhf.dwp.testhelper.v2.IdentityAndEligibilityResponseTestDataFactory.anIdentityMatchedEligibilityConfirmedUCResponseWithAllMatches;
 
 @ExtendWith(MockitoExtension.class)
 class IdentityAndEligibilityServiceTest {
@@ -36,14 +38,16 @@ class IdentityAndEligibilityServiceTest {
     void shouldSuccessfullyCheckIdentityAndEligibility() {
         //Given
         PersonDTOV2 person = PersonDTOV2TestDataFactory.aValidPersonDTOV2();
-        IdentityAndEligibilityResponse identityAndEligibilityResponse = anIdentityMatchedEligibilityConfirmedUCResponseWithAllMatches();
+        IdentityAndEligibilityResponse identityAndEligibilityResponse = IdentityAndEligibilityResponseTestDataFactory
+                .anAllMatchedEligibilityConfirmedUCResponseWithHouseholdIdentifier();
         given(client.checkIdentityAndEligibility(any())).willReturn(identityAndEligibilityResponse);
 
         //When
-        IdentityAndEligibilityResponse response = service.checkIdentityAndEligibility(person);
+        CombinedIdentityAndEligibilityResponse response = service.checkIdentityAndEligibility(person);
 
         //Then
-        assertThat(response).isEqualTo(identityAndEligibilityResponse);
+        assertThat(response).isEqualTo(CombinedIdAndEligibilityResponseTestDataFactory
+                .anIdMatchedEligibilityConfirmedResponseWithNoHmrcHouseholdIdentifier());
         verify(client).checkIdentityAndEligibility(aValidDWPEligibilityRequestV2WithEligibilityEndDate(LocalDate.now()));
     }
 }

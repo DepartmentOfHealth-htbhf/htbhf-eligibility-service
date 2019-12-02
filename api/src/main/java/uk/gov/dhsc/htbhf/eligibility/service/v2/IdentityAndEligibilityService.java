@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import uk.gov.dhsc.htbhf.dwp.model.v2.DWPEligibilityRequestV2;
 import uk.gov.dhsc.htbhf.dwp.model.v2.IdentityAndEligibilityResponse;
 import uk.gov.dhsc.htbhf.dwp.model.v2.PersonDTOV2;
+import uk.gov.dhsc.htbhf.eligibility.model.CombinedIdentityAndEligibilityResponse;
 
 import java.time.LocalDate;
 
@@ -26,13 +27,14 @@ public class IdentityAndEligibilityService {
      * Checks the identity and eligibility of a given person by calling DWP.
      *
      * @param person The person to check
-     * @return The identity and eligibility response
+     * @return The combined identity and eligibility response
      */
-    public IdentityAndEligibilityResponse checkIdentityAndEligibility(PersonDTOV2 person) {
+    public CombinedIdentityAndEligibilityResponse checkIdentityAndEligibility(PersonDTOV2 person) {
         log.debug("Checking identity and eligibility");
         DWPEligibilityRequestV2 dwpEligibilityRequest = createDWPRequest(person);
 
-        return dwpClient.checkIdentityAndEligibility(dwpEligibilityRequest);
+        IdentityAndEligibilityResponse dwpIdentityAndEligibilityResponse = dwpClient.checkIdentityAndEligibility(dwpEligibilityRequest);
+        return buildCombinedResponse(dwpIdentityAndEligibilityResponse);
     }
 
     private DWPEligibilityRequestV2 createDWPRequest(PersonDTOV2 person) {
@@ -40,6 +42,24 @@ public class IdentityAndEligibilityService {
                 .person(person)
                 .eligibilityEndDate(LocalDate.now())
                 .ucMonthlyIncomeThresholdInPence(ucMonthlyIncomeThresholdInPence)
+                .build();
+    }
+
+    private CombinedIdentityAndEligibilityResponse buildCombinedResponse(IdentityAndEligibilityResponse dwpResponse) {
+        return CombinedIdentityAndEligibilityResponse.builder()
+                .identityStatus(dwpResponse.getIdentityStatus())
+                .eligibilityStatus(dwpResponse.getEligibilityStatus())
+                .qualifyingBenefits(dwpResponse.getQualifyingBenefits())
+                .mobilePhoneMatch(dwpResponse.getMobilePhoneMatch())
+                .emailAddressMatch(dwpResponse.getEmailAddressMatch())
+                .addressLine1Match(dwpResponse.getAddressLine1Match())
+                .postcodeMatch(dwpResponse.getPostcodeMatch())
+                .pregnantChildDOBMatch(dwpResponse.getPregnantChildDOBMatch())
+                .dwpHouseholdIdentifier(dwpResponse.getHouseholdIdentifier())
+                .deathVerificationFlag(dwpResponse.getDeathVerificationFlag())
+                .dobOfChildrenUnder4(dwpResponse.getDobOfChildrenUnder4())
+                //TODO 02/12/2019: Specifically set to null for now, HTBHF-2410 will set this value when integrated with HMRC
+                .hrmcHouseholdIdentifier(null)
                 .build();
     }
 

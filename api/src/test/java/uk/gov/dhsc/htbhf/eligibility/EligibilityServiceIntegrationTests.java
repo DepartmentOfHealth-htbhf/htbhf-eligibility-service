@@ -30,12 +30,12 @@ import static org.springframework.http.HttpMethod.POST;
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.HttpStatus.OK;
+import static uk.gov.dhsc.htbhf.TestConstants.DWP_HOUSEHOLD_IDENTIFIER;
+import static uk.gov.dhsc.htbhf.TestConstants.HMRC_HOUSEHOLD_IDENTIFIER;
 import static uk.gov.dhsc.htbhf.assertions.IntegrationTestAssertions.assertInternalServerErrorResponse;
 import static uk.gov.dhsc.htbhf.assertions.IntegrationTestAssertions.assertValidationErrorInResponse;
 import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.ELIGIBLE;
 import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.NO_MATCH;
-import static uk.gov.dhsc.htbhf.eligibility.testhelper.TestConstants.SIMPSON_DWP_HOUSEHOLD_IDENTIFIER;
-import static uk.gov.dhsc.htbhf.eligibility.testhelper.TestConstants.SIMPSON_HMRC_HOUSEHOLD_IDENTIFIER;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.v1.DWPEligibilityResponseTestDataFactory.aDWPEligibilityResponseWithStatus;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.v1.EligibilityResponseTestDataFactory.anEligibilityResponseWithDwpHouseholdIdentifier;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.v1.EligibilityResponseTestDataFactory.anEligibilityResponseWithHmrcHouseholdIdentifier;
@@ -89,7 +89,7 @@ class EligibilityServiceIntegrationTests {
     void shouldReturnEligibleResponseGivenEligibleResponseFromDwp(EligibilityStatus hmrcResponseEligibilityStatus) throws JsonProcessingException {
         runIntegrationTestReturningEligibilityResponse(ELIGIBLE,
                 hmrcResponseEligibilityStatus,
-                anEligibilityResponseWithDwpHouseholdIdentifier(ELIGIBLE, SIMPSON_DWP_HOUSEHOLD_IDENTIFIER));
+                anEligibilityResponseWithDwpHouseholdIdentifier(ELIGIBLE, DWP_HOUSEHOLD_IDENTIFIER));
     }
 
     @ParameterizedTest(name = "Should return {2} response from eligibility-service when DWP status returned is {0} and HMRC is {1}")
@@ -128,7 +128,7 @@ class EligibilityServiceIntegrationTests {
     void shouldReturnEligibleResponseGivenEligibleResponseFromHmrc(EligibilityStatus dwpResponseEligibilityStatus) throws JsonProcessingException {
         runIntegrationTestReturningEligibilityResponse(dwpResponseEligibilityStatus,
                 ELIGIBLE,
-                anEligibilityResponseWithHmrcHouseholdIdentifier(ELIGIBLE, SIMPSON_HMRC_HOUSEHOLD_IDENTIFIER));
+                anEligibilityResponseWithHmrcHouseholdIdentifier(ELIGIBLE, HMRC_HOUSEHOLD_IDENTIFIER));
     }
 
     @Test

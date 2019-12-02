@@ -18,11 +18,11 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
+import static uk.gov.dhsc.htbhf.TestConstants.DWP_HOUSEHOLD_IDENTIFIER;
+import static uk.gov.dhsc.htbhf.TestConstants.HMRC_HOUSEHOLD_IDENTIFIER;
 import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.ELIGIBLE;
 import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.INELIGIBLE;
 import static uk.gov.dhsc.htbhf.eligibility.model.EligibilityStatus.PENDING;
-import static uk.gov.dhsc.htbhf.eligibility.testhelper.TestConstants.SIMPSON_DWP_HOUSEHOLD_IDENTIFIER;
-import static uk.gov.dhsc.htbhf.eligibility.testhelper.TestConstants.SIMPSON_HMRC_HOUSEHOLD_IDENTIFIER;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.v1.DWPEligibilityResponseTestDataFactory.aDWPEligibilityResponseWithStatus;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.v1.DWPEligibilityResponseTestDataFactory.aDwpEligibilityResponseBuilder;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.v1.DWPEligibilityResponseTestDataFactory.createChildren;
@@ -58,8 +58,8 @@ class EligibilityResponseFactoryTest {
 
         EligibilityResponse response = factory.createEligibilityResponse(dwpEligibilityResponse, hmrcEligibilityResponse);
 
-        assertThat(response.getDwpHouseholdIdentifier()).isEqualTo(SIMPSON_DWP_HOUSEHOLD_IDENTIFIER);
-        assertThat(response.getHmrcHouseholdIdentifier()).isEqualTo(SIMPSON_HMRC_HOUSEHOLD_IDENTIFIER);
+        assertThat(response.getDwpHouseholdIdentifier()).isEqualTo(DWP_HOUSEHOLD_IDENTIFIER);
+        assertThat(response.getHmrcHouseholdIdentifier()).isEqualTo(HMRC_HOUSEHOLD_IDENTIFIER);
     }
 
     @Test
@@ -70,7 +70,7 @@ class EligibilityResponseFactoryTest {
 
         EligibilityResponse response = factory.createEligibilityResponse(dwpEligibilityResponse, hmrcEligibilityResponse);
 
-        assertThat(response.getDwpHouseholdIdentifier()).isEqualTo(SIMPSON_DWP_HOUSEHOLD_IDENTIFIER);
+        assertThat(response.getDwpHouseholdIdentifier()).isEqualTo(DWP_HOUSEHOLD_IDENTIFIER);
         assertThat(response.getHmrcHouseholdIdentifier()).isNull();
     }
 
@@ -83,7 +83,7 @@ class EligibilityResponseFactoryTest {
         EligibilityResponse response = factory.createEligibilityResponse(dwpEligibilityResponse, hmrcEligibilityResponse);
 
         assertThat(response.getDwpHouseholdIdentifier()).isNull();
-        assertThat(response.getHmrcHouseholdIdentifier()).isEqualTo(SIMPSON_HMRC_HOUSEHOLD_IDENTIFIER);
+        assertThat(response.getHmrcHouseholdIdentifier()).isEqualTo(HMRC_HOUSEHOLD_IDENTIFIER);
     }
 
     @Test
