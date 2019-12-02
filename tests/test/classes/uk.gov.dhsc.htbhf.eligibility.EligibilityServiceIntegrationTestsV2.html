@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.110s</div>
+<div class="counter">0.172s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,17 +79,17 @@
 </thead>
 <tr>
 <td class="success">shouldReturnBadRequestForInvalidRequest()</td>
-<td class="success">0.015s</td>
+<td class="success">0.036s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">shouldReturnEligibleResponseGivenEligibleResponseReturnedFromDwp()</td>
-<td class="success">0.069s</td>
+<td class="success">0.080s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">shouldReturnInternalServerErrorWhenExceptionFromDwpRestCall()</td>
-<td class="success">0.026s</td>
+<td class="success">0.056s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -97,12 +97,12 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>2019-11-22 13:47:00.841  INFO 679 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [uk.gov.dhsc.htbhf.eligibility.EligibilityServiceIntegrationTestsV2], using SpringBootContextLoader
-2019-11-22 13:47:00.842  INFO 679 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [uk.gov.dhsc.htbhf.eligibility.EligibilityServiceIntegrationTestsV2]: no resource found for suffixes {-context.xml, Context.groovy}.
-2019-11-22 13:47:00.842  INFO 679 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [uk.gov.dhsc.htbhf.eligibility.EligibilityServiceIntegrationTestsV2]: EligibilityServiceIntegrationTestsV2 does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2019-11-22 13:47:00.844  INFO 679 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration uk.gov.dhsc.htbhf.eligibility.EligibilityServiceApplication for test class uk.gov.dhsc.htbhf.eligibility.EligibilityServiceIntegrationTestsV2
-2019-11-22 13:47:00.845  INFO 679 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.cloud.contract.stubrunner.provider.wiremock.StubRunnerWireMockTestExecutionListener, org.springframework.cloud.contract.wiremock.WireMockTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-2019-11-22 13:47:00.846  INFO 679 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@c94ccc5, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@27ba1630, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@119cd7ee, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@7ff4cd81, org.springframework.test.context.support.DirtiesContextTestExecutionListener@552cc45e, org.springframework.test.context.event.EventPublishingTestExecutionListener@22d0435d, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@5584c34e, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@c4594ba, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@3ff8af58, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@1f92d951, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@6c7ff75e, org.springframework.cloud.contract.stubrunner.provider.wiremock.StubRunnerWireMockTestExecutionListener@4cbf5e2f, org.springframework.cloud.contract.wiremock.WireMockTestExecutionListener@3647ba8f]
+<pre>2019-12-02 13:45:39.520  INFO 662 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [uk.gov.dhsc.htbhf.eligibility.EligibilityServiceIntegrationTestsV2], using SpringBootContextLoader
+2019-12-02 13:45:39.521  INFO 662 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [uk.gov.dhsc.htbhf.eligibility.EligibilityServiceIntegrationTestsV2]: no resource found for suffixes {-context.xml, Context.groovy}.
+2019-12-02 13:45:39.521  INFO 662 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [uk.gov.dhsc.htbhf.eligibility.EligibilityServiceIntegrationTestsV2]: EligibilityServiceIntegrationTestsV2 does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2019-12-02 13:45:39.523  INFO 662 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration uk.gov.dhsc.htbhf.eligibility.EligibilityServiceApplication for test class uk.gov.dhsc.htbhf.eligibility.EligibilityServiceIntegrationTestsV2
+2019-12-02 13:45:39.524  INFO 662 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.cloud.contract.stubrunner.provider.wiremock.StubRunnerWireMockTestExecutionListener, org.springframework.cloud.contract.wiremock.WireMockTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2019-12-02 13:45:39.525  INFO 662 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@bfe4d0d, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@25e82bd8, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@7a05eaee, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@9d6bb67, org.springframework.test.context.support.DirtiesContextTestExecutionListener@70390975, org.springframework.test.context.event.EventPublishingTestExecutionListener@14eb5a41, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@41ec90a8, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@7d5d1671, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@4597da0e, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@be0b9af, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@2eac01ab, org.springframework.cloud.contract.stubrunner.provider.wiremock.StubRunnerWireMockTestExecutionListener@3b577491, org.springframework.cloud.contract.wiremock.WireMockTestExecutionListener@40eb9e5f]
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -112,35 +112,35 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.2.0.RELEASE)
 
-2019-11-22 13:47:00.868  INFO 679 --- [    Test worker] h.e.EligibilityServiceIntegrationTestsV2 : Starting EligibilityServiceIntegrationTestsV2 on f165dd2b0af9 with PID 679 (started by circleci in /home/circleci/project/api)
-2019-11-22 13:47:00.868  INFO 679 --- [    Test worker] h.e.EligibilityServiceIntegrationTestsV2 : No active profile set, falling back to default profiles: default
-2019-11-22 13:47:01.192  WARN 679 --- [    Test worker] org.apache.tomcat.util.modeler.Registry  : The MBean registry cannot be disabled because it has already been initialised
-2019-11-22 13:47:01.194  INFO 679 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
-2019-11-22 13:47:01.195  INFO 679 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2019-11-22 13:47:01.196  INFO 679 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
-2019-11-22 13:47:01.214  INFO 679 --- [    Test worker] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
-2019-11-22 13:47:01.215  INFO 679 --- [    Test worker] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 346 ms
-2019-11-22 13:47:01.594  INFO 679 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
-2019-11-22 13:47:01.706  INFO 679 --- [    Test worker] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2019-11-22 13:47:01.713  INFO 679 --- [    Test worker] u.g.d.h.e.EligibilityServiceApplication  : Creating ThreadPoolTaskExecutor with min pool size 2 and max 200
-2019-11-22 13:47:01.718  INFO 679 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'taskExecutor'
-2019-11-22 13:47:01.917  INFO 679 --- [    Test worker] w.org.eclipse.jetty.server.Server        : jetty-9.2.z-SNAPSHOT
-2019-11-22 13:47:01.919  INFO 679 --- [    Test worker] w.o.e.j.server.handler.ContextHandler    : Started w.o.e.j.s.ServletContextHandler@9c837ab{/__admin,null,AVAILABLE}
-2019-11-22 13:47:01.920  INFO 679 --- [    Test worker] w.o.e.j.server.handler.ContextHandler    : Started w.o.e.j.s.ServletContextHandler@5d8d2f6b{/,null,AVAILABLE}
-2019-11-22 13:47:01.920  INFO 679 --- [    Test worker] w.o.e.j.s.NetworkTrafficServerConnector  : Started NetworkTrafficServerConnector@15302e1e{HTTP/1.1}{0.0.0.0:8110}
-2019-11-22 13:47:01.920  INFO 679 --- [    Test worker] w.org.eclipse.jetty.server.Server        : Started @14760ms
-2019-11-22 13:47:01.920  INFO 679 --- [    Test worker] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2019-11-22 13:47:01.921  INFO 679 --- [    Test worker] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2019-11-22 13:47:01.924  INFO 679 --- [    Test worker] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2019-11-22 13:47:01.956  INFO 679 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 38049 (http) with context path ''
-2019-11-22 13:47:01.957  INFO 679 --- [    Test worker] h.e.EligibilityServiceIntegrationTestsV2 : Started EligibilityServiceIntegrationTestsV2 in 1.11 seconds (JVM running for 14.797)
-2019-11-22 13:47:01.960  INFO 679 --- [    Test worker] uk.gov.dhsc.htbhf.logging.EventLogger    : {&quot;eventType&quot;:&quot;APPLICATION_STARTED&quot;,&quot;timestamp&quot;:&quot;2019-11-22T13:47:01.959556&quot;,&quot;applicationId&quot;:&quot;&quot;,&quot;applicationVersion&quot;:&quot;&quot;,&quot;instanceIndex&quot;:&quot;&quot;}
-2019-11-22 13:47:01.961  INFO 679 --- [    Test worker] u.g.d.h.eligibility.ApiDocumentation     : Application started. App version=, app id=, instance index=
-2019-11-22 13:47:01.979  INFO 679 --- [o-auto-3-exec-1] o.a.c.c.C.[Tomcat-1].[localhost].[/]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2019-11-22 13:47:01.980  INFO 679 --- [o-auto-3-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2019-11-22 13:47:01.988  INFO 679 --- [o-auto-3-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 8 ms
-2019-11-22 13:47:02.012  INFO 679 --- [qtp881714019-89] /                                        : RequestHandlerClass from context returned com.github.tomakehurst.wiremock.http.StubRequestHandler. Normalized mapped under returned 'null'
-2019-11-22 13:47:02.019  INFO 679 --- [qtp881714019-89] WireMock                                 : Request received:
+2019-12-02 13:45:39.544  INFO 662 --- [    Test worker] h.e.EligibilityServiceIntegrationTestsV2 : Starting EligibilityServiceIntegrationTestsV2 on 8d89e28def1d with PID 662 (started by circleci in /home/circleci/project/api)
+2019-12-02 13:45:39.545  INFO 662 --- [    Test worker] h.e.EligibilityServiceIntegrationTestsV2 : No active profile set, falling back to default profiles: default
+2019-12-02 13:45:39.889  WARN 662 --- [    Test worker] org.apache.tomcat.util.modeler.Registry  : The MBean registry cannot be disabled because it has already been initialised
+2019-12-02 13:45:39.892  INFO 662 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2019-12-02 13:45:39.892  INFO 662 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-12-02 13:45:39.893  INFO 662 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
+2019-12-02 13:45:39.908  INFO 662 --- [    Test worker] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Initializing Spring embedded WebApplicationContext
+2019-12-02 13:45:39.909  INFO 662 --- [    Test worker] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 363 ms
+2019-12-02 13:45:40.279  INFO 662 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2019-12-02 13:45:40.388  INFO 662 --- [    Test worker] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2019-12-02 13:45:40.395  INFO 662 --- [    Test worker] u.g.d.h.e.EligibilityServiceApplication  : Creating ThreadPoolTaskExecutor with min pool size 2 and max 200
+2019-12-02 13:45:40.399  INFO 662 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'taskExecutor'
+2019-12-02 13:45:40.580  INFO 662 --- [    Test worker] w.org.eclipse.jetty.server.Server        : jetty-9.2.z-SNAPSHOT
+2019-12-02 13:45:40.583  INFO 662 --- [    Test worker] w.o.e.j.server.handler.ContextHandler    : Started w.o.e.j.s.ServletContextHandler@3b86607a{/__admin,null,AVAILABLE}
+2019-12-02 13:45:40.584  INFO 662 --- [    Test worker] w.o.e.j.server.handler.ContextHandler    : Started w.o.e.j.s.ServletContextHandler@5de03a1d{/,null,AVAILABLE}
+2019-12-02 13:45:40.584  INFO 662 --- [    Test worker] w.o.e.j.s.NetworkTrafficServerConnector  : Started NetworkTrafficServerConnector@556d046b{HTTP/1.1}{0.0.0.0:8110}
+2019-12-02 13:45:40.584  INFO 662 --- [    Test worker] w.org.eclipse.jetty.server.Server        : Started @16875ms
+2019-12-02 13:45:40.585  INFO 662 --- [    Test worker] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2019-12-02 13:45:40.585  INFO 662 --- [    Test worker] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2019-12-02 13:45:40.590  INFO 662 --- [    Test worker] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2019-12-02 13:45:40.627  INFO 662 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 38401 (http) with context path ''
+2019-12-02 13:45:40.628  INFO 662 --- [    Test worker] h.e.EligibilityServiceIntegrationTestsV2 : Started EligibilityServiceIntegrationTestsV2 in 1.1 seconds (JVM running for 16.918)
+2019-12-02 13:45:40.630  INFO 662 --- [    Test worker] uk.gov.dhsc.htbhf.logging.EventLogger    : {&quot;eventType&quot;:&quot;APPLICATION_STARTED&quot;,&quot;timestamp&quot;:&quot;2019-12-02T13:45:40.629493&quot;,&quot;applicationId&quot;:&quot;&quot;,&quot;applicationVersion&quot;:&quot;&quot;,&quot;instanceIndex&quot;:&quot;&quot;}
+2019-12-02 13:45:40.630  INFO 662 --- [    Test worker] u.g.d.h.eligibility.ApiDocumentation     : Application started. App version=, app id=, instance index=
+2019-12-02 13:45:40.650  INFO 662 --- [o-auto-4-exec-1] o.a.c.c.C.[Tomcat-2].[localhost].[/]     : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-12-02 13:45:40.650  INFO 662 --- [o-auto-4-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-12-02 13:45:40.668  INFO 662 --- [o-auto-4-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 18 ms
+2019-12-02 13:45:40.693  INFO 662 --- [p1409848626-107] /                                        : RequestHandlerClass from context returned com.github.tomakehurst.wiremock.http.StubRequestHandler. Normalized mapped under returned 'null'
+2019-12-02 13:45:40.698  INFO 662 --- [p1409848626-107] WireMock                                 : Request received:
 127.0.0.1 - GET /v2/dwp/eligibility
 
 mobilePhoneNumber: [+447700900000]
@@ -150,14 +150,14 @@ ucMonthlyIncomeThreshold: [40800]
 User-Agent: [Java/11.0.4]
 Connection: [keep-alive]
 dateOfBirth: [1985-12-31]
-X-REQUEST-ID: [13644287-41ea-4960-bd36-a70685583814]
+X-REQUEST-ID: [98566e20-20e9-435c-bca7-78725fc4e3ae]
 Host: [localhost:8110]
 nino: [MC123456C]
 emailAddress: [homer@simpson.com]
 surname: [Simpson]
 addressLine1: [742 Evergreen Terrace]
-eligibilityEndDate: [2019-11-22]
-pregnantDependentDob: [2019-05-22]
+eligibilityEndDate: [2019-12-02]
+pregnantDependentDob: [2019-06-02]
 X-SESSION-ID: []
 
 
@@ -165,7 +165,7 @@ X-SESSION-ID: []
 Matched response definition:
 {
   &quot;status&quot; : 200,
-  &quot;body&quot; : &quot;{\&quot;eligibilityStatus\&quot;:\&quot;confirmed\&quot;,\&quot;deathVerificationFlag\&quot;:\&quot;n/a\&quot;,\&quot;mobilePhoneMatch\&quot;:\&quot;matched\&quot;,\&quot;emailAddressMatch\&quot;:\&quot;matched\&quot;,\&quot;addressLine1Match\&quot;:\&quot;matched\&quot;,\&quot;postcodeMatch\&quot;:\&quot;matched\&quot;,\&quot;pregnantChildDOBMatch\&quot;:\&quot;not_set\&quot;,\&quot;qualifyingBenefits\&quot;:\&quot;universal_credit\&quot;,\&quot;householdIdentifier\&quot;:\&quot;\&quot;,\&quot;dobOfChildrenUnder4\&quot;:[\&quot;2019-05-22\&quot;,\&quot;2017-11-22\&quot;],\&quot;identityStatus\&quot;:\&quot;matched\&quot;}&quot;,
+  &quot;body&quot; : &quot;{\&quot;eligibilityStatus\&quot;:\&quot;confirmed\&quot;,\&quot;deathVerificationFlag\&quot;:\&quot;n/a\&quot;,\&quot;mobilePhoneMatch\&quot;:\&quot;matched\&quot;,\&quot;emailAddressMatch\&quot;:\&quot;matched\&quot;,\&quot;addressLine1Match\&quot;:\&quot;matched\&quot;,\&quot;postcodeMatch\&quot;:\&quot;matched\&quot;,\&quot;pregnantChildDOBMatch\&quot;:\&quot;not_supplied\&quot;,\&quot;qualifyingBenefits\&quot;:\&quot;universal_credit\&quot;,\&quot;householdIdentifier\&quot;:\&quot;dwpHousehold1\&quot;,\&quot;dobOfChildrenUnder4\&quot;:[\&quot;2019-06-02\&quot;,\&quot;2017-12-02\&quot;],\&quot;identityStatus\&quot;:\&quot;matched\&quot;}&quot;,
   &quot;headers&quot; : {
     &quot;Content-Type&quot; : &quot;application/json&quot;
   }
@@ -174,10 +174,10 @@ Matched response definition:
 Response:
 HTTP/1.1 200
 Content-Type: [application/json]
-Matched-Stub-Id: [3f4aa984-5095-4b82-baa2-17b7073fe54d]
+Matched-Stub-Id: [77fb40d0-f194-4d5f-ae49-ce6bd545304a]
 
 
-2019-11-22 13:47:02.051  INFO 679 --- [qtp881714019-90] WireMock                                 : Request received:
+2019-12-02 13:45:40.731  INFO 662 --- [p1409848626-108] WireMock                                 : Request received:
 127.0.0.1 - GET /v2/dwp/eligibility
 
 mobilePhoneNumber: [+447700900000]
@@ -187,14 +187,14 @@ ucMonthlyIncomeThreshold: [40800]
 User-Agent: [Java/11.0.4]
 Connection: [keep-alive]
 dateOfBirth: [1985-12-31]
-X-REQUEST-ID: [459b1825-2c2d-42e3-9402-7f3bb90184cb]
+X-REQUEST-ID: [9bd17ef9-0c2a-4ef0-af22-7c0c067a443d]
 Host: [localhost:8110]
 nino: [MC123456C]
 emailAddress: [homer@simpson.com]
 surname: [Simpson]
 addressLine1: [742 Evergreen Terrace]
-eligibilityEndDate: [2019-11-22]
-pregnantDependentDob: [2019-05-22]
+eligibilityEndDate: [2019-12-02]
+pregnantDependentDob: [2019-06-02]
 X-SESSION-ID: []
 
 
@@ -206,10 +206,10 @@ Matched response definition:
 
 Response:
 HTTP/1.1 500
-Matched-Stub-Id: [bd349143-ae04-49e2-9c7a-c3c9c540aae9]
+Matched-Stub-Id: [35a4aa14-5a43-48b1-acf4-21d0cb6d369f]
 
 
-2019-11-22 13:47:02.054 ERROR 679 --- [o-auto-3-exec-2] u.g.d.htbhf.errorhandler.ErrorHandler    : An error occurred during incoming POST request to /v2/eligibility: 500 Server Error (at org.springframework.web.client.HttpServerErrorException.create(HttpServerErrorException.java:79))
+2019-12-02 13:45:40.734 ERROR 662 --- [o-auto-4-exec-2] u.g.d.htbhf.errorhandler.ErrorHandler    : An error occurred during incoming POST request to /v2/eligibility: 500 Server Error (at org.springframework.web.client.HttpServerErrorException.create(HttpServerErrorException.java:79))
 
 org.springframework.web.client.HttpServerErrorException$InternalServerError: 500 Server Error
 	at org.springframework.web.client.HttpServerErrorException.create(HttpServerErrorException.java:79) ~[spring-web-5.2.0.RELEASE.jar:5.2.0.RELEASE]
@@ -221,7 +221,7 @@ org.springframework.web.client.HttpServerErrorException$InternalServerError: 500
 	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:677) ~[spring-web-5.2.0.RELEASE.jar:5.2.0.RELEASE]
 	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:586) ~[spring-web-5.2.0.RELEASE.jar:5.2.0.RELEASE]
 	at uk.gov.dhsc.htbhf.eligibility.service.v2.DWPClientV2.checkIdentityAndEligibility(DWPClientV2.java:44) ~[main/:na]
-	at uk.gov.dhsc.htbhf.eligibility.service.v2.IdentityAndEligibilityService.checkIdentityAndEligibility(IdentityAndEligibilityService.java:35) ~[main/:na]
+	at uk.gov.dhsc.htbhf.eligibility.service.v2.IdentityAndEligibilityService.checkIdentityAndEligibility(IdentityAndEligibilityService.java:36) ~[main/:na]
 	at uk.gov.dhsc.htbhf.eligibility.controller.v2.EligibilityControllerV2.getIdentityAndEligibilityDecision(EligibilityControllerV2.java:41) ~[main/:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
@@ -245,7 +245,7 @@ org.springframework.web.client.HttpServerErrorException$InternalServerError: 500
 	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.27.jar:9.0.27]
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
 	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
-	at uk.gov.dhsc.htbhf.requestcontext.RequestIdFilter.doFilterInternal(RequestIdFilter.java:55) ~[htbhf-common-rest-0.0.39.jar:na]
+	at uk.gov.dhsc.htbhf.requestcontext.RequestIdFilter.doFilterInternal(RequestIdFilter.java:55) ~[htbhf-common-rest-0.0.40.jar:na]
 	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.2.0.RELEASE.jar:5.2.0.RELEASE]
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
 	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
@@ -282,15 +282,15 @@ org.springframework.web.client.HttpServerErrorException$InternalServerError: 500
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.27.jar:9.0.27]
 	at java.base/java.lang.Thread.run(Thread.java:834) ~[na:na]
 
-2019-11-22 13:47:02.071 ERROR 679 --- [o-auto-3-exec-3] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during incoming POST request to /v2/eligibility: [ErrorResponse.FieldError(field=nino, message=must not be null)]
-2019-11-22 13:47:02.076  WARN 679 --- [    Test worker] o.s.c.c.w.WireMockTestExecutionListener  : You've used fixed ports for WireMock setup - will mark context as dirty. Please use random ports, as much as possible. Your tests will be faster and more reliable and this warning will go away
-2019-11-22 13:47:02.078  INFO 679 --- [    Test worker] w.o.e.j.s.NetworkTrafficServerConnector  : Stopped NetworkTrafficServerConnector@15302e1e{HTTP/1.1}{0.0.0.0:8110}
-2019-11-22 13:47:02.079  INFO 679 --- [    Test worker] w.o.e.j.server.handler.ContextHandler    : Stopped w.o.e.j.s.ServletContextHandler@5d8d2f6b{/,null,UNAVAILABLE}
-2019-11-22 13:47:02.079  INFO 679 --- [    Test worker] w.o.e.j.server.handler.ContextHandler    : Stopped w.o.e.j.s.ServletContextHandler@9c837ab{/__admin,null,UNAVAILABLE}
-2019-11-22 13:47:02.079  WARN 679 --- [    Test worker] w.o.e.j.util.thread.QueuedThreadPool     : qtp881714019{STOPPING,8&lt;=8&lt;=10,i=6,q=6} Couldn't stop Thread[qtp881714019-86,5,]
-2019-11-22 13:47:02.079  WARN 679 --- [    Test worker] w.o.e.j.util.thread.QueuedThreadPool     : qtp881714019{STOPPING,8&lt;=8&lt;=10,i=2,q=5} Couldn't stop Thread[qtp881714019-109,5,]
-2019-11-22 13:47:02.079  WARN 679 --- [    Test worker] w.o.e.j.util.thread.QueuedThreadPool     : qtp881714019{STOPPING,8&lt;=8&lt;=10,i=0,q=5} Couldn't stop Thread[qtp881714019-92,5,]
-2019-11-22 13:47:02.080  INFO 679 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'taskExecutor'
+2019-12-02 13:45:40.797 ERROR 662 --- [o-auto-4-exec-3] u.g.d.htbhf.errorhandler.ErrorHandler    : Binding error(s) during incoming POST request to /v2/eligibility: [ErrorResponse.FieldError(field=nino, message=must not be null)]
+2019-12-02 13:45:40.808  WARN 662 --- [    Test worker] o.s.c.c.w.WireMockTestExecutionListener  : You've used fixed ports for WireMock setup - will mark context as dirty. Please use random ports, as much as possible. Your tests will be faster and more reliable and this warning will go away
+2019-12-02 13:45:40.811  INFO 662 --- [    Test worker] w.o.e.j.s.NetworkTrafficServerConnector  : Stopped NetworkTrafficServerConnector@556d046b{HTTP/1.1}{0.0.0.0:8110}
+2019-12-02 13:45:40.812  INFO 662 --- [    Test worker] w.o.e.j.server.handler.ContextHandler    : Stopped w.o.e.j.s.ServletContextHandler@5de03a1d{/,null,UNAVAILABLE}
+2019-12-02 13:45:40.812  INFO 662 --- [    Test worker] w.o.e.j.server.handler.ContextHandler    : Stopped w.o.e.j.s.ServletContextHandler@3b86607a{/__admin,null,UNAVAILABLE}
+2019-12-02 13:45:40.812  WARN 662 --- [    Test worker] w.o.e.j.util.thread.QueuedThreadPool     : qtp1409848626{STOPPING,8&lt;=8&lt;=10,i=6,q=6} Couldn't stop Thread[qtp1409848626-103,5,main]
+2019-12-02 13:45:40.812  WARN 662 --- [    Test worker] w.o.e.j.util.thread.QueuedThreadPool     : qtp1409848626{STOPPING,8&lt;=8&lt;=10,i=2,q=5} Couldn't stop Thread[qtp1409848626-126,5,]
+2019-12-02 13:45:40.812  WARN 662 --- [    Test worker] w.o.e.j.util.thread.QueuedThreadPool     : qtp1409848626{STOPPING,8&lt;=8&lt;=10,i=0,q=5} Couldn't stop Thread[qtp1409848626-104,5,]
+2019-12-02 13:45:40.813  INFO 662 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'taskExecutor'
 </pre>
 </span>
 </div>
@@ -302,7 +302,7 @@ org.springframework.web.client.HttpServerErrorException$InternalServerError: 500
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 5.6</a> at Nov 22, 2019, 1:47:03 PM</p>
+<a href="http://www.gradle.org">Gradle 5.6</a> at Dec 2, 2019, 1:45:41 PM</p>
 </div>
 </div>
 </body>

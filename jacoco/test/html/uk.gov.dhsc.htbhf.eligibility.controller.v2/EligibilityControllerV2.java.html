@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import uk.gov.dhsc.htbhf.dwp.model.v2.IdentityAndEligibilityResponse;
 import uk.gov.dhsc.htbhf.dwp.model.v2.PersonDTOV2;
+import uk.gov.dhsc.htbhf.eligibility.model.CombinedIdentityAndEligibilityResponse;
 import uk.gov.dhsc.htbhf.eligibility.service.v2.IdentityAndEligibilityService;
 
 import javax.validation.Valid;
@@ -31,20 +31,20 @@ public class EligibilityControllerV2 {
      * Invokes downstream services to obtain a decision on the identity and eligibility for the given person.
      *
      * @param person the {@link PersonDTOV2}
-     * @return the {@link IdentityAndEligibilityResponse}
+     * @return the {@link CombinedIdentityAndEligibilityResponse}
      */
     @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseBody
-    public IdentityAndEligibilityResponse getIdentityAndEligibilityDecision(@RequestBody @Valid PersonDTOV2 person) {
+    public CombinedIdentityAndEligibilityResponse getIdentityAndEligibilityDecision(@RequestBody @Valid PersonDTOV2 person) {
 <span class="fc" id="L39">        log.debug(&quot;Received eligibility request V2&quot;);</span>
 
-<span class="fc" id="L41">        IdentityAndEligibilityResponse response = identityAndEligibilityService.checkIdentityAndEligibility(person);</span>
+<span class="fc" id="L41">        CombinedIdentityAndEligibilityResponse response = identityAndEligibilityService.checkIdentityAndEligibility(person);</span>
 
 <span class="fc" id="L43">        logResponse(response);</span>
 <span class="fc" id="L44">        return response;</span>
     }
 
-    private void logResponse(IdentityAndEligibilityResponse response) {
+    private void logResponse(CombinedIdentityAndEligibilityResponse response) {
 <span class="fc" id="L48">        log.debug(&quot;Returning identity status: {}, eligibility status: {}, qualifying benefits: {}, addressLine1: {}, postcode: {}, mobile: {}, email: {}&quot;,</span>
 <span class="fc" id="L49">                response.getIdentityStatus(), response.getEligibilityStatus(), response.getQualifyingBenefits(),</span>
 <span class="fc" id="L50">                response.getAddressLine1Match(), response.getPostcodeMatch(), response.getMobilePhoneMatch(), response.getEmailAddressMatch());</span>
