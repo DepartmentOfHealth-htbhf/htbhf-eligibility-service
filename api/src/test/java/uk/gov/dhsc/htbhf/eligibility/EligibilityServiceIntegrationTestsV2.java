@@ -17,6 +17,7 @@ import uk.gov.dhsc.htbhf.dwp.http.v2.HeaderName;
 import uk.gov.dhsc.htbhf.dwp.model.v2.IdentityAndEligibilityResponse;
 import uk.gov.dhsc.htbhf.dwp.model.v2.PersonDTOV2;
 import uk.gov.dhsc.htbhf.dwp.testhelper.TestConstants;
+import uk.gov.dhsc.htbhf.eligibility.model.CombinedIdentityAndEligibilityResponse;
 import uk.gov.dhsc.htbhf.errorhandler.ErrorResponse;
 
 import java.net.URI;
@@ -30,9 +31,10 @@ import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.http.HttpStatus.OK;
 import static uk.gov.dhsc.htbhf.assertions.IntegrationTestAssertions.assertInternalServerErrorResponse;
 import static uk.gov.dhsc.htbhf.assertions.IntegrationTestAssertions.assertValidationErrorInResponse;
-import static uk.gov.dhsc.htbhf.dwp.testhelper.v2.IdentityAndEligibilityResponseTestDataFactory.anIdentityMatchedEligibilityConfirmedUCResponseWithAllMatches;
+import static uk.gov.dhsc.htbhf.dwp.testhelper.v2.IdentityAndEligibilityResponseTestDataFactory.anAllMatchedEligibilityConfirmedUCResponseWithHouseholdIdentifier;
 import static uk.gov.dhsc.htbhf.dwp.testhelper.v2.PersonDTOV2TestDataFactory.aPersonDTOV2WithNino;
 import static uk.gov.dhsc.htbhf.dwp.testhelper.v2.PersonDTOV2TestDataFactory.aValidPersonDTOV2;
+import static uk.gov.dhsc.htbhf.eligibility.testhelper.v2.CombinedIdAndEligibilityResponseTestDataFactory.anIdMatchedEligibilityConfirmedResponseWithNoHmrcHouseholdIdentifier;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -51,14 +53,15 @@ class EligibilityServiceIntegrationTestsV2 {
     void shouldReturnEligibleResponseGivenEligibleResponseReturnedFromDwp() throws JsonProcessingException {
         //Given
         PersonDTOV2 person = aValidPersonDTOV2();
-        IdentityAndEligibilityResponse identityAndEligibilityResponse = anIdentityMatchedEligibilityConfirmedUCResponseWithAllMatches();
+        IdentityAndEligibilityResponse identityAndEligibilityResponse = anAllMatchedEligibilityConfirmedUCResponseWithHouseholdIdentifier();
         stubDWPEndpointWithSuccessfulResponse(identityAndEligibilityResponse);
         //When
-        ResponseEntity<IdentityAndEligibilityResponse> responseEntity = restTemplate.exchange(buildRequestEntity(person), IdentityAndEligibilityResponse.class);
+        ResponseEntity<CombinedIdentityAndEligibilityResponse> responseEntity = restTemplate.exchange(buildRequestEntity(person),
+                CombinedIdentityAndEligibilityResponse.class);
         //Then
         assertThat(responseEntity.getStatusCode()).isEqualTo(OK);
         assertThat(responseEntity.hasBody()).isTrue();
-        assertThat(identityAndEligibilityResponse).isEqualTo(identityAndEligibilityResponse);
+        assertThat(responseEntity.getBody()).isEqualTo(anIdMatchedEligibilityConfirmedResponseWithNoHmrcHouseholdIdentifier());
         verifyDWPEndpointCalled();
     }
 
