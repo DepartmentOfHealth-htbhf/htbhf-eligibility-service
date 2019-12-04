@@ -8,7 +8,7 @@ public class CombinedIdAndEligibilityResponseTestDataFactory {
     public static CombinedIdentityAndEligibilityResponse anIdMatchedEligibilityConfirmedResponseWithNoHmrcHouseholdIdentifier() {
         return CombinedIdentityAndEligibilityResponseTestDataFactory.anIdentityMatchedEligibilityConfirmedUCResponseWithAllMatches()
                 .toBuilder()
-                .hrmcHouseholdIdentifier(null)
+                .hmrcHouseholdIdentifier(null)
                 .build();
     }
 }

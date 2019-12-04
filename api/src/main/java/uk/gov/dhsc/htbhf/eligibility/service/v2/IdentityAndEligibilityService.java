@@ -59,7 +59,7 @@ public class IdentityAndEligibilityService {
                 .deathVerificationFlag(dwpResponse.getDeathVerificationFlag())
                 .dobOfChildrenUnder4(dwpResponse.getDobOfChildrenUnder4())
                 //TODO 02/12/2019: Specifically set to null for now, HTBHF-2410 will set this value when integrated with HMRC
-                .hrmcHouseholdIdentifier(null)
+                .hmrcHouseholdIdentifier(null)
                 .build();
     }
 
