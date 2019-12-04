@@ -4,9 +4,9 @@ import uk.gov.dhsc.htbhf.eligibility.model.v1.hmrc.HMRCEligibilityRequest;
 
 import java.time.LocalDate;
 
+import static uk.gov.dhsc.htbhf.TestConstants.ELIGIBLE_END_DATE;
+import static uk.gov.dhsc.htbhf.TestConstants.ELIGIBLE_START_DATE;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.TestConstants.CTC_ANNUAL_INCOME_THRESHOLD;
-import static uk.gov.dhsc.htbhf.eligibility.testhelper.TestConstants.ELIGIBLE_END_DATE;
-import static uk.gov.dhsc.htbhf.eligibility.testhelper.TestConstants.ELIGIBLE_START_DATE;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.v1.PersonDTOTestDataFactory.aPerson;
 
 public class HMRCEligibilityRequestTestDataFactory {

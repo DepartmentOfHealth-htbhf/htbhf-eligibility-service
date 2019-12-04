@@ -16,8 +16,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import uk.gov.dhsc.htbhf.dwp.http.v2.HeaderName;
 import uk.gov.dhsc.htbhf.dwp.model.v2.IdentityAndEligibilityResponse;
 import uk.gov.dhsc.htbhf.dwp.model.v2.PersonDTOV2;
-import uk.gov.dhsc.htbhf.dwp.testhelper.TestConstants;
 import uk.gov.dhsc.htbhf.eligibility.model.CombinedIdentityAndEligibilityResponse;
+import uk.gov.dhsc.htbhf.eligibility.testhelper.v2.CombinedIdAndEligibilityTestDataFactory;
 import uk.gov.dhsc.htbhf.errorhandler.ErrorResponse;
 
 import java.net.URI;
@@ -29,12 +29,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.http.HttpMethod.POST;
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.http.HttpStatus.OK;
+import static uk.gov.dhsc.htbhf.TestConstants.*;
 import static uk.gov.dhsc.htbhf.assertions.IntegrationTestAssertions.assertInternalServerErrorResponse;
 import static uk.gov.dhsc.htbhf.assertions.IntegrationTestAssertions.assertValidationErrorInResponse;
-import static uk.gov.dhsc.htbhf.dwp.testhelper.v2.IdentityAndEligibilityResponseTestDataFactory.anAllMatchedEligibilityConfirmedUCResponseWithHouseholdIdentifier;
+import static uk.gov.dhsc.htbhf.dwp.testhelper.v2.IdAndEligibilityResponseTestDataFactory.anAllMatchedEligibilityConfirmedUCResponseWithHouseholdId;
 import static uk.gov.dhsc.htbhf.dwp.testhelper.v2.PersonDTOV2TestDataFactory.aPersonDTOV2WithNino;
 import static uk.gov.dhsc.htbhf.dwp.testhelper.v2.PersonDTOV2TestDataFactory.aValidPersonDTOV2;
-import static uk.gov.dhsc.htbhf.eligibility.testhelper.v2.CombinedIdAndEligibilityResponseTestDataFactory.anIdMatchedEligibilityConfirmedResponseWithNoHmrcHouseholdIdentifier;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -53,7 +53,7 @@ class EligibilityServiceIntegrationTestsV2 {
     void shouldReturnEligibleResponseGivenEligibleResponseReturnedFromDwp() throws JsonProcessingException {
         //Given
         PersonDTOV2 person = aValidPersonDTOV2();
-        IdentityAndEligibilityResponse identityAndEligibilityResponse = anAllMatchedEligibilityConfirmedUCResponseWithHouseholdIdentifier();
+        IdentityAndEligibilityResponse identityAndEligibilityResponse = anAllMatchedEligibilityConfirmedUCResponseWithHouseholdId();
         stubDWPEndpointWithSuccessfulResponse(identityAndEligibilityResponse);
         //When
         ResponseEntity<CombinedIdentityAndEligibilityResponse> responseEntity = restTemplate.exchange(buildRequestEntity(person),
@@ -61,7 +61,8 @@ class EligibilityServiceIntegrationTestsV2 {
         //Then
         assertThat(responseEntity.getStatusCode()).isEqualTo(OK);
         assertThat(responseEntity.hasBody()).isTrue();
-        assertThat(responseEntity.getBody()).isEqualTo(anIdMatchedEligibilityConfirmedResponseWithNoHmrcHouseholdIdentifier());
+        assertThat(responseEntity.getBody()).isEqualTo(CombinedIdAndEligibilityTestDataFactory
+                .anIdMatchedEligibilityConfirmedResponseWithNoHmrcHouseholdIdentifier());
         verifyDWPEndpointCalled();
     }
 
@@ -101,17 +102,17 @@ class EligibilityServiceIntegrationTestsV2 {
 
     private void verifyDWPEndpointCalled() {
         verify(getRequestedFor(urlEqualTo(DWP_ENDPOINT))
-                .withHeader(HeaderName.ADDRESS_LINE_1.getHeader(), equalTo(TestConstants.SIMPSONS_ADDRESS_LINE_1))
-                .withHeader(HeaderName.SURNAME.getHeader(), equalTo(TestConstants.SIMPSON_SURNAME))
-                .withHeader(HeaderName.NINO.getHeader(), equalTo(TestConstants.HOMER_NINO_V2))
-                .withHeader(HeaderName.DATE_OF_BIRTH.getHeader(), equalTo(TestConstants.HOMER_DATE_OF_BIRTH_STRING))
+                .withHeader(HeaderName.ADDRESS_LINE_1.getHeader(), equalTo(SIMPSONS_ADDRESS_LINE_1))
+                .withHeader(HeaderName.SURNAME.getHeader(), equalTo(SIMPSON_SURNAME))
+                .withHeader(HeaderName.NINO.getHeader(), equalTo(HOMER_NINO_V2))
+                .withHeader(HeaderName.DATE_OF_BIRTH.getHeader(), equalTo(HOMER_DATE_OF_BIRTH_STRING))
                 .withHeader(HeaderName.ELIGIBILITY_END_DATE.getHeader(), equalTo(ISO_LOCAL_DATE.format(LocalDate.now())))
-                .withHeader(HeaderName.ADDRESS_LINE_1.getHeader(), equalTo(TestConstants.SIMPSONS_ADDRESS_LINE_1))
-                .withHeader(HeaderName.POSTCODE.getHeader(), equalTo(TestConstants.SIMPSONS_POSTCODE))
-                .withHeader(HeaderName.EMAIL_ADDRESS.getHeader(), equalTo(TestConstants.HOMER_EMAIL))
-                .withHeader(HeaderName.MOBILE_PHONE_NUMBER.getHeader(), equalTo(TestConstants.HOMER_MOBILE))
-                .withHeader(HeaderName.PREGNANT_DEPENDENT_DOB.getHeader(), equalTo(TestConstants.MAGGIE_DATE_OF_BIRTH_STRING))
-                .withHeader(HeaderName.UC_MONTHLY_INCOME_THRESHOLD.getHeader(), equalTo(String.valueOf(TestConstants.UC_MONTHLY_INCOME_THRESHOLD_IN_PENCE)))
+                .withHeader(HeaderName.ADDRESS_LINE_1.getHeader(), equalTo(SIMPSONS_ADDRESS_LINE_1))
+                .withHeader(HeaderName.POSTCODE.getHeader(), equalTo(SIMPSONS_POSTCODE))
+                .withHeader(HeaderName.EMAIL_ADDRESS.getHeader(), equalTo(HOMER_EMAIL))
+                .withHeader(HeaderName.MOBILE_PHONE_NUMBER.getHeader(), equalTo(HOMER_MOBILE))
+                .withHeader(HeaderName.PREGNANT_DEPENDENT_DOB.getHeader(), equalTo(MAGGIE_DATE_OF_BIRTH_STRING))
+                .withHeader(HeaderName.UC_MONTHLY_INCOME_THRESHOLD.getHeader(), equalTo(String.valueOf(UC_MONTHLY_INCOME_THRESHOLD_IN_PENCE)))
         );
     }
 

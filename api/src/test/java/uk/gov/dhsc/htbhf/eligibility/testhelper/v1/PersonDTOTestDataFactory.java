@@ -2,11 +2,12 @@ package uk.gov.dhsc.htbhf.eligibility.testhelper.v1;
 
 import uk.gov.dhsc.htbhf.eligibility.model.v1.PersonDTO;
 
-import static uk.gov.dhsc.htbhf.dwp.testhelper.TestConstants.HOMER_DATE_OF_BIRTH;
-import static uk.gov.dhsc.htbhf.dwp.testhelper.TestConstants.HOMER_FORENAME;
-import static uk.gov.dhsc.htbhf.dwp.testhelper.TestConstants.HOMER_NINO_V1;
-import static uk.gov.dhsc.htbhf.dwp.testhelper.TestConstants.SIMPSON_SURNAME;
-import static uk.gov.dhsc.htbhf.eligibility.testhelper.TestConstants.FUTURE_DATE;
+import java.time.LocalDate;
+
+import static uk.gov.dhsc.htbhf.TestConstants.HOMER_DATE_OF_BIRTH;
+import static uk.gov.dhsc.htbhf.TestConstants.HOMER_FORENAME;
+import static uk.gov.dhsc.htbhf.TestConstants.HOMER_NINO_V1;
+import static uk.gov.dhsc.htbhf.TestConstants.SIMPSON_SURNAME;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.v1.AddressDTOTestDataFactory.aValidAddress;
 import static uk.gov.dhsc.htbhf.eligibility.testhelper.v1.AddressDTOTestDataFactory.anAddressWithPostcode;
 
@@ -25,7 +26,7 @@ public class PersonDTOTestDataFactory {
     }
 
     public static PersonDTO aPersonWithDateOfBirthInFuture() {
-        return buildDefaultPerson().dateOfBirth(FUTURE_DATE).build();
+        return buildDefaultPerson().dateOfBirth(LocalDate.now().plusMonths(1)).build();
     }
 
     public static PersonDTO aPersonWithNoAddress() {
