@@ -6,39 +6,9 @@
 </file>
 <file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/EligibilityServiceApplication.java">
 </file>
-<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/controller/v1/EligibilityController.java">
-</file>
 <file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/controller/v2/EligibilityControllerV2.java">
 </file>
 <file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/exception/v1/NoEligibilityStatusProvidedException.java">
-</file>
-<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/factory/v1/EligibilityResponseFactory.java">
-</file>
-<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/v1/AddressDTO.java">
-</file>
-<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/v1/ChildDTO.java">
-</file>
-<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/v1/EligibilityResponse.java">
-</file>
-<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/v1/PersonDTO.java">
-</file>
-<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/v1/dwp/DWPEligibilityRequest.java">
-</file>
-<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/v1/dwp/DWPEligibilityResponse.java">
-</file>
-<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/v1/hmrc/HMRCEligibilityRequest.java">
-</file>
-<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/model/v1/hmrc/HMRCEligibilityResponse.java">
-</file>
-<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/regex/v1/PostcodeRegex.java">
-</file>
-<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/service/v1/DWPClient.java">
-</file>
-<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/service/v1/EligibilityService.java">
-</file>
-<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/service/v1/EligibilityStatusCalculator.java">
-</file>
-<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/service/v1/HMRCClient.java">
 </file>
 <file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/service/v2/DWPClientV2.java">
 </file>
