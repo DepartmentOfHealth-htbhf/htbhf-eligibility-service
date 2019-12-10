@@ -12,42 +12,9 @@ info:
 host: "N/A"
 basePath: "/"
 tags:
-- name: "eligibility-controller"
-  description: "Eligibility Controller"
 - name: "eligibility-controller-v-2"
   description: "Eligibility Controller V 2"
 paths:
-  /v1/eligibility:
-    post:
-      tags:
-      - "eligibility-controller"
-      summary: "getDecision"
-      operationId: "getDecisionUsingPOST"
-      consumes:
-      - "application/json"
-      produces:
-      - "application/json"
-      parameters:
-      - in: "body"
-        name: "person"
-        description: "person"
-        required: true
-        schema:
-          $ref: "#/definitions/PersonDTO"
-      responses:
-        "200":
-          description: "OK"
-          schema:
-            $ref: "#/definitions/EligibilityResponse"
-        "201":
-          description: "Created"
-        "401":
-          description: "Unauthorized"
-        "403":
-          description: "Forbidden"
-        "404":
-          description: "Not Found"
-      deprecated: false
   /v2/eligibility:
     post:
       tags:
@@ -80,33 +47,6 @@ paths:
           description: "Not Found"
       deprecated: false
 definitions:
-  AddressDTO:
-    type: "object"
-    required:
-    - "addressLine1"
-    - "postcode"
-    - "townOrCity"
-    properties:
-      addressLine1:
-        type: "string"
-      addressLine2:
-        type: "string"
-      townOrCity:
-        type: "string"
-      postcode:
-        type: "string"
-        pattern: "([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\\\
-          s?[0-9][A-Za-z]{2})"
-    title: "AddressDTO"
-  ChildDTO:
-    type: "object"
-    properties:
-      dateOfBirth:
-        type: "string"
-        format: "date"
-        description: "The date of birth of the child"
-    title: "ChildDTO"
-    description: "A child in a household."
   CombinedIdentityAndEligibilityResponse:
     type: "object"
     properties:
@@ -190,62 +130,9 @@ definitions:
         - "income_support"
         - "jobseekers_allowance"
         - "pension_credit"
+        - "child_tax_credit"
         - "not_set"
     title: "CombinedIdentityAndEligibilityResponse"
-  EligibilityResponse:
-    type: "object"
-    properties:
-      children:
-        type: "array"
-        items:
-          $ref: "#/definitions/ChildDTO"
-      dwpHouseholdIdentifier:
-        type: "string"
-      eligibilityStatus:
-        type: "string"
-        enum:
-        - "ELIGIBLE"
-        - "INELIGIBLE"
-        - "PENDING"
-        - "NO_MATCH"
-        - "ERROR"
-        - "DUPLICATE"
-      hmrcHouseholdIdentifier:
-        type: "string"
-      numberOfChildrenUnderFour:
-        type: "integer"
-        format: "int32"
-        example: 1
-        description: "The number of children under 4 that the person has (which will\
-          \ include the number of children under 1)"
-      numberOfChildrenUnderOne:
-        type: "integer"
-        format: "int32"
-        example: 1
-        description: "The number of children under 1 that the person has"
-    title: "EligibilityResponse"
-  PersonDTO:
-    type: "object"
-    required:
-    - "address"
-    - "dateOfBirth"
-    - "firstName"
-    - "lastName"
-    - "nino"
-    properties:
-      firstName:
-        type: "string"
-      lastName:
-        type: "string"
-      nino:
-        type: "string"
-        pattern: "[a-zA-Z]{2}\\d{6}[a-dA-D]"
-      dateOfBirth:
-        type: "string"
-        format: "date"
-      address:
-        $ref: "#/definitions/AddressDTO"
-    title: "PersonDTO"
   PersonDTOV2:
     type: "object"
     required:
