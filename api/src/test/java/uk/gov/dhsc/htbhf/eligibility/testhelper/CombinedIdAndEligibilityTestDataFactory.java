@@ -1,4 +1,4 @@
-package uk.gov.dhsc.htbhf.eligibility.testhelper.v2;
+package uk.gov.dhsc.htbhf.eligibility.testhelper;
 
 import uk.gov.dhsc.htbhf.eligibility.model.CombinedIdentityAndEligibilityResponse;
 import uk.gov.dhsc.htbhf.eligibility.model.testhelper.CombinedIdAndEligibilityResponseTestDataFactory;

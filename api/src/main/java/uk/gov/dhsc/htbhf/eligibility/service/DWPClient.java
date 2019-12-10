@@ -1,4 +1,4 @@
-package uk.gov.dhsc.htbhf.eligibility.service.v2;
+package uk.gov.dhsc.htbhf.eligibility.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,9 +10,9 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
-import uk.gov.dhsc.htbhf.dwp.http.v2.GetRequestBuilder;
-import uk.gov.dhsc.htbhf.dwp.model.v2.DWPEligibilityRequestV2;
-import uk.gov.dhsc.htbhf.dwp.model.v2.IdentityAndEligibilityResponse;
+import uk.gov.dhsc.htbhf.dwp.http.GetRequestBuilder;
+import uk.gov.dhsc.htbhf.dwp.model.DWPEligibilityRequest;
+import uk.gov.dhsc.htbhf.dwp.model.IdentityAndEligibilityResponse;
 
 import java.time.LocalDate;
 import java.util.Base64;
@@ -24,21 +24,21 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 
 @Service
 @Slf4j
-public class DWPClientV2 {
+public class DWPClient {
 
     private static final String DWP_ENDPOINT = "/v2/dwp/eligibility";
     private final String uri;
     private final RestTemplate restTemplate;
     private final GetRequestBuilder getRequestBuilder;
 
-    public DWPClientV2(@Value("${dwp.base-uri}") String baseUri,
-                       RestTemplate restTemplate, GetRequestBuilder getRequestBuilder) {
+    public DWPClient(@Value("${dwp.base-uri}") String baseUri,
+                     RestTemplate restTemplate, GetRequestBuilder getRequestBuilder) {
         this.uri = baseUri + DWP_ENDPOINT;
         this.restTemplate = restTemplate;
         this.getRequestBuilder = getRequestBuilder;
     }
 
-    public IdentityAndEligibilityResponse checkIdentityAndEligibility(DWPEligibilityRequestV2 request) {
+    public IdentityAndEligibilityResponse checkIdentityAndEligibility(DWPEligibilityRequest request) {
         log.debug("Checking DWP eligibility V2");
         HttpEntity httpEntity = getRequestBuilder.buildRequestWithHeaders(request);
         ResponseEntity<IdentityAndEligibilityResponse> response = restTemplate.exchange(uri, HttpMethod.GET, httpEntity, IdentityAndEligibilityResponse.class);
@@ -52,13 +52,13 @@ public class DWPClientV2 {
         return addHouseholdIdentifierToResponse(request, body);
     }
 
-    private IdentityAndEligibilityResponse addHouseholdIdentifierToResponse(DWPEligibilityRequestV2 request, IdentityAndEligibilityResponse response) {
+    private IdentityAndEligibilityResponse addHouseholdIdentifierToResponse(DWPEligibilityRequest request, IdentityAndEligibilityResponse response) {
         String idComponents = getHouseholdIdComponents(request, response);
         String householdId = encodeHouseholdId(idComponents);
         return response.toBuilder().householdIdentifier(householdId).build();
     }
 
-    private String getHouseholdIdComponents(DWPEligibilityRequestV2 request, IdentityAndEligibilityResponse response) {
+    private String getHouseholdIdComponents(DWPEligibilityRequest request, IdentityAndEligibilityResponse response) {
         List<LocalDate> dobOfChildrenUnder4 = response.getDobOfChildrenUnder4();
         if (CollectionUtils.isEmpty(dobOfChildrenUnder4)) {
             log.debug("Creating synthetic household id using NINO");
