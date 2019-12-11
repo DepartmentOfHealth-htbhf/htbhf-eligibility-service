@@ -6,12 +6,10 @@
 </file>
 <file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/EligibilityServiceApplication.java">
 </file>
-<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/controller/v2/EligibilityControllerV2.java">
+<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/controller/EligibilityController.java">
 </file>
-<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/exception/v1/NoEligibilityStatusProvidedException.java">
+<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/service/DWPClient.java">
 </file>
-<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/service/v2/DWPClientV2.java">
-</file>
-<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/service/v2/IdentityAndEligibilityService.java">
+<file name="/home/circleci/project/api/src/main/java/uk/gov/dhsc/htbhf/eligibility/service/IdentityAndEligibilityService.java">
 </file>
 </checkstyle>

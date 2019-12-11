@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DWPClientV2.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">htbhf-eligibility-service</a> &gt; <a href="index.source.html" class="el_package">uk.gov.dhsc.htbhf.eligibility.service.v2</a> &gt; <span class="el_source">DWPClientV2.java</span></div><h1>DWPClientV2.java</h1><pre class="source lang-java linenums">package uk.gov.dhsc.htbhf.eligibility.service.v2;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DWPClient.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">htbhf-eligibility-service</a> &gt; <a href="index.source.html" class="el_package">uk.gov.dhsc.htbhf.eligibility.service</a> &gt; <span class="el_source">DWPClient.java</span></div><h1>DWPClient.java</h1><pre class="source lang-java linenums">package uk.gov.dhsc.htbhf.eligibility.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,9 +10,9 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
-import uk.gov.dhsc.htbhf.dwp.http.v2.GetRequestBuilder;
-import uk.gov.dhsc.htbhf.dwp.model.v2.DWPEligibilityRequestV2;
-import uk.gov.dhsc.htbhf.dwp.model.v2.IdentityAndEligibilityResponse;
+import uk.gov.dhsc.htbhf.dwp.http.GetRequestBuilder;
+import uk.gov.dhsc.htbhf.dwp.model.DWPEligibilityRequest;
+import uk.gov.dhsc.htbhf.dwp.model.IdentityAndEligibilityResponse;
 
 import java.time.LocalDate;
 import java.util.Base64;
@@ -24,21 +24,21 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 
 @Service
 <span class="fc" id="L26">@Slf4j</span>
-public class DWPClientV2 {
+public class DWPClient {
 
     private static final String DWP_ENDPOINT = &quot;/v2/dwp/eligibility&quot;;
     private final String uri;
     private final RestTemplate restTemplate;
     private final GetRequestBuilder getRequestBuilder;
 
-    public DWPClientV2(@Value(&quot;${dwp.base-uri}&quot;) String baseUri,
-<span class="fc" id="L35">                       RestTemplate restTemplate, GetRequestBuilder getRequestBuilder) {</span>
+    public DWPClient(@Value(&quot;${dwp.base-uri}&quot;) String baseUri,
+<span class="fc" id="L35">                     RestTemplate restTemplate, GetRequestBuilder getRequestBuilder) {</span>
 <span class="fc" id="L36">        this.uri = baseUri + DWP_ENDPOINT;</span>
 <span class="fc" id="L37">        this.restTemplate = restTemplate;</span>
 <span class="fc" id="L38">        this.getRequestBuilder = getRequestBuilder;</span>
 <span class="fc" id="L39">    }</span>
 
-    public IdentityAndEligibilityResponse checkIdentityAndEligibility(DWPEligibilityRequestV2 request) {
+    public IdentityAndEligibilityResponse checkIdentityAndEligibility(DWPEligibilityRequest request) {
 <span class="fc" id="L42">        log.debug(&quot;Checking DWP eligibility V2&quot;);</span>
 <span class="fc" id="L43">        HttpEntity httpEntity = getRequestBuilder.buildRequestWithHeaders(request);</span>
 <span class="fc" id="L44">        ResponseEntity&lt;IdentityAndEligibilityResponse&gt; response = restTemplate.exchange(uri, HttpMethod.GET, httpEntity, IdentityAndEligibilityResponse.class);</span>
@@ -52,13 +52,13 @@ public class DWPClientV2 {
 <span class="fc" id="L52">        return addHouseholdIdentifierToResponse(request, body);</span>
     }
 
-    private IdentityAndEligibilityResponse addHouseholdIdentifierToResponse(DWPEligibilityRequestV2 request, IdentityAndEligibilityResponse response) {
+    private IdentityAndEligibilityResponse addHouseholdIdentifierToResponse(DWPEligibilityRequest request, IdentityAndEligibilityResponse response) {
 <span class="fc" id="L56">        String idComponents = getHouseholdIdComponents(request, response);</span>
 <span class="fc" id="L57">        String householdId = encodeHouseholdId(idComponents);</span>
 <span class="fc" id="L58">        return response.toBuilder().householdIdentifier(householdId).build();</span>
     }
 
-    private String getHouseholdIdComponents(DWPEligibilityRequestV2 request, IdentityAndEligibilityResponse response) {
+    private String getHouseholdIdComponents(DWPEligibilityRequest request, IdentityAndEligibilityResponse response) {
 <span class="fc" id="L62">        List&lt;LocalDate&gt; dobOfChildrenUnder4 = response.getDobOfChildrenUnder4();</span>
 <span class="fc bfc" id="L63" title="All 2 branches covered.">        if (CollectionUtils.isEmpty(dobOfChildrenUnder4)) {</span>
 <span class="fc" id="L64">            log.debug(&quot;Creating synthetic household id using NINO&quot;);</span>

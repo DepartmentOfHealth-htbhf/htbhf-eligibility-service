@@ -4,16 +4,16 @@
 </file>
 <file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/EligibilityServiceApplicationTests.java">
 </file>
-<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/EligibilityServiceIntegrationTestsV2.java">
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/EligibilityServiceIntegrationTests.java">
 </file>
-<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/controller/v2/EligibilityControllerV2Test.java">
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/controller/EligibilityControllerTest.java">
 </file>
-<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/service/v2/DWPClientV2Test.java">
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/service/DWPClientTest.java">
 </file>
-<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/service/v2/IdentityAndEligibilityServiceTest.java">
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/service/IdentityAndEligibilityServiceTest.java">
+</file>
+<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/testhelper/CombinedIdAndEligibilityTestDataFactory.java">
 </file>
 <file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/testhelper/TestConstants.java">
-</file>
-<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/testhelper/v2/CombinedIdAndEligibilityTestDataFactory.java">
 </file>
 </checkstyle>

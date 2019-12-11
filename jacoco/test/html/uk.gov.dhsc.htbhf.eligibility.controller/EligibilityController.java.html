@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EligibilityControllerV2.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">htbhf-eligibility-service</a> &gt; <a href="index.source.html" class="el_package">uk.gov.dhsc.htbhf.eligibility.controller.v2</a> &gt; <span class="el_source">EligibilityControllerV2.java</span></div><h1>EligibilityControllerV2.java</h1><pre class="source lang-java linenums">package uk.gov.dhsc.htbhf.eligibility.controller.v2;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EligibilityController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">htbhf-eligibility-service</a> &gt; <a href="index.source.html" class="el_package">uk.gov.dhsc.htbhf.eligibility.controller</a> &gt; <span class="el_source">EligibilityController.java</span></div><h1>EligibilityController.java</h1><pre class="source lang-java linenums">package uk.gov.dhsc.htbhf.eligibility.controller;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import uk.gov.dhsc.htbhf.dwp.model.v2.PersonDTOV2;
+import uk.gov.dhsc.htbhf.dwp.model.PersonDTO;
 import uk.gov.dhsc.htbhf.eligibility.model.CombinedIdentityAndEligibilityResponse;
-import uk.gov.dhsc.htbhf.eligibility.service.v2.IdentityAndEligibilityService;
+import uk.gov.dhsc.htbhf.eligibility.service.IdentityAndEligibilityService;
 
 import javax.validation.Valid;
 
@@ -23,19 +23,19 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @Controller
 <span class="fc" id="L24">@Slf4j</span>
 @AllArgsConstructor
-public class EligibilityControllerV2 {
+public class EligibilityController {
 
     private IdentityAndEligibilityService identityAndEligibilityService;
 
     /**
      * Invokes downstream services to obtain a decision on the identity and eligibility for the given person.
      *
-     * @param person the {@link PersonDTOV2}
+     * @param person the {@link PersonDTO}
      * @return the {@link CombinedIdentityAndEligibilityResponse}
      */
     @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseBody
-    public CombinedIdentityAndEligibilityResponse getIdentityAndEligibilityDecision(@RequestBody @Valid PersonDTOV2 person) {
+    public CombinedIdentityAndEligibilityResponse getIdentityAndEligibilityDecision(@RequestBody @Valid PersonDTO person) {
 <span class="fc" id="L39">        log.debug(&quot;Received eligibility request V2&quot;);</span>
 
 <span class="fc" id="L41">        CombinedIdentityAndEligibilityResponse response = identityAndEligibilityService.checkIdentityAndEligibility(person);</span>
