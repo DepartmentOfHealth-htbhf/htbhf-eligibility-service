@@ -13,11 +13,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import uk.gov.dhsc.htbhf.dwp.http.v2.HeaderName;
-import uk.gov.dhsc.htbhf.dwp.model.v2.IdentityAndEligibilityResponse;
-import uk.gov.dhsc.htbhf.dwp.model.v2.PersonDTOV2;
+import uk.gov.dhsc.htbhf.dwp.http.HeaderName;
+import uk.gov.dhsc.htbhf.dwp.model.IdentityAndEligibilityResponse;
+import uk.gov.dhsc.htbhf.dwp.model.PersonDTO;
 import uk.gov.dhsc.htbhf.eligibility.model.CombinedIdentityAndEligibilityResponse;
-import uk.gov.dhsc.htbhf.eligibility.testhelper.v2.CombinedIdAndEligibilityTestDataFactory;
+import uk.gov.dhsc.htbhf.eligibility.testhelper.CombinedIdAndEligibilityTestDataFactory;
 import uk.gov.dhsc.htbhf.errorhandler.ErrorResponse;
 
 import java.net.URI;
@@ -32,14 +32,14 @@ import static org.springframework.http.HttpStatus.OK;
 import static uk.gov.dhsc.htbhf.TestConstants.*;
 import static uk.gov.dhsc.htbhf.assertions.IntegrationTestAssertions.assertInternalServerErrorResponse;
 import static uk.gov.dhsc.htbhf.assertions.IntegrationTestAssertions.assertValidationErrorInResponse;
-import static uk.gov.dhsc.htbhf.dwp.testhelper.v2.IdAndEligibilityResponseTestDataFactory.anAllMatchedEligibilityConfirmedUCResponseWithHouseholdId;
-import static uk.gov.dhsc.htbhf.dwp.testhelper.v2.PersonDTOV2TestDataFactory.aPersonDTOV2WithNino;
-import static uk.gov.dhsc.htbhf.dwp.testhelper.v2.PersonDTOV2TestDataFactory.aValidPersonDTOV2;
+import static uk.gov.dhsc.htbhf.dwp.testhelper.IdAndEligibilityResponseTestDataFactory.anAllMatchedEligibilityConfirmedUCResponseWithHouseholdId;
+import static uk.gov.dhsc.htbhf.dwp.testhelper.PersonDTOTestDataFactory.aPersonDTOWithNino;
+import static uk.gov.dhsc.htbhf.dwp.testhelper.PersonDTOTestDataFactory.aValidPersonDTO;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureWireMock(port = 8110)
-class EligibilityServiceIntegrationTestsV2 {
+class EligibilityServiceIntegrationTests {
 
     private static final URI ENDPOINT = URI.create("/v2/eligibility");
     private static final String DWP_ENDPOINT = "/v2/dwp/eligibility";
@@ -52,7 +52,7 @@ class EligibilityServiceIntegrationTestsV2 {
     @Test
     void shouldReturnEligibleResponseGivenEligibleResponseReturnedFromDwp() throws JsonProcessingException {
         //Given
-        PersonDTOV2 person = aValidPersonDTOV2();
+        PersonDTO person = aValidPersonDTO();
         IdentityAndEligibilityResponse identityAndEligibilityResponse = anAllMatchedEligibilityConfirmedUCResponseWithHouseholdId();
         stubDWPEndpointWithSuccessfulResponse(identityAndEligibilityResponse);
         //When
@@ -69,7 +69,7 @@ class EligibilityServiceIntegrationTestsV2 {
     @Test
     void shouldReturnBadRequestForInvalidRequest() {
         //Given
-        PersonDTOV2 person = aPersonDTOV2WithNino(null);
+        PersonDTO person = aPersonDTOWithNino(null);
         //When
         ResponseEntity<ErrorResponse> responseEntity = restTemplate.exchange(buildRequestEntity(person), ErrorResponse.class);
 
@@ -79,7 +79,7 @@ class EligibilityServiceIntegrationTestsV2 {
     @Test
     void shouldReturnInternalServerErrorWhenExceptionFromDwpRestCall() {
         //Given
-        PersonDTOV2 person = aValidPersonDTOV2();
+        PersonDTO person = aValidPersonDTO();
         stubDWPEndpointWithInternalServerError();
 
         //When
@@ -104,7 +104,7 @@ class EligibilityServiceIntegrationTestsV2 {
         verify(getRequestedFor(urlEqualTo(DWP_ENDPOINT))
                 .withHeader(HeaderName.ADDRESS_LINE_1.getHeader(), equalTo(SIMPSONS_ADDRESS_LINE_1))
                 .withHeader(HeaderName.SURNAME.getHeader(), equalTo(SIMPSON_SURNAME))
-                .withHeader(HeaderName.NINO.getHeader(), equalTo(HOMER_NINO_V2))
+                .withHeader(HeaderName.NINO.getHeader(), equalTo(HOMER_NINO))
                 .withHeader(HeaderName.DATE_OF_BIRTH.getHeader(), equalTo(HOMER_DATE_OF_BIRTH_STRING))
                 .withHeader(HeaderName.ELIGIBILITY_END_DATE.getHeader(), equalTo(ISO_LOCAL_DATE.format(LocalDate.now())))
                 .withHeader(HeaderName.ADDRESS_LINE_1.getHeader(), equalTo(SIMPSONS_ADDRESS_LINE_1))
@@ -116,7 +116,7 @@ class EligibilityServiceIntegrationTestsV2 {
         );
     }
 
-    private RequestEntity buildRequestEntity(PersonDTOV2 personDTO) {
+    private RequestEntity buildRequestEntity(PersonDTO personDTO) {
         var headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         return new RequestEntity<>(personDTO, headers, POST, ENDPOINT);

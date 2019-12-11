@@ -12,13 +12,13 @@ info:
 host: "N/A"
 basePath: "/"
 tags:
-- name: "eligibility-controller-v-2"
-  description: "Eligibility Controller V 2"
+- name: "eligibility-controller"
+  description: "Eligibility Controller"
 paths:
   /v2/eligibility:
     post:
       tags:
-      - "eligibility-controller-v-2"
+      - "eligibility-controller"
       summary: "getIdentityAndEligibilityDecision"
       operationId: "getIdentityAndEligibilityDecisionUsingPOST"
       consumes:
@@ -31,7 +31,7 @@ paths:
         description: "person"
         required: true
         schema:
-          $ref: "#/definitions/PersonDTOV2"
+          $ref: "#/definitions/PersonDTO"
       responses:
         "200":
           description: "OK"
@@ -133,7 +133,7 @@ definitions:
         - "child_tax_credit"
         - "not_set"
     title: "CombinedIdentityAndEligibilityResponse"
-  PersonDTOV2:
+  PersonDTO:
     type: "object"
     required:
     - "addressLine1"
@@ -166,4 +166,4 @@ definitions:
       pregnantDependentDob:
         type: "string"
         format: "date"
-    title: "PersonDTOV2"
+    title: "PersonDTO"

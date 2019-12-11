@@ -1,4 +1,4 @@
-package uk.gov.dhsc.htbhf.eligibility.controller.v2;
+package uk.gov.dhsc.htbhf.eligibility.controller;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import uk.gov.dhsc.htbhf.dwp.model.v2.PersonDTOV2;
+import uk.gov.dhsc.htbhf.dwp.model.PersonDTO;
 import uk.gov.dhsc.htbhf.eligibility.model.CombinedIdentityAndEligibilityResponse;
-import uk.gov.dhsc.htbhf.eligibility.service.v2.IdentityAndEligibilityService;
+import uk.gov.dhsc.htbhf.eligibility.service.IdentityAndEligibilityService;
 
 import javax.validation.Valid;
 
@@ -23,19 +23,19 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @Controller
 @Slf4j
 @AllArgsConstructor
-public class EligibilityControllerV2 {
+public class EligibilityController {
 
     private IdentityAndEligibilityService identityAndEligibilityService;
 
     /**
      * Invokes downstream services to obtain a decision on the identity and eligibility for the given person.
      *
-     * @param person the {@link PersonDTOV2}
+     * @param person the {@link PersonDTO}
      * @return the {@link CombinedIdentityAndEligibilityResponse}
      */
     @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseBody
-    public CombinedIdentityAndEligibilityResponse getIdentityAndEligibilityDecision(@RequestBody @Valid PersonDTOV2 person) {
+    public CombinedIdentityAndEligibilityResponse getIdentityAndEligibilityDecision(@RequestBody @Valid PersonDTO person) {
         log.debug("Received eligibility request V2");
 
         CombinedIdentityAndEligibilityResponse response = identityAndEligibilityService.checkIdentityAndEligibility(person);

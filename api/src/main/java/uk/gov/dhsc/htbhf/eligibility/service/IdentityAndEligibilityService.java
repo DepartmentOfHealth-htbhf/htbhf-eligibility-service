@@ -1,11 +1,11 @@
-package uk.gov.dhsc.htbhf.eligibility.service.v2;
+package uk.gov.dhsc.htbhf.eligibility.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import uk.gov.dhsc.htbhf.dwp.model.v2.DWPEligibilityRequestV2;
-import uk.gov.dhsc.htbhf.dwp.model.v2.IdentityAndEligibilityResponse;
-import uk.gov.dhsc.htbhf.dwp.model.v2.PersonDTOV2;
+import uk.gov.dhsc.htbhf.dwp.model.DWPEligibilityRequest;
+import uk.gov.dhsc.htbhf.dwp.model.IdentityAndEligibilityResponse;
+import uk.gov.dhsc.htbhf.dwp.model.PersonDTO;
 import uk.gov.dhsc.htbhf.eligibility.model.CombinedIdentityAndEligibilityResponse;
 
 import java.time.LocalDate;
@@ -14,11 +14,11 @@ import java.time.LocalDate;
 @Slf4j
 public class IdentityAndEligibilityService {
 
-    private final DWPClientV2 dwpClient;
+    private final DWPClient dwpClient;
     private final int ucMonthlyIncomeThresholdInPence;
 
     public IdentityAndEligibilityService(@Value("${dwp.uc-monthly-income-threshold-in-pence}") int ucMonthlyIncomeThresholdInPence,
-                                         DWPClientV2 dwpClient) {
+                                         DWPClient dwpClient) {
         this.dwpClient = dwpClient;
         this.ucMonthlyIncomeThresholdInPence = ucMonthlyIncomeThresholdInPence;
     }
@@ -29,16 +29,16 @@ public class IdentityAndEligibilityService {
      * @param person The person to check
      * @return The combined identity and eligibility response
      */
-    public CombinedIdentityAndEligibilityResponse checkIdentityAndEligibility(PersonDTOV2 person) {
+    public CombinedIdentityAndEligibilityResponse checkIdentityAndEligibility(PersonDTO person) {
         log.debug("Checking identity and eligibility");
-        DWPEligibilityRequestV2 dwpEligibilityRequest = createDWPRequest(person);
+        DWPEligibilityRequest dwpEligibilityRequest = createDWPRequest(person);
 
         IdentityAndEligibilityResponse dwpIdentityAndEligibilityResponse = dwpClient.checkIdentityAndEligibility(dwpEligibilityRequest);
         return buildCombinedResponse(dwpIdentityAndEligibilityResponse);
     }
 
-    private DWPEligibilityRequestV2 createDWPRequest(PersonDTOV2 person) {
-        return DWPEligibilityRequestV2.builder()
+    private DWPEligibilityRequest createDWPRequest(PersonDTO person) {
+        return DWPEligibilityRequest.builder()
                 .person(person)
                 .eligibilityEndDate(LocalDate.now())
                 .ucMonthlyIncomeThresholdInPence(ucMonthlyIncomeThresholdInPence)
