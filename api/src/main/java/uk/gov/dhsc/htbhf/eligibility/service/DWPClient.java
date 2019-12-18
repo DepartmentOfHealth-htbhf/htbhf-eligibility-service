@@ -22,6 +22,9 @@ import java.util.stream.Collectors;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 
+/**
+ * REST client for making calls to the DWP eligibility API.
+ */
 @Service
 @Slf4j
 public class DWPClient {
