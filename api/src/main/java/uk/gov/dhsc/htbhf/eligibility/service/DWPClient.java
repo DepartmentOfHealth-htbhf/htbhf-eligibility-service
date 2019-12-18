@@ -42,14 +42,18 @@ public class DWPClient {
         log.debug("Checking DWP eligibility V2");
         HttpEntity httpEntity = getRequestBuilder.buildRequestWithHeaders(request);
         ResponseEntity<IdentityAndEligibilityResponse> response = restTemplate.exchange(uri, HttpMethod.GET, httpEntity, IdentityAndEligibilityResponse.class);
-        IdentityAndEligibilityResponse body = response.getBody();
-        if (body == null) { // why, spotBugs, why? (This fixes a false positive Null Pointer dereference reported by spotBugs)
+        IdentityAndEligibilityResponse identityAndEligibilityResponse = response.getBody();
+        if (identityAndEligibilityResponse == null) { // why, spotBugs, why? (This fixes a false positive Null Pointer dereference reported by spotBugs)
             throw new RestClientException("DWP response body was null");
         }
-        if (!StringUtils.isEmpty(body.getHouseholdIdentifier())) {
-            return body;
+        if (isSyntheticHouseholdIdentifierRequired(identityAndEligibilityResponse)) {
+            return addHouseholdIdentifierToResponse(request, identityAndEligibilityResponse);
         }
-        return addHouseholdIdentifierToResponse(request, body);
+        return identityAndEligibilityResponse;
+    }
+
+    private boolean isSyntheticHouseholdIdentifierRequired(IdentityAndEligibilityResponse identityAndEligibilityResponse) {
+        return identityAndEligibilityResponse.isAddressMatched() && StringUtils.isEmpty(identityAndEligibilityResponse.getHouseholdIdentifier());
     }
 
     private IdentityAndEligibilityResponse addHouseholdIdentifierToResponse(DWPEligibilityRequest request, IdentityAndEligibilityResponse response) {
