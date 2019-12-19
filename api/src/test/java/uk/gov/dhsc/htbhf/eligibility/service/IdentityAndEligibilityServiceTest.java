@@ -9,7 +9,6 @@ import uk.gov.dhsc.htbhf.dwp.model.IdentityAndEligibilityResponse;
 import uk.gov.dhsc.htbhf.dwp.model.PersonDTO;
 import uk.gov.dhsc.htbhf.dwp.testhelper.PersonDTOTestDataFactory;
 import uk.gov.dhsc.htbhf.eligibility.model.CombinedIdentityAndEligibilityResponse;
-import uk.gov.dhsc.htbhf.eligibility.testhelper.CombinedIdAndEligibilityTestDataFactory;
 
 import java.time.LocalDate;
 
@@ -19,6 +18,7 @@ import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.verify;
 import static uk.gov.dhsc.htbhf.dwp.testhelper.DWPEligibilityRequestTestDataFactory.aValidDWPEligibilityRequestWithEligibilityEndDate;
 import static uk.gov.dhsc.htbhf.dwp.testhelper.IdAndEligibilityResponseTestDataFactory.anAllMatchedEligibilityConfirmedUCResponseWithHouseholdId;
+import static uk.gov.dhsc.htbhf.eligibility.model.testhelper.CombinedIdAndEligibilityResponseTestDataFactory.anIdMatchedEligibilityConfirmedUCResponseWithAllMatchesAndHmrcHouseIdentifier;
 
 @ExtendWith(MockitoExtension.class)
 class IdentityAndEligibilityServiceTest {
@@ -45,8 +45,7 @@ class IdentityAndEligibilityServiceTest {
         CombinedIdentityAndEligibilityResponse response = service.checkIdentityAndEligibility(person);
 
         //Then
-        assertThat(response).isEqualTo(CombinedIdAndEligibilityTestDataFactory
-                .anIdMatchedEligibilityConfirmedResponseWithNoHmrcHouseholdIdentifier());
+        assertThat(response).isEqualTo(anIdMatchedEligibilityConfirmedUCResponseWithAllMatchesAndHmrcHouseIdentifier(null));
         verify(client).checkIdentityAndEligibility(aValidDWPEligibilityRequestWithEligibilityEndDate(LocalDate.now()));
     }
 }

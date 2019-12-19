@@ -9,12 +9,12 @@ import uk.gov.dhsc.htbhf.dwp.model.PersonDTO;
 import uk.gov.dhsc.htbhf.dwp.testhelper.PersonDTOTestDataFactory;
 import uk.gov.dhsc.htbhf.eligibility.model.CombinedIdentityAndEligibilityResponse;
 import uk.gov.dhsc.htbhf.eligibility.service.IdentityAndEligibilityService;
-import uk.gov.dhsc.htbhf.eligibility.testhelper.CombinedIdAndEligibilityTestDataFactory;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
+import static uk.gov.dhsc.htbhf.eligibility.model.testhelper.CombinedIdAndEligibilityResponseTestDataFactory.anIdMatchedEligibilityConfirmedUCResponseWithAllMatchesAndHmrcHouseIdentifier;
 
 @ExtendWith(MockitoExtension.class)
 class EligibilityControllerTest {
@@ -28,8 +28,8 @@ class EligibilityControllerTest {
     void shouldSuccessfullyGetIdentityAndEligibilityDecision() {
         //Given
         PersonDTO person = PersonDTOTestDataFactory.aValidPersonDTO();
-        CombinedIdentityAndEligibilityResponse identityAndEligibilityResponse = CombinedIdAndEligibilityTestDataFactory
-                .anIdMatchedEligibilityConfirmedResponseWithNoHmrcHouseholdIdentifier();
+        CombinedIdentityAndEligibilityResponse identityAndEligibilityResponse =
+                anIdMatchedEligibilityConfirmedUCResponseWithAllMatchesAndHmrcHouseIdentifier(null);
         given(service.checkIdentityAndEligibility(any())).willReturn(identityAndEligibilityResponse);
         //When
         CombinedIdentityAndEligibilityResponse response = controller.getIdentityAndEligibilityDecision(person);

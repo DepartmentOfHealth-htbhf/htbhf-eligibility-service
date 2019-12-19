@@ -17,7 +17,6 @@ import uk.gov.dhsc.htbhf.dwp.http.HeaderName;
 import uk.gov.dhsc.htbhf.dwp.model.IdentityAndEligibilityResponse;
 import uk.gov.dhsc.htbhf.dwp.model.PersonDTO;
 import uk.gov.dhsc.htbhf.eligibility.model.CombinedIdentityAndEligibilityResponse;
-import uk.gov.dhsc.htbhf.eligibility.testhelper.CombinedIdAndEligibilityTestDataFactory;
 import uk.gov.dhsc.htbhf.errorhandler.ErrorResponse;
 
 import java.net.URI;
@@ -35,6 +34,7 @@ import static uk.gov.dhsc.htbhf.assertions.IntegrationTestAssertions.assertValid
 import static uk.gov.dhsc.htbhf.dwp.testhelper.IdAndEligibilityResponseTestDataFactory.anAllMatchedEligibilityConfirmedUCResponseWithHouseholdId;
 import static uk.gov.dhsc.htbhf.dwp.testhelper.PersonDTOTestDataFactory.aPersonDTOWithNino;
 import static uk.gov.dhsc.htbhf.dwp.testhelper.PersonDTOTestDataFactory.aValidPersonDTO;
+import static uk.gov.dhsc.htbhf.eligibility.model.testhelper.CombinedIdAndEligibilityResponseTestDataFactory.anIdMatchedEligibilityConfirmedUCResponseWithAllMatchesAndHmrcHouseIdentifier;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -61,8 +61,7 @@ class EligibilityServiceIntegrationTests {
         //Then
         assertThat(responseEntity.getStatusCode()).isEqualTo(OK);
         assertThat(responseEntity.hasBody()).isTrue();
-        assertThat(responseEntity.getBody()).isEqualTo(CombinedIdAndEligibilityTestDataFactory
-                .anIdMatchedEligibilityConfirmedResponseWithNoHmrcHouseholdIdentifier());
+        assertThat(responseEntity.getBody()).isEqualTo(anIdMatchedEligibilityConfirmedUCResponseWithAllMatchesAndHmrcHouseIdentifier(null));
         verifyDWPEndpointCalled();
     }
 
