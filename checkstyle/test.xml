@@ -12,8 +12,6 @@
 </file>
 <file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/service/IdentityAndEligibilityServiceTest.java">
 </file>
-<file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/testhelper/CombinedIdAndEligibilityTestDataFactory.java">
-</file>
 <file name="/home/circleci/project/api/src/test/java/uk/gov/dhsc/htbhf/eligibility/testhelper/TestConstants.java">
 </file>
 </checkstyle>
