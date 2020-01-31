@@ -45,8 +45,8 @@ public class EligibilityController {
     }
 
     private void logResponse(CombinedIdentityAndEligibilityResponse response) {
-<span class="fc" id="L48">        log.debug(&quot;Returning identity status: {}, eligibility status: {}, qualifying benefits: {}, addressLine1: {}, postcode: {}, mobile: {}, email: {}&quot;,</span>
-<span class="fc" id="L49">                response.getIdentityStatus(), response.getEligibilityStatus(), response.getQualifyingBenefits(),</span>
+<span class="fc" id="L48">        log.debug(&quot;Returning identity status: {}, eligibility status: {}, qualifying reason: {}, addressLine1: {}, postcode: {}, mobile: {}, email: {}&quot;,</span>
+<span class="fc" id="L49">                response.getIdentityStatus(), response.getEligibilityStatus(), response.getQualifyingReason(),</span>
 <span class="fc" id="L50">                response.getAddressLine1Match(), response.getPostcodeMatch(), response.getMobilePhoneMatch(), response.getEmailAddressMatch());</span>
 <span class="fc" id="L51">    }</span>
 

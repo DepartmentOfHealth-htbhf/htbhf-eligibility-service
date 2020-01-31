@@ -6,22 +6,23 @@ import org.springframework.stereotype.Service;
 import uk.gov.dhsc.htbhf.dwp.model.DWPEligibilityRequest;
 import uk.gov.dhsc.htbhf.dwp.model.IdentityAndEligibilityResponse;
 import uk.gov.dhsc.htbhf.dwp.model.PersonDTO;
+import uk.gov.dhsc.htbhf.dwp.model.QualifyingReason;
 import uk.gov.dhsc.htbhf.eligibility.model.CombinedIdentityAndEligibilityResponse;
 
 import java.time.LocalDate;
 
 @Service
-<span class="fc" id="L14">@Slf4j</span>
+<span class="fc" id="L15">@Slf4j</span>
 public class IdentityAndEligibilityService {
 
     private final DWPClient dwpClient;
     private final int ucMonthlyIncomeThresholdInPence;
 
     public IdentityAndEligibilityService(@Value(&quot;${dwp.uc-monthly-income-threshold-in-pence}&quot;) int ucMonthlyIncomeThresholdInPence,
-<span class="fc" id="L21">                                         DWPClient dwpClient) {</span>
-<span class="fc" id="L22">        this.dwpClient = dwpClient;</span>
-<span class="fc" id="L23">        this.ucMonthlyIncomeThresholdInPence = ucMonthlyIncomeThresholdInPence;</span>
-<span class="fc" id="L24">    }</span>
+<span class="fc" id="L22">                                         DWPClient dwpClient) {</span>
+<span class="fc" id="L23">        this.dwpClient = dwpClient;</span>
+<span class="fc" id="L24">        this.ucMonthlyIncomeThresholdInPence = ucMonthlyIncomeThresholdInPence;</span>
+<span class="fc" id="L25">    }</span>
 
     /**
      * Checks the identity and eligibility of a given person by calling DWP.
@@ -30,37 +31,44 @@ public class IdentityAndEligibilityService {
      * @return The combined identity and eligibility response
      */
     public CombinedIdentityAndEligibilityResponse checkIdentityAndEligibility(PersonDTO person) {
-<span class="fc" id="L33">        log.debug(&quot;Checking identity and eligibility&quot;);</span>
-<span class="fc" id="L34">        DWPEligibilityRequest dwpEligibilityRequest = createDWPRequest(person);</span>
+<span class="fc" id="L34">        log.debug(&quot;Checking identity and eligibility&quot;);</span>
+<span class="fc" id="L35">        DWPEligibilityRequest dwpEligibilityRequest = createDWPRequest(person);</span>
 
-<span class="fc" id="L36">        IdentityAndEligibilityResponse dwpIdentityAndEligibilityResponse = dwpClient.checkIdentityAndEligibility(dwpEligibilityRequest);</span>
-<span class="fc" id="L37">        return buildCombinedResponse(dwpIdentityAndEligibilityResponse);</span>
+<span class="fc" id="L37">        IdentityAndEligibilityResponse dwpIdentityAndEligibilityResponse = dwpClient.checkIdentityAndEligibility(dwpEligibilityRequest);</span>
+<span class="fc" id="L38">        return buildCombinedResponse(dwpIdentityAndEligibilityResponse);</span>
     }
 
     private DWPEligibilityRequest createDWPRequest(PersonDTO person) {
-<span class="fc" id="L41">        return DWPEligibilityRequest.builder()</span>
-<span class="fc" id="L42">                .person(person)</span>
-<span class="fc" id="L43">                .eligibilityEndDate(LocalDate.now())</span>
-<span class="fc" id="L44">                .ucMonthlyIncomeThresholdInPence(ucMonthlyIncomeThresholdInPence)</span>
-<span class="fc" id="L45">                .build();</span>
+<span class="fc" id="L42">        return DWPEligibilityRequest.builder()</span>
+<span class="fc" id="L43">                .person(person)</span>
+<span class="fc" id="L44">                .eligibilityEndDate(LocalDate.now())</span>
+<span class="fc" id="L45">                .ucMonthlyIncomeThresholdInPence(ucMonthlyIncomeThresholdInPence)</span>
+<span class="fc" id="L46">                .build();</span>
     }
 
     private CombinedIdentityAndEligibilityResponse buildCombinedResponse(IdentityAndEligibilityResponse dwpResponse) {
-<span class="fc" id="L49">        return CombinedIdentityAndEligibilityResponse.builder()</span>
-<span class="fc" id="L50">                .identityStatus(dwpResponse.getIdentityStatus())</span>
-<span class="fc" id="L51">                .eligibilityStatus(dwpResponse.getEligibilityStatus())</span>
-<span class="fc" id="L52">                .qualifyingBenefits(dwpResponse.getQualifyingBenefits())</span>
-<span class="fc" id="L53">                .mobilePhoneMatch(dwpResponse.getMobilePhoneMatch())</span>
-<span class="fc" id="L54">                .emailAddressMatch(dwpResponse.getEmailAddressMatch())</span>
-<span class="fc" id="L55">                .addressLine1Match(dwpResponse.getAddressLine1Match())</span>
-<span class="fc" id="L56">                .postcodeMatch(dwpResponse.getPostcodeMatch())</span>
-<span class="fc" id="L57">                .pregnantChildDOBMatch(dwpResponse.getPregnantChildDOBMatch())</span>
-<span class="fc" id="L58">                .dwpHouseholdIdentifier(dwpResponse.getHouseholdIdentifier())</span>
-<span class="fc" id="L59">                .deathVerificationFlag(dwpResponse.getDeathVerificationFlag())</span>
-<span class="fc" id="L60">                .dobOfChildrenUnder4(dwpResponse.getDobOfChildrenUnder4())</span>
+<span class="fc" id="L50">        return CombinedIdentityAndEligibilityResponse.builder()</span>
+<span class="fc" id="L51">                .identityStatus(dwpResponse.getIdentityStatus())</span>
+<span class="fc" id="L52">                .eligibilityStatus(dwpResponse.getEligibilityStatus())</span>
+<span class="fc" id="L53">                .qualifyingBenefits(dwpResponse.getQualifyingBenefits())</span>
+<span class="fc" id="L54">                .qualifyingReason(getQualifyingReason(dwpResponse))</span>
+<span class="fc" id="L55">                .mobilePhoneMatch(dwpResponse.getMobilePhoneMatch())</span>
+<span class="fc" id="L56">                .emailAddressMatch(dwpResponse.getEmailAddressMatch())</span>
+<span class="fc" id="L57">                .addressLine1Match(dwpResponse.getAddressLine1Match())</span>
+<span class="fc" id="L58">                .postcodeMatch(dwpResponse.getPostcodeMatch())</span>
+<span class="fc" id="L59">                .pregnantChildDOBMatch(dwpResponse.getPregnantChildDOBMatch())</span>
+<span class="fc" id="L60">                .dwpHouseholdIdentifier(dwpResponse.getHouseholdIdentifier())</span>
+<span class="fc" id="L61">                .deathVerificationFlag(dwpResponse.getDeathVerificationFlag())</span>
+<span class="fc" id="L62">                .dobOfChildrenUnder4(dwpResponse.getDobOfChildrenUnder4())</span>
                 //TODO 02/12/2019: Specifically set to null for now, HTBHF-2410 will set this value when integrated with HMRC
-<span class="fc" id="L62">                .hmrcHouseholdIdentifier(null)</span>
-<span class="fc" id="L63">                .build();</span>
+<span class="fc" id="L64">                .hmrcHouseholdIdentifier(null)</span>
+<span class="fc" id="L65">                .build();</span>
+    }
+
+    private QualifyingReason getQualifyingReason(IdentityAndEligibilityResponse dwpResponse) {
+<span class="fc bfc" id="L69" title="All 2 branches covered.">        return dwpResponse.getQualifyingBenefits() == null</span>
+<span class="fc" id="L70">                ? null</span>
+<span class="fc" id="L71">                : QualifyingReason.valueOf(dwpResponse.getQualifyingBenefits().name());</span>
     }
 
 }
