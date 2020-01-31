@@ -50,7 +50,6 @@ public class IdentityAndEligibilityService {
         return CombinedIdentityAndEligibilityResponse.builder()
                 .identityStatus(dwpResponse.getIdentityStatus())
                 .eligibilityStatus(dwpResponse.getEligibilityStatus())
-                .qualifyingBenefits(dwpResponse.getQualifyingBenefits())
                 .qualifyingReason(getQualifyingReason(dwpResponse))
                 .mobilePhoneMatch(dwpResponse.getMobilePhoneMatch())
                 .emailAddressMatch(dwpResponse.getEmailAddressMatch())
