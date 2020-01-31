@@ -3,10 +3,13 @@ package uk.gov.dhsc.htbhf.eligibility.service;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import uk.gov.dhsc.htbhf.dwp.model.IdentityAndEligibilityResponse;
 import uk.gov.dhsc.htbhf.dwp.model.PersonDTO;
+import uk.gov.dhsc.htbhf.dwp.model.QualifyingBenefits;
 import uk.gov.dhsc.htbhf.dwp.testhelper.PersonDTOTestDataFactory;
 import uk.gov.dhsc.htbhf.eligibility.model.CombinedIdentityAndEligibilityResponse;
 
@@ -47,5 +50,40 @@ class IdentityAndEligibilityServiceTest {
         //Then
         assertThat(response).isEqualTo(anIdMatchedEligibilityConfirmedUCResponseWithAllMatchesAndHmrcHouseIdentifier(null));
         verify(client).checkIdentityAndEligibility(aValidDWPEligibilityRequestWithEligibilityEndDate(LocalDate.now()));
+    }
+
+    @ParameterizedTest
+    @EnumSource(QualifyingBenefits.class)
+    void shouldConvertQualifyingBenefit(QualifyingBenefits qualifyingBenefits) {
+        //Given
+        PersonDTO person = PersonDTOTestDataFactory.aValidPersonDTO();
+        IdentityAndEligibilityResponse identityAndEligibilityResponse = anAllMatchedEligibilityConfirmedUCResponseWithHouseholdId()
+                .toBuilder()
+                .qualifyingBenefits(qualifyingBenefits)
+                .build();
+        given(client.checkIdentityAndEligibility(any())).willReturn(identityAndEligibilityResponse);
+
+        //When
+        CombinedIdentityAndEligibilityResponse response = service.checkIdentityAndEligibility(person);
+
+        //Then
+        assertThat(response.getQualifyingReason().getResponseValue()).isEqualTo(qualifyingBenefits.getResponseValue());
+    }
+
+    @Test
+    void shouldConvertNullQualifyingBenefit() {
+        //Given
+        PersonDTO person = PersonDTOTestDataFactory.aValidPersonDTO();
+        IdentityAndEligibilityResponse identityAndEligibilityResponse = anAllMatchedEligibilityConfirmedUCResponseWithHouseholdId()
+                .toBuilder()
+                .qualifyingBenefits(null)
+                .build();
+        given(client.checkIdentityAndEligibility(any())).willReturn(identityAndEligibilityResponse);
+
+        //When
+        CombinedIdentityAndEligibilityResponse response = service.checkIdentityAndEligibility(person);
+
+        //Then
+        assertThat(response.getQualifyingReason()).isNull();
     }
 }

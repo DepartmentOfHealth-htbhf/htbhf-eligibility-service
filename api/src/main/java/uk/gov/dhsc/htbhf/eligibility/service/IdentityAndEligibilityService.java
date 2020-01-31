@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import uk.gov.dhsc.htbhf.dwp.model.DWPEligibilityRequest;
 import uk.gov.dhsc.htbhf.dwp.model.IdentityAndEligibilityResponse;
 import uk.gov.dhsc.htbhf.dwp.model.PersonDTO;
+import uk.gov.dhsc.htbhf.dwp.model.QualifyingReason;
 import uk.gov.dhsc.htbhf.eligibility.model.CombinedIdentityAndEligibilityResponse;
 
 import java.time.LocalDate;
@@ -50,6 +51,7 @@ public class IdentityAndEligibilityService {
                 .identityStatus(dwpResponse.getIdentityStatus())
                 .eligibilityStatus(dwpResponse.getEligibilityStatus())
                 .qualifyingBenefits(dwpResponse.getQualifyingBenefits())
+                .qualifyingReason(getQualifyingReason(dwpResponse))
                 .mobilePhoneMatch(dwpResponse.getMobilePhoneMatch())
                 .emailAddressMatch(dwpResponse.getEmailAddressMatch())
                 .addressLine1Match(dwpResponse.getAddressLine1Match())
@@ -61,6 +63,12 @@ public class IdentityAndEligibilityService {
                 //TODO 02/12/2019: Specifically set to null for now, HTBHF-2410 will set this value when integrated with HMRC
                 .hmrcHouseholdIdentifier(null)
                 .build();
+    }
+
+    private QualifyingReason getQualifyingReason(IdentityAndEligibilityResponse dwpResponse) {
+        return dwpResponse.getQualifyingBenefits() == null
+                ? null
+                : QualifyingReason.valueOf(dwpResponse.getQualifyingBenefits().name());
     }
 
 }
