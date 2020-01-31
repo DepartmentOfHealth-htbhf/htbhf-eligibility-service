@@ -50,25 +50,24 @@ public class IdentityAndEligibilityService {
 <span class="fc" id="L50">        return CombinedIdentityAndEligibilityResponse.builder()</span>
 <span class="fc" id="L51">                .identityStatus(dwpResponse.getIdentityStatus())</span>
 <span class="fc" id="L52">                .eligibilityStatus(dwpResponse.getEligibilityStatus())</span>
-<span class="fc" id="L53">                .qualifyingBenefits(dwpResponse.getQualifyingBenefits())</span>
-<span class="fc" id="L54">                .qualifyingReason(getQualifyingReason(dwpResponse))</span>
-<span class="fc" id="L55">                .mobilePhoneMatch(dwpResponse.getMobilePhoneMatch())</span>
-<span class="fc" id="L56">                .emailAddressMatch(dwpResponse.getEmailAddressMatch())</span>
-<span class="fc" id="L57">                .addressLine1Match(dwpResponse.getAddressLine1Match())</span>
-<span class="fc" id="L58">                .postcodeMatch(dwpResponse.getPostcodeMatch())</span>
-<span class="fc" id="L59">                .pregnantChildDOBMatch(dwpResponse.getPregnantChildDOBMatch())</span>
-<span class="fc" id="L60">                .dwpHouseholdIdentifier(dwpResponse.getHouseholdIdentifier())</span>
-<span class="fc" id="L61">                .deathVerificationFlag(dwpResponse.getDeathVerificationFlag())</span>
-<span class="fc" id="L62">                .dobOfChildrenUnder4(dwpResponse.getDobOfChildrenUnder4())</span>
+<span class="fc" id="L53">                .qualifyingReason(getQualifyingReason(dwpResponse))</span>
+<span class="fc" id="L54">                .mobilePhoneMatch(dwpResponse.getMobilePhoneMatch())</span>
+<span class="fc" id="L55">                .emailAddressMatch(dwpResponse.getEmailAddressMatch())</span>
+<span class="fc" id="L56">                .addressLine1Match(dwpResponse.getAddressLine1Match())</span>
+<span class="fc" id="L57">                .postcodeMatch(dwpResponse.getPostcodeMatch())</span>
+<span class="fc" id="L58">                .pregnantChildDOBMatch(dwpResponse.getPregnantChildDOBMatch())</span>
+<span class="fc" id="L59">                .dwpHouseholdIdentifier(dwpResponse.getHouseholdIdentifier())</span>
+<span class="fc" id="L60">                .deathVerificationFlag(dwpResponse.getDeathVerificationFlag())</span>
+<span class="fc" id="L61">                .dobOfChildrenUnder4(dwpResponse.getDobOfChildrenUnder4())</span>
                 //TODO 02/12/2019: Specifically set to null for now, HTBHF-2410 will set this value when integrated with HMRC
-<span class="fc" id="L64">                .hmrcHouseholdIdentifier(null)</span>
-<span class="fc" id="L65">                .build();</span>
+<span class="fc" id="L63">                .hmrcHouseholdIdentifier(null)</span>
+<span class="fc" id="L64">                .build();</span>
     }
 
     private QualifyingReason getQualifyingReason(IdentityAndEligibilityResponse dwpResponse) {
-<span class="fc bfc" id="L69" title="All 2 branches covered.">        return dwpResponse.getQualifyingBenefits() == null</span>
-<span class="fc" id="L70">                ? null</span>
-<span class="fc" id="L71">                : QualifyingReason.valueOf(dwpResponse.getQualifyingBenefits().name());</span>
+<span class="fc bfc" id="L68" title="All 2 branches covered.">        return dwpResponse.getQualifyingBenefits() == null</span>
+<span class="fc" id="L69">                ? null</span>
+<span class="fc" id="L70">                : QualifyingReason.valueOf(dwpResponse.getQualifyingBenefits().name());</span>
     }
 
 }

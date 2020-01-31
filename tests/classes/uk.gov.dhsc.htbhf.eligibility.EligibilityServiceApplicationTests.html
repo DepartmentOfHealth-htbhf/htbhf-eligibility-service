@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.183s</div>
+<div class="counter">1.010s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,7 +79,7 @@
 </thead>
 <tr>
 <td class="success">swaggerDocumentationRetrieved()</td>
-<td class="success">0.183s</td>
+<td class="success">1.010s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -87,10 +87,21 @@
 <div id="tab1" class="tab">
 <h2>Standard output</h2>
 <span class="code">
-<pre>2020-01-31 14:39:21.898  INFO 667 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [uk.gov.dhsc.htbhf.eligibility.EligibilityServiceApplicationTests], using SpringBootContextLoader
-2020-01-31 14:39:21.900  INFO 667 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [uk.gov.dhsc.htbhf.eligibility.EligibilityServiceApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
-2020-01-31 14:39:21.903  INFO 667 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.cloud.contract.stubrunner.provider.wiremock.StubRunnerWireMockTestExecutionListener, org.springframework.cloud.contract.wiremock.WireMockTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-2020-01-31 14:39:21.905  INFO 667 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@6c084f95, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@6f8acb87, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@47551914, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@2ff217fe, org.springframework.test.context.support.DirtiesContextTestExecutionListener@1289172, org.springframework.test.context.event.EventPublishingTestExecutionListener@38c7b423, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@57b59796, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@68c72779, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@2d219812, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@28424739, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@53307c80, org.springframework.cloud.contract.stubrunner.provider.wiremock.StubRunnerWireMockTestExecutionListener@21d7570, org.springframework.cloud.contract.wiremock.WireMockTestExecutionListener@235d9c29]
+<pre>15:26:18.973 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating CacheAwareContextLoaderDelegate from class [org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate]
+15:26:19.008 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating BootstrapContext using constructor [public org.springframework.test.context.support.DefaultBootstrapContext(java.lang.Class,org.springframework.test.context.CacheAwareContextLoaderDelegate)]
+15:26:19.065 [Test worker] DEBUG org.springframework.test.context.BootstrapUtils - Instantiating TestContextBootstrapper for test class [uk.gov.dhsc.htbhf.eligibility.EligibilityServiceApplicationTests] from class [org.springframework.boot.test.context.SpringBootTestContextBootstrapper]
+15:26:19.090 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Neither @ContextConfiguration nor @ContextHierarchy found for test class [uk.gov.dhsc.htbhf.eligibility.EligibilityServiceApplicationTests], using SpringBootContextLoader
+15:26:19.097 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [uk.gov.dhsc.htbhf.eligibility.EligibilityServiceApplicationTests]: class path resource [uk/gov/dhsc/htbhf/eligibility/EligibilityServiceApplicationTests-context.xml] does not exist
+15:26:19.098 [Test worker] DEBUG org.springframework.test.context.support.AbstractContextLoader - Did not detect default resource location for test class [uk.gov.dhsc.htbhf.eligibility.EligibilityServiceApplicationTests]: class path resource [uk/gov/dhsc/htbhf/eligibility/EligibilityServiceApplicationTestsContext.groovy] does not exist
+15:26:19.098 [Test worker] INFO org.springframework.test.context.support.AbstractContextLoader - Could not detect default resource locations for test class [uk.gov.dhsc.htbhf.eligibility.EligibilityServiceApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+15:26:19.150 [Test worker] DEBUG org.springframework.test.context.support.ActiveProfilesUtils - Could not find an 'annotation declaring class' for annotation type [org.springframework.test.context.ActiveProfiles] and class [uk.gov.dhsc.htbhf.eligibility.EligibilityServiceApplicationTests]
+15:26:19.388 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - @TestExecutionListeners is not present for class [uk.gov.dhsc.htbhf.eligibility.EligibilityServiceApplicationTests]: using defaults.
+15:26:19.389 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.cloud.contract.stubrunner.provider.wiremock.StubRunnerWireMockTestExecutionListener, org.springframework.cloud.contract.wiremock.WireMockTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+15:26:19.410 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Skipping candidate TestExecutionListener [org.springframework.test.context.transaction.TransactionalTestExecutionListener] due to a missing dependency. Specify custom listener classes or make the default listener classes and their required dependencies available. Offending class: [org/springframework/transaction/TransactionDefinition]
+15:26:19.411 [Test worker] DEBUG org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Skipping candidate TestExecutionListener [org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener] due to a missing dependency. Specify custom listener classes or make the default listener classes and their required dependencies available. Offending class: [org/springframework/transaction/interceptor/TransactionAttribute]
+15:26:19.412 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@51408de5, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@163f08b5, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@710896ca, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@1828455a, org.springframework.test.context.support.DirtiesContextTestExecutionListener@4d52dc1f, org.springframework.test.context.event.EventPublishingTestExecutionListener@23461fa0, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@164d73c4, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@4c95e6c2, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@177c696b, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@454df3b, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@79fa5f26, org.springframework.cloud.contract.stubrunner.provider.wiremock.StubRunnerWireMockTestExecutionListener@1a3a052d, org.springframework.cloud.contract.wiremock.WireMockTestExecutionListener@6e790030]
+15:26:19.418 [Test worker] DEBUG org.springframework.test.context.support.AbstractDirtiesContextTestExecutionListener - Before test class: context [DefaultTestContext@2ac922d7 testClass = EligibilityServiceApplicationTests, testInstance = [null], testMethod = [null], testException = [null], mergedContextConfiguration = [WebMergedContextConfiguration@50cf8436 testClass = EligibilityServiceApplicationTests, locations = '{}', classes = '{class uk.gov.dhsc.htbhf.eligibility.EligibilityServiceApplication, class uk.gov.dhsc.htbhf.eligibility.EligibilityServiceApplication}', contextInitializerClasses = '[]', activeProfiles = '{}', propertySourceLocations = '{}', propertySourceProperties = '{org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true, server.port=0}', contextCustomizers = set[org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizerFactory$Customizer@4a03fb3f, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@3d2d962c, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@2e15cbbb, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@65d8c1a5], resourceBasePath = 'src/main/webapp', contextLoader = 'org.springframework.boot.test.context.SpringBootContextLoader', parent = [null]], attributes = map['org.springframework.test.context.web.ServletTestExecutionListener.activateListener' -&gt; false]], class annotated with @DirtiesContext [false] with mode [null].
+15:26:19.462 [Test worker] DEBUG org.springframework.test.context.support.TestPropertySourceUtils - Adding inlined properties to environment: {spring.jmx.enabled=false, org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true, server.port=0}
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -100,28 +111,27 @@
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.2.0.RELEASE)
 
-2020-01-31 14:39:21.929  INFO 667 --- [    Test worker] d.h.e.EligibilityServiceApplicationTests : Starting EligibilityServiceApplicationTests on 5b866b0e0c48 with PID 667 (started by circleci in /home/circleci/project/api)
-2020-01-31 14:39:21.929  INFO 667 --- [    Test worker] d.h.e.EligibilityServiceApplicationTests : No active profile set, falling back to default profiles: default
-2020-01-31 14:39:22.258  WARN 667 --- [    Test worker] org.apache.tomcat.util.modeler.Registry  : The MBean registry cannot be disabled because it has already been initialised
-2020-01-31 14:39:22.261  INFO 667 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
-2020-01-31 14:39:22.262  INFO 667 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2020-01-31 14:39:22.262  INFO 667 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
-2020-01-31 14:39:22.279  INFO 667 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2020-01-31 14:39:22.279  INFO 667 --- [    Test worker] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 347 ms
-2020-01-31 14:39:22.659  INFO 667 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
-2020-01-31 14:39:22.785  INFO 667 --- [    Test worker] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2020-01-31 14:39:22.794  INFO 667 --- [    Test worker] u.g.d.h.e.EligibilityServiceApplication  : Creating ThreadPoolTaskExecutor with min pool size 2 and max 200
-2020-01-31 14:39:22.800  INFO 667 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'taskExecutor'
-2020-01-31 14:39:22.999  INFO 667 --- [    Test worker] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
-2020-01-31 14:39:23.000  INFO 667 --- [    Test worker] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
-2020-01-31 14:39:23.004  INFO 667 --- [    Test worker] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
-2020-01-31 14:39:23.037  INFO 667 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 43999 (http) with context path ''
-2020-01-31 14:39:23.038  INFO 667 --- [    Test worker] d.h.e.EligibilityServiceApplicationTests : Started EligibilityServiceApplicationTests in 1.131 seconds (JVM running for 13.28)
-2020-01-31 14:39:23.041  INFO 667 --- [    Test worker] uk.gov.dhsc.htbhf.logging.EventLogger    : {&quot;eventType&quot;:&quot;APPLICATION_STARTED&quot;,&quot;timestamp&quot;:&quot;2020-01-31T14:39:23.040116&quot;,&quot;applicationId&quot;:&quot;&quot;,&quot;applicationVersion&quot;:&quot;&quot;,&quot;instanceIndex&quot;:&quot;&quot;}
-2020-01-31 14:39:23.042  INFO 667 --- [    Test worker] u.g.d.h.eligibility.ApiDocumentation     : Application started. App version=, app id=, instance index=
-2020-01-31 14:39:23.058  INFO 667 --- [o-auto-2-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-01-31 14:39:23.059  INFO 667 --- [o-auto-2-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2020-01-31 14:39:23.071  INFO 667 --- [o-auto-2-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 12 ms
+2020-01-31 15:26:19.972  INFO 657 --- [    Test worker] d.h.e.EligibilityServiceApplicationTests : Starting EligibilityServiceApplicationTests on 6469be596ef1 with PID 657 (started by circleci in /home/circleci/project/api)
+2020-01-31 15:26:19.974  INFO 657 --- [    Test worker] d.h.e.EligibilityServiceApplicationTests : No active profile set, falling back to default profiles: default
+2020-01-31 15:26:22.565  INFO 657 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 0 (http)
+2020-01-31 15:26:22.584  INFO 657 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2020-01-31 15:26:22.584  INFO 657 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
+2020-01-31 15:26:22.730  INFO 657 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-01-31 15:26:22.730  INFO 657 --- [    Test worker] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 2374 ms
+2020-01-31 15:26:23.786  INFO 657 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoint(s) beneath base path '/actuator'
+2020-01-31 15:26:24.039  INFO 657 --- [    Test worker] pertySourcedRequestMappingHandlerMapping : Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2020-01-31 15:26:24.055  INFO 657 --- [    Test worker] u.g.d.h.e.EligibilityServiceApplication  : Creating ThreadPoolTaskExecutor with min pool size 2 and max 200
+2020-01-31 15:26:24.066  INFO 657 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'taskExecutor'
+2020-01-31 15:26:25.010  INFO 657 --- [    Test worker] d.s.w.p.DocumentationPluginsBootstrapper : Context refreshed
+2020-01-31 15:26:25.036  INFO 657 --- [    Test worker] d.s.w.p.DocumentationPluginsBootstrapper : Found 1 custom documentation plugin(s)
+2020-01-31 15:26:25.084  INFO 657 --- [    Test worker] s.d.s.w.s.ApiListingReferenceScanner     : Scanning for api listing references
+2020-01-31 15:26:25.383  INFO 657 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 34331 (http) with context path ''
+2020-01-31 15:26:25.389  INFO 657 --- [    Test worker] d.h.e.EligibilityServiceApplicationTests : Started EligibilityServiceApplicationTests in 5.922 seconds (JVM running for 7.522)
+2020-01-31 15:26:25.491  INFO 657 --- [    Test worker] uk.gov.dhsc.htbhf.logging.EventLogger    : {&quot;eventType&quot;:&quot;APPLICATION_STARTED&quot;,&quot;timestamp&quot;:&quot;2020-01-31T15:26:25.445371&quot;,&quot;applicationId&quot;:&quot;&quot;,&quot;applicationVersion&quot;:&quot;&quot;,&quot;instanceIndex&quot;:&quot;&quot;}
+2020-01-31 15:26:25.492  INFO 657 --- [    Test worker] u.g.d.h.eligibility.ApiDocumentation     : Application started. App version=, app id=, instance index=
+2020-01-31 15:26:26.136  INFO 657 --- [o-auto-1-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-01-31 15:26:26.137  INFO 657 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2020-01-31 15:26:26.155  INFO 657 --- [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 18 ms
 </pre>
 </span>
 </div>
@@ -133,7 +143,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 5.6</a> at Jan 31, 2020, 2:41:01 PM</p>
+<a href="http://www.gradle.org">Gradle 5.6</a> at Jan 31, 2020, 3:27:52 PM</p>
 </div>
 </div>
 </body>
