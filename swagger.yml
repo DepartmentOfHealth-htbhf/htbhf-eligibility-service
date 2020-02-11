@@ -139,7 +139,6 @@ definitions:
     required:
     - "addressLine1"
     - "dateOfBirth"
-    - "nino"
     - "postcode"
     - "surname"
     properties:

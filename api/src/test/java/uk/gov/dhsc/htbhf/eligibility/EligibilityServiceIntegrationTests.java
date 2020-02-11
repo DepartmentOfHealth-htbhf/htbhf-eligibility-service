@@ -2,6 +2,7 @@ package uk.gov.dhsc.htbhf.eligibility;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,7 @@ import static org.springframework.http.HttpStatus.OK;
 import static uk.gov.dhsc.htbhf.TestConstants.*;
 import static uk.gov.dhsc.htbhf.assertions.IntegrationTestAssertions.assertInternalServerErrorResponse;
 import static uk.gov.dhsc.htbhf.assertions.IntegrationTestAssertions.assertValidationErrorInResponse;
+import static uk.gov.dhsc.htbhf.dwp.model.VerificationOutcome.NOT_SUPPLIED;
 import static uk.gov.dhsc.htbhf.dwp.testhelper.IdAndEligibilityResponseTestDataFactory.anAllMatchedEligibilityConfirmedUCResponseWithHouseholdId;
 import static uk.gov.dhsc.htbhf.dwp.testhelper.PersonDTOTestDataFactory.aPersonDTOWithNino;
 import static uk.gov.dhsc.htbhf.dwp.testhelper.PersonDTOTestDataFactory.aValidPersonDTO;
@@ -65,6 +67,7 @@ class EligibilityServiceIntegrationTests {
         verifyDWPEndpointCalled();
     }
 
+    @Disabled("nino is optional for private beta and unique key is yet to be decided")
     @Test
     void shouldReturnBadRequestForInvalidRequest() {
         //Given
@@ -73,6 +76,28 @@ class EligibilityServiceIntegrationTests {
         ResponseEntity<ErrorResponse> responseEntity = restTemplate.exchange(buildRequestEntity(person), ErrorResponse.class);
 
         assertValidationErrorInResponse(responseEntity, "nino", "must not be null");
+    }
+
+    @Test
+    void shouldValidateForNullNino() throws JsonProcessingException {
+        //Given
+        PersonDTO person = aPersonDTOWithNino(null);
+        IdentityAndEligibilityResponse identityAndEligibilityResponse = anAllMatchedEligibilityConfirmedUCResponseWithHouseholdId()
+                .toBuilder()
+                .emailAddressMatch(NOT_SUPPLIED)
+                .mobilePhoneMatch(NOT_SUPPLIED)
+                .build();
+        stubDWPEndpointWithSuccessfulResponse(identityAndEligibilityResponse);
+        //When
+        ResponseEntity<CombinedIdentityAndEligibilityResponse> responseEntity = restTemplate.exchange(buildRequestEntity(person),
+                CombinedIdentityAndEligibilityResponse.class);
+
+        //Then
+        assertThat(responseEntity.getStatusCode()).isEqualTo(OK);
+        assertThat(responseEntity.hasBody()).isTrue();
+        assertThat(responseEntity.getBody().getEmailAddressMatch()).isEqualTo(NOT_SUPPLIED);
+        assertThat(responseEntity.getBody().getMobilePhoneMatch()).isEqualTo(NOT_SUPPLIED);
+        verifyDWPEndpointCalled();
     }
 
     @Test
